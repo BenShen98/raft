@@ -24,7 +24,7 @@ end
 def exit_after(duration) do
   Process.sleep(duration)
   IO.puts "Exiting #{node()}"
-  node_exit()	
+  node_exit()
 end
 
 def node_init do  # get node arguments and spawn a process to exit node after max_time
@@ -42,8 +42,8 @@ def node_init do  # get node arguments and spawn a process to exit node after ma
 end
 
 defp more_parameters(config) do
-  Map.merge config, %{ 
-    debug_level:     0,         # debug level 0  
+  Map.merge config, %{
+    debug_level:     0,         # debug level 0
     print_after:     2_000,     # print transaction log summary every print_after millisecs
 
     client_requests: 1,    	# max requests each client will make
@@ -65,5 +65,3 @@ defp more_parameters(config) do
 end
 
 end # module -----------------------
-
-

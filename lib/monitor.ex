@@ -1,39 +1,44 @@
 
 # distributed algorithms, n.dulay, 4 feb 2020
 # coursework, raft consensus, v1
+# Leyang Shen (ls2617)
 
 defmodule Monitor do
 
 def notify(s, message) do send s.config.monitorP, message end
 
-def debug(s, string) do 
- if s.config.debug_level == 0 do IO.puts "server #{s.id} #{string}" end
+def client(s, string) do
+ if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: client #{s.id}: #{string}" end
 end # debug
 
-def debug(s, level, string) do 
- if level >= s.config.debug_level do IO.puts "server #{s.id} #{string}" end
+def server(s, string) do
+  if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}" end
+end # debug
+
+def server(s, level, string) do
+ if level >= s.config.debug_level do IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}" end
 end # debug
 
 def pad(key), do: String.pad_trailing("#{key}", 10)
 
-def state(s, level, string) do 
- if level >= s.config.debug_level do 
+def state(s, level, string) do
+ if level >= s.config.debug_level do
    state_out = for {key, value} <- s, into: "" do "\n  #{pad(key)}\t #{inspect value}" end
    IO.puts "\nserver #{s.id} #{s.role}: #{inspect s.selfP} #{string} state = #{state_out}"
  end # if
 end # state
 
 def halt(string) do
-  IO.puts "monitor: #{string}"
+  IO.puts "HALT: monitor: #{string}"
   System.stop
 end # halt
 
 def halt(s, string) do
-  IO.puts "server #{s.id} #{string}"
+  IO.puts "HALT: server #{s.id}: #{string}"
   System.stop
 end # halt
 
-def letter(s, letter) do 
+def letter(s, letter) do
   if s.config.debug_level == 3, do: IO.write(letter)
 end # letter
 
@@ -52,22 +57,22 @@ end # start
 
 def clock(state, v), do: Map.put(state, :clock, v)
 
-def requests(state, i, v), do: 
+def requests(state, i, v), do:
     Map.put(state, :requests, Map.put(state.requests, i, v))
 
-def updates(state, i, v), do: 
+def updates(state, i, v), do:
     Map.put(state, :updates,  Map.put(state.updates, i, v))
 
 def moves(state, v), do: Map.put(state, :moves, v)
 
 def next(state) do
   receive do
-  { :DB_MOVE, db, seqnum, command} ->
+  { :DB_MOVE, db, seqnum, command}  ->
     { :move, amount, from, to } = command
 
     done = Map.get(state.updates, db, 0)
 
-    if seqnum != done + 1, do: 
+    if seqnum != done + 1, do:
        Monitor.halt "  ** error db #{db}: seq #{seqnum} expecting #{done+1}"
 
     moves =
@@ -92,8 +97,10 @@ def next(state) do
     Monitor.next(state)
 
   { :PRINT } ->
+    # update clock
     clock  = state.clock + state.config.print_after
     state  = Monitor.clock(state, clock)
+
     sorted = state.updates  |> Map.to_list |> List.keysort(0)
     IO.puts "time = #{clock}      db updates done = #{inspect sorted}"
     sorted = state.requests |> Map.to_list |> List.keysort(0)

@@ -1,6 +1,9 @@
 
 # distributed algorithms, n.dulay, 4 feb 2020
 # Makefile, raft consensus, v1
+# Leyang Shen (ls2617)
+
+SHELL := /bin/bash
 
 SERVERS  = 5
 CLIENTS  = 5
@@ -21,23 +24,21 @@ ELIXIR  := elixir --no-halt --cookie ${COOKIE} --name
 MIX 	:= -S mix run -e ${START} ${MAX_TIME} ${NODE_SUFFIX} ${SERVERS} ${CLIENTS}
 
 # --------------------------------------------------------------------
+compile:
+	mix compile
 
 run run_multi: compile
-	@ ${ELIXIR} server1_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} server2_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} server3_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} server4_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} server5_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} client1_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} client2_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} client3_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} client4_${NODE_SUFFIX} ${MIX} multi_node_wait &
-	@ ${ELIXIR} client5_${NODE_SUFFIX} ${MIX} multi_node_wait &
+	@for (( i=0; i<${SERVERS}; i++ )); do \
+	${ELIXIR} server$${i}_${NODE_SUFFIX} ${MIX} multi_node_wait & \
+	done;
+
+	@for (( i=0; i<${CLIENTS}; i++ )); do \
+	${ELIXIR} client$${i}_${NODE_SUFFIX} ${MIX} multi_node_wait & \
+	done
+
 	@sleep 2
 	@ ${ELIXIR} raft_${NODE_SUFFIX} ${MIX} multi_node_start
 
-compile:
-	mix compile
 
 clean:
 	mix clean
