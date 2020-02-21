@@ -11,7 +11,7 @@ def start(s) do
 
   s=State.restart_election_timer(s)
 
-  Monitor.server(s, "switched to #{s.role}")
+  Monitor.server(s,10, "switched to #{s.role}")
   next(s)
 end # start
 
@@ -49,7 +49,10 @@ def next(s) do
           end
 
         end)
-    end
+
+    {:disaster, d} ->
+      Disaster.handel(s, d)
+  end
 
   # state update
   if escape do

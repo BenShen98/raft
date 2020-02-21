@@ -32,7 +32,7 @@ def start(s) do
   # VOTE_REQUEST can only sned once in each term,
   # to prevent vote being counted twice
 
-  Monitor.server(s, "switched to #{s.role}")
+  Monitor.server(s,10, "switched to #{s.role}")
   next(s)
 end # start
 
@@ -84,6 +84,9 @@ def next(s) do
           end
 
         end)
+
+      {:disaster, d} ->
+        Disaster.handel(s, d)
 
     end
 

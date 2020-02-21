@@ -16,7 +16,8 @@ def start(s) do
     if id != s.id do send self(), {:send_ape, id} end
   end
 
-  Monitor.server(s, "switched to #{s.role}")
+  Monitor.server(s,10, "switched to #{s.role}")
+  send s.config.raftP, {:leader_start, s.id}
   next(s)
 end # start
 
@@ -44,6 +45,9 @@ def next(s) do
           end
 
         end)
+
+      {:disaster, d} ->
+        Disaster.handel(s, d)
 
     end
 

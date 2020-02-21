@@ -59,6 +59,18 @@ def restart_election_timer(s) do
 
 end
 
+def force_election_timeout(s) do
+  # cancel old timer
+  s=cancel_election_timer(s)
+
+  # force timeout
+  send self(), {:ele_timeout, {s.curr_term, s.role}}
+
+  # resume timeout
+  restart_election_timer(s)
+
+end
+
 
 # getters
 def rand_election_timeout(s), do: Kernel.trunc s.config.election_timeout*(1+:rand.uniform())
@@ -100,7 +112,7 @@ def inc_vote(s), do: Map.put(s, :votes, s.votes+1)
 # common guard function
 def check_term_and(s,type,data, func) do
   if data.term > s.curr_term do
-    Monitor.server(s, "Higher term found #{ inspect {type,data}}")
+    Monitor.server(s,10, "Higher term found #{ inspect {type,data}}")
     send self(), {type, data} # make it a will, to be handeled by next state
     {curr_term(s, data.term) |> role(:FOLLOWER) |> voted_for(nil), true}
   else
@@ -149,7 +161,11 @@ def handel_vote_request(s, data) do
   s = if voteGranted do voted_for(s, data.candidateId) else s end
   reply = %{:term=>s.curr_term, :voteGranted=>voteGranted}
 
-  Monitor.server(s, "vote request from #{data.candidateId}, #{voteGranted}, #{was_vote} -> #{s.voted_for}")
+  if voteGranted do
+    Monitor.server(s,10,  "vote request from #{data.candidateId}, #{voteGranted}, #{was_vote} -> #{s.voted_for}")
+  else
+    Monitor.server(s,0,  "vote request from #{data.candidateId}, #{voteGranted}, #{was_vote} -> #{s.voted_for}")
+  end
 
   send targetP, {:VOTE_REPLY, reply }
 

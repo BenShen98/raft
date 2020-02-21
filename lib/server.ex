@@ -43,15 +43,18 @@ defp make_will(s, wills) do
 
     {type, data}=msg when type in [:VOTE_REQUEST, :APE_REQUEST,] ->
       if data.term >= s.curr_term do
-        Monitor.server(s, "give will: #{inspect msg}")
+        Monitor.server(s,10, "give will: #{inspect msg}")
         {:more, wills ++ [msg]}
       else
-        Monitor.server(s, "flushing (old term): #{inspect msg}")
+        Monitor.server(s,0, "flushing (old term): #{inspect msg}")
         {:more, wills}
       end
 
+    {:disaster, disaster}=msg ->
+      {:more, wills ++ [msg]}
+
     others ->
-      Monitor.server(s, "flushing: #{inspect others}")
+      Monitor.server(s,0, "flushing: #{inspect others}")
       {:more, wills}
 
     after 0 ->

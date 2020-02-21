@@ -43,7 +43,7 @@ end
 
 defp more_parameters(config) do
   Map.merge config, %{
-    debug_level:     0,         # debug level 0
+    debug_level:     10,         # debug level, use 0 DEBUG, 10 LOG, 20 WARNING, 30 ERROR ...
     print_after:     2_000,     # print transaction log summary every print_after millisecs
 
     client_requests: 1,    	# max requests each client will make
@@ -57,10 +57,14 @@ defp more_parameters(config) do
     election_timeout: 100,	# timeout(ms) for election, randomly from this to 2*this value
     append_entries_timeout: 10, # timeout(ms) for expecting reply to append_entries request
 
-    crash_servers: %{		# %{ server_num => crash_after_time, ...}
-      1 => 10_000,
-      3 => 15_000,
+    disasters: %{
+      0 => %{:type=>"timeout", :id=>0, :ref=>"xx"},
+      1_000 => %{:type=>"offline", :id=>"leader", :ref=>"a"},
+      1_500 => %{:type=>"crash", :id=>"leader", :ref=>"b"},
+      2_000 => %{:type=>"offline", :id=>"leader", :ref=>"c"},
+      2_500 => %{:type=>"online", :id=>"b"},
     },
+
   }
 end
 

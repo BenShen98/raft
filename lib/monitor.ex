@@ -11,8 +11,8 @@ def client(s, string) do
  if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: client #{s.id}: #{string}" end
 end # debug
 
-def server(s, string) do
-  if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}" end
+def server(s, string) do #assume highest level
+  IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}"
 end # debug
 
 def server(s, level, string) do

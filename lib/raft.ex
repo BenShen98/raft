@@ -6,7 +6,6 @@ defmodule Raft do
 
 def start do
   config = DAC.node_init()
-  IO.puts "Raft at #{DAC.node_ip_addr}"
 
   Raft.start(config.start_function, config)
 end # start/0
@@ -16,7 +15,7 @@ def start(:multi_node_wait, _), do: :skip
 def start(:multi_node_start, config) do
   # spawn monitor process in top-level raft node
   monitorP = spawn(Monitor, :start, [config])
-  config   = Map.put(config, :monitorP, monitorP)
+  config   = Map.put(config, :monitorP, monitorP) |> Map.put(:raftP, self())
 
   # co-locate 1 server and 1 database at each server node
   servers = for id <- 0 .. config.n_servers-1 do # such serverP = servers[id]
@@ -25,6 +24,11 @@ def start(:multi_node_start, config) do
     _serverP  = Node.spawn(:'server#{id}_#{config.node_suffix}',
                      Server, :start, [config, id, databaseP])
   end # for
+
+  # plan for attack
+  for {time, disaster} <- config.disasters do
+    Process.send_after( self(), {:disaster, disaster}, time)
+  end
 
   # pass list of servers to each server
   for server <- servers, do: send server, { :BIND, servers }
@@ -35,6 +39,42 @@ def start(:multi_node_start, config) do
                     Client, :start, [config, id, servers])
   end # for
 
+  next(servers, %{"leader"=>nil})
+end
+
+defp next(servers, refs) do
+  IO.puts(inspect refs)
+
+  refs = receive do
+    {:disaster, disaster}=msg ->
+      target_id=cond do
+        # raw reference
+        is_integer(disaster.id) ->
+          send Enum.at(servers, disaster.id), msg
+          disaster.id
+
+        # lookup reference
+        (server_id=Map.get(refs, disaster.id, nil)) != nil ->
+          send Enum.at(servers, server_id), msg
+          server_id
+      end
+
+      new_ref = Map.get(disaster, :ref)
+      if new_ref != nil do
+        Map.put(refs, new_ref, target_id)
+      else
+        refs
+      end
+
+    {:leader_start, leader} ->
+      Map.put(refs, "leader", leader)
+
+    msg ->
+      IO.puts("unexpected msg to raft #{inspect msg}")
+      System.stop
+  end
+
+  next(servers, refs)
 end
 
 end # module ------------------------------
