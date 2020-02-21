@@ -15,14 +15,14 @@ def start(:multi_node_wait, _), do: :skip
 
 def start(:multi_node_start, config) do
   # spawn monitor process in top-level raft node
-  monitorP = spawn(Monitor, :start, [config]) 
+  monitorP = spawn(Monitor, :start, [config])
   config   = Map.put(config, :monitorP, monitorP)
 
   # co-locate 1 server and 1 database at each server node
-  servers = for id <- 1 .. config.n_servers do
-    databaseP = Node.spawn(:'server#{id}_#{config.node_suffix}', 
+  servers = for id <- 0 .. config.n_servers-1 do # such serverP = servers[id]
+    databaseP = Node.spawn(:'server#{id}_#{config.node_suffix}',
                      Database, :start, [config, id])
-    _serverP  = Node.spawn(:'server#{id}_#{config.node_suffix}', 
+    _serverP  = Node.spawn(:'server#{id}_#{config.node_suffix}',
                      Server, :start, [config, id, databaseP])
   end # for
 
@@ -30,8 +30,8 @@ def start(:multi_node_start, config) do
   for server <- servers, do: send server, { :BIND, servers }
 
   # create 1 client at each client node
-  for id <- 1 .. config.n_clients do
-    _clientP = Node.spawn(:'client#{id}_#{config.node_suffix}', 
+  for id <- 0 .. config.n_clients-1 do
+    _clientP = Node.spawn(:'client#{id}_#{config.node_suffix}',
                     Client, :start, [config, id, servers])
   end # for
 
