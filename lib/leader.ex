@@ -60,12 +60,12 @@ def next(s) do
 end # next
 
 defp ape(s, id) do
-  {term, index} = State.get_prev_log(s)
+  {term, index} = State.get_prev_log(s, elem(s.next_index, id))
 
   request=%{
     term: s.curr_term,
     leaderId: s.id,
-    preLogIndex: index, # TODO: incorrect, should depends on nextindex
+    preLogIndex: index,
     perLogTerm: term,
     entries: [],
     leaderCommit: s.commit_index

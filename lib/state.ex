@@ -75,12 +75,24 @@ end
 # getters
 def rand_election_timeout(s), do: Kernel.trunc s.config.election_timeout*(1+:rand.uniform())
 
-def get_prev_log(s) do
-  index=length(s.log)
-  if index==0 do
-    {0, 0}
-  else
-    {Enum.at(s.log, index) |> elem(1) , index}
+def get_last_log(s) do
+  # NOTE: new_log_index = length(s.log) + 1
+  get_prev_log(s, length(s.log)+1 )
+end
+
+def get_prev_log(s, new_log_index) do
+  # returns {term, log_index}
+
+  prev_log_index = new_log_index - 1
+  #prev_index = prev_log_index - 1 = new_log_index - 2
+
+  cond do
+    prev_log_index < 0 ->
+      Monitor.halt(s, "invalid log index")
+    prev_log_index == 0 ->
+      {0, 0} #base case for first new log
+    true ->
+      {Enum.at(s.log, prev_log_index-1) |> elem(1), prev_log_index}
   end
 end
 
