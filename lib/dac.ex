@@ -35,7 +35,11 @@ def node_init do  # get node arguments and spawn a process to exit node after ma
   config = Map.put config, :n_clients, 	  String.to_integer(Enum.at(System.argv, 3))
   config = Map.put config, :start_function, :'#{Enum.at(System.argv, 4)}'
 
-  config = more_parameters(config)
+
+
+  config = config
+  |> more_parameters()
+  |> load_config(Enum.at(System.argv, 5)) # read from config file, override exist
 
   spawn(DAC, :exit_after, [config.max_time])
   config
@@ -43,7 +47,8 @@ end
 
 defp more_parameters(config) do
   Map.merge config, %{
-    debug_level:     10,         # debug level, use 0 DEBUG, 10 LOG, 20 WARNING, 30 ERROR ...
+
+    debug_level:     10,         # debug level, use 0 DEBUG, 10 LOG, 20 WARNING, 30 ERROR, 40 MANMADE DISASTER
     print_after:     2_000,     # print transaction log summary every print_after millisecs
 
     client_requests: 1,    	# max requests each client will make
@@ -57,15 +62,26 @@ defp more_parameters(config) do
     election_timeout: 100,	# timeout(ms) for election, randomly from this to 2*this value
     append_entries_timeout: 10, # timeout(ms) for expecting reply to append_entries request
 
-    disasters: %{
-      0 => %{:type=>"timeout", :id=>0, :ref=>"xx"},
-      1_000 => %{:type=>"offline", :id=>"leader", :ref=>"a"},
-      1_500 => %{:type=>"crash", :id=>"leader", :ref=>"b"},
-      2_000 => %{:type=>"offline", :id=>"leader", :ref=>"c"},
-      2_500 => %{:type=>"online", :id=>"b"},
-    },
+    disasters: [],
 
   }
+end
+
+defp load_config(default_config, filename) do
+
+  if filename == nil do
+    default_config
+  else
+    config_from_file = filename
+    |> File.read!
+    |> Poison.Parser.parse!(%{keys: :atoms!})
+
+    for key <- Map.keys(default_config), into: %{} do
+      {key, Map.get(config_from_file, key, Map.get(default_config, key))}
+    end
+
+  end
+
 end
 
 end # module -----------------------

@@ -7,7 +7,7 @@
 defmodule Disaster do
 
 def handel(s, d) do
-  Monitor.server(s,20, "affected by #{d.type}")
+  Monitor.server(s,40, "AFFECTED BY #{d.type}")
   case d.type do
     "offline" ->
       offline(s)
@@ -35,7 +35,7 @@ defp offline(s) do
   escape=receive do
     {:disaster, d}->
       if d.type=="online" do
-        Monitor.server(s,20, "affected by #{d.type}")
+        Monitor.server(s,40, "AFFECTED BY #{d.type}")
         true
       else
         Monitor.server(s,30,"ERROR: after offline or crash, only online are accpted")

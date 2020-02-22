@@ -17,6 +17,10 @@ def start(:multi_node_start, config) do
   monitorP = spawn(Monitor, :start, [config])
   config   = Map.put(config, :monitorP, monitorP) |> Map.put(:raftP, self())
 
+  IO.puts("====RUNNNING WITH CONFIG====")
+  IO.puts(inspect config)
+  IO.puts("====   CONFIG    END   ====")
+
   # co-locate 1 server and 1 database at each server node
   servers = for id <- 0 .. config.n_servers-1 do # such serverP = servers[id]
     databaseP = Node.spawn(:'server#{id}_#{config.node_suffix}',
@@ -26,8 +30,8 @@ def start(:multi_node_start, config) do
   end # for
 
   # plan for attack
-  for {time, disaster} <- config.disasters do
-    Process.send_after( self(), {:disaster, disaster}, time)
+  for disaster <- config.disasters do
+    Process.send_after( self(), {:disaster, disaster}, disaster.t)
   end
 
   # pass list of servers to each server
@@ -43,8 +47,6 @@ def start(:multi_node_start, config) do
 end
 
 defp next(servers, refs) do
-  IO.puts(inspect refs)
-
   refs = receive do
     {:disaster, disaster}=msg ->
       target_id=cond do
@@ -74,6 +76,7 @@ defp next(servers, refs) do
       System.stop
   end
 
+  IO.puts("Disaster reference name #{inspect refs}")
   next(servers, refs)
 end
 
