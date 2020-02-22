@@ -10,13 +10,66 @@ def start(config, server_id, databaseP) do
   receive do
   { :BIND, servers } ->
     s = State.initialise(config, server_id, servers, databaseP)
-   _s = Server.next(s)
+    Server.next(s)
   end # receive
+
+
 end # start
 
-def next(_s) do
-  # omitted
+def next(s) do
+  send s.config.monitorP, {:ROLE_UPDATE, s.id, s.curr_term, s.role}
+
+  case s.role do
+    :FOLLOWER ->
+      Follower.start(s)
+
+    :CANDIDATE ->
+      Candidate.start(s)
+
+    :LEADER ->
+      Leader.start(s)
+
+    unknown ->
+      Monitor.halt(s, "reach unknown #{unknown} role")
+
+  end
+  |> State.cancel_election_timer()
+  |> make_will([])
+  |> next()
+
 end # next
 
-end # Server
+defp make_will(s, wills) do
+  {state, wills} = receive do
 
+    {type, data}=msg when type in [:VOTE_REQUEST, :APE_REQUEST,] ->
+      if data.term >= s.curr_term do
+        Monitor.server(s,10, "give will: #{inspect msg}")
+        {:more, wills ++ [msg]}
+      else
+        Monitor.server(s,0, "flushing (old term): #{inspect msg}")
+        {:more, wills}
+      end
+
+    {:disaster, disaster}=msg ->
+      {:more, wills ++ [msg]}
+
+    others ->
+      Monitor.server(s,0, "flushing: #{inspect others}")
+      {:more, wills}
+
+    after 0 ->
+      {:done,wills}
+  end
+
+  case state do
+    :more -> make_will(s, wills)
+    :done ->
+      for will <- wills do
+        send self(), will
+      end
+      s
+  end
+end
+
+end # Server

@@ -11,8 +11,8 @@ def client(s, string) do
  if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: client #{s.id}: #{string}" end
 end # debug
 
-def server(s, string) do
-  if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}" end
+def server(s, string) do #assume highest level
+  IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}"
 end # debug
 
 def server(s, level, string) do
@@ -49,11 +49,17 @@ def start(config) do
     requests:           Map.new,
     updates:            Map.new,
     moves:              Map.new,
+    roles:              Map.new,
     # rest omitted
   }
   Process.send_after(self(), { :PRINT }, state.config.print_after)
   Monitor.next(state)
 end # start
+
+defp update_roles(state, id, term, role) do
+  new_role=Map.put(state.roles, id, {term, role}) # index in erlang start from 1
+  Map.put(state, :roles, new_role)
+end
 
 def clock(state, v), do: Map.put(state, :clock, v)
 
@@ -92,6 +98,11 @@ def next(state) do
     state = Monitor.updates(state, db, seqnum)
     Monitor.next(state)
 
+  {:ROLE_UPDATE, id, term, role} ->
+    state = update_roles(state, id, term, role)
+    Monitor.next(state)
+
+
   { :CLIENT_REQUEST, server_num } ->  # client requests seen by leaders
     state = Monitor.requests(state, server_num, state.requests + 1)
     Monitor.next(state)
@@ -105,6 +116,7 @@ def next(state) do
     IO.puts "time = #{clock}      db updates done = #{inspect sorted}"
     sorted = state.requests |> Map.to_list |> List.keysort(0)
     IO.puts "time = #{clock} client requests seen = #{inspect sorted}"
+    IO.puts "time = #{clock}        server roles  = #{inspect state.roles}"
 
     if state.config.debug_level >= 0 do  # always
       min_done   = state.updates  |> Map.values |> Enum.min(fn -> 0 end)
