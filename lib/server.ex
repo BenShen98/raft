@@ -17,7 +17,8 @@ def start(config, server_id, databaseP) do
 end # start
 
 def next(s) do
-  send s.config.monitorP, {:ROLE_UPDATE, s.id, s.curr_term, s.role}
+  Monitor.notify(s, {:ROLE_UPDATE, s.id, s.curr_term, s.role, self()} )
+
 
   case s.role do
     :FOLLOWER ->

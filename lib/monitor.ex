@@ -5,11 +5,32 @@
 
 defmodule Monitor do
 
+def assert(s, bool, reason\\nil) do
+  if bool==false do
+    throw "ASSERTION ERROR due to #{reason}, #{s}"
+  end
+end
+
 def notify(s, message) do send s.config.monitorP, message end
 
 def client(s, string) do
- if s.config.debug_level == 0 do IO.puts "#{Time.to_string(Time.utc_now)}: client #{s.id}: #{string}" end
+ IO.puts "#{Time.to_string(Time.utc_now)}: CLIENT #{s.id}: #{string}"
 end # debug
+
+def client(s,level, string) do
+  if level >= s.config.debug_level, do: IO.puts "#{Time.to_string(Time.utc_now)}: CLIENT #{s.id}: #{string}"
+end # debug
+
+
+def sinspect(s) do
+  leader = if s.role == :LEADER, do: "nextIdx: #{inspect s.next_index}, matchIdx: #{inspect s.match_index},"
+  IO.puts("#{s.curr_term}_#{s.role}@#{s.id}: commitIdx: #{s.commit_index}, appliedIdx: #{s.last_applied}, log(uid): #{inspect Enum.map(s.log, &(elem(&1,0).uid))} #{leader} ")
+  send s.databaseP, {:dinspect}
+end
+
+def dinspect(d) do
+  IO.puts("DATABASE@#{d.server_id}, seqnum: #{d.seqnum}, balances: #{inspect d.balances}")
+end
 
 def server(s, string) do #assume highest level
   IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}"
@@ -49,22 +70,30 @@ def start(config) do
     requests:           Map.new,
     updates:            Map.new,
     moves:              Map.new,
+
+    serversP:           List.duplicate(nil, config.n_servers),
     roles:              Map.new,
-    # rest omitted
   }
   Process.send_after(self(), { :PRINT }, state.config.print_after)
   Monitor.next(state)
 end # start
 
+defp update_serverP(state, id, p) do
+  new_P=List.replace_at(state.serversP, id, p)
+  Map.put(state, :serversP, new_P)
+end
+
 defp update_roles(state, id, term, role) do
-  new_role=Map.put(state.roles, id, {term, role}) # index in erlang start from 1
+  new_role=Map.put(state.roles, id, {term, role})
   Map.put(state, :roles, new_role)
 end
 
 def clock(state, v), do: Map.put(state, :clock, v)
 
-def requests(state, i, v), do:
-    Map.put(state, :requests, Map.put(state.requests, i, v))
+def inc_requests(state, i) do
+  new_requests = Map.put(state.requests, i, Map.get(state.requests, i, 0) + 1)
+  Map.put(state, :requests, new_requests)
+end
 
 def updates(state, i, v), do:
     Map.put(state, :updates,  Map.put(state.updates, i, v))
@@ -98,13 +127,14 @@ def next(state) do
     state = Monitor.updates(state, db, seqnum)
     Monitor.next(state)
 
-  {:ROLE_UPDATE, id, term, role} ->
+  {:ROLE_UPDATE, id, term, role, serverP} ->
     state = update_roles(state, id, term, role)
+            |> update_serverP(id, serverP)
     Monitor.next(state)
 
 
-  { :CLIENT_REQUEST, server_num } ->  # client requests seen by leaders
-    state = Monitor.requests(state, server_num, state.requests + 1)
+  { :CLIENT_REQUEST, server_num } ->  # client requests seen by leader at the time
+    state = Monitor.inc_requests(state, server_num)
     Monitor.next(state)
 
   { :PRINT } ->
@@ -115,7 +145,7 @@ def next(state) do
     sorted = state.updates  |> Map.to_list |> List.keysort(0)
     IO.puts "time = #{clock}      db updates done = #{inspect sorted}"
     sorted = state.requests |> Map.to_list |> List.keysort(0)
-    IO.puts "time = #{clock} client requests seen = #{inspect sorted}"
+    IO.puts "time = #{clock} client requests seen = #{inspect sorted}, (when the node was leader)"
     IO.puts "time = #{clock}        server roles  = #{inspect state.roles}"
 
     if state.config.debug_level >= 0 do  # always
@@ -124,7 +154,14 @@ def next(state) do
       IO.puts "time = #{clock}           total seen = #{n_requests} max lag = #{n_requests-min_done}"
     end
 
-    IO.puts ""
+    # ask server to give self inspect
+    if state.config.show_server do
+      for p <- state.serversP |> Enum.filter(&(&1!=nil)) do
+        send p, {:sinspect}
+      end
+    end
+
+
     Process.send_after(self(), { :PRINT }, state.config.print_after)
     Monitor.next(state)
 

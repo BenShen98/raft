@@ -29,6 +29,11 @@ def next(s) do
       #   Monitor.server(s, "APE_REQUEST not implemented")
       #   s
 
+      {:CLIENT_REQUEST, payload} ->
+        # IO.puts("#{inspect payload}")
+        s = handel_request(s, payload)
+        {s, false}
+
       {:send_ape, id} ->
         Process.send_after self(), {:send_ape, id}, s.config.append_entries_timeout
         {ape(s, id), false}
@@ -37,9 +42,41 @@ def next(s) do
         State.check_term_and(s,type,data,
         fn(s) ->
           case type do
+            :APE_REQUEST ->
+              %{:s => s, :success => success} = State.handel_ape_request(s, data)
+              if success do
+                Monitor.server(s,30, "LEADER SHOULD NOT RECEIVE AND RETURN SUCCESS FOR APE_REQUEST")
+              else
+                Monitor.server(s,20, "LEADER SHOULD NOT RECEIVE APE_REQUEST (success=false)")
+              end
+              {s, false}
+
+            :APE_REPLY ->
+              # BUG/TODO: currently only allow one entries at a time
+              # Assumption: client term should equal to curr_term (handeled before)
+              Monitor.assert s, data.term == s.curr_term
+
+              if data.success do
+                prev_next_index = elem(s.next_index, data.id)
+                new_next_index = prev_next_index+data.length
+                new_match_index = new_next_index-1
+
+                s=update_leader_index(s)
+                |> State.next_index(data.id, new_next_index)
+                |> State.match_index(data.id, new_match_index)
+                |> update_commit_index
+                |> State.apply_commited_log
+
+                {s, false}
+
+              else
+                # decrement nextIndex
+                {State.dec_next_index(s, data.id)
+                |> ape(data.id), false} # async retry
+              end
 
             :VOTE_REQUEST ->
-              %{:s=>s} = State.handel_ape_request(s, data)
+              %{:s=>s} = State.handel_vote_request(s, data)
 
               {s, false}
           end
@@ -48,6 +85,10 @@ def next(s) do
 
       {:disaster, d} ->
         Disaster.handel(s, d)
+
+      {:sinspect} ->
+        Monitor.sinspect(s)
+        {s, false}
 
     end
 
@@ -60,14 +101,24 @@ def next(s) do
 end # next
 
 defp ape(s, id) do
-  {term, index} = State.get_prev_log(s, elem(s.next_index, id))
+  next_index = elem(s.next_index, id)
+  {term, index} = State.get_prev_log(s, next_index)
+
+  # start by send one entries at a time
+  entries = if length(s.log) >= next_index do
+    [Enum.at(s.log, next_index-1) |> elem(0)]
+  else
+    # client has its entries in sync, send heartbeat
+    []
+  end
+
 
   request=%{
     term: s.curr_term,
     leaderId: s.id,
-    preLogIndex: index,
-    perLogTerm: term,
-    entries: [],
+    prevLogIndex: index,
+    prevLogTerm: term,
+    entries: entries,
     leaderCommit: s.commit_index
   }
 
@@ -75,5 +126,51 @@ defp ape(s, id) do
 
   s
 end
+
+defp update_leader_index(s) do
+  State.next_index(s, s.id, length(s.log)+1)
+  |> State.match_index(s.id, length(s.log))
+end
+
+defp update_commit_index(s) do
+  majority_commited_index = Enum.sort(Tuple.to_list(s.match_index), :desc) |> Enum.at(s.majority-1)
+
+  if State.get_log(s, majority_commited_index) |> elem(0) == s.curr_term do
+
+    # check errors
+    if s.commit_index>majority_commited_index do
+      Monitor.halt(s, "commit_index should only go forward")
+    end
+
+    # tell client it is commited #BUG: check start index?
+    for log <- Enum.slice(s.log, s.commit_index, majority_commited_index-s.commit_index) do
+      payload = elem(log, 0)
+      Monitor.server(s, 10, "send client confirmation #{inspect payload.uid}")
+      send payload.clientP, {:CLIENT_REPLY, %{:leaderP=>self(), :uid=>payload.uid}}
+    end
+
+    # update commit index
+    State.commit_index(s, majority_commited_index)
+  else
+    s
+  end
+end
+
+defp handel_request(s, payload) do # for leader
+
+  if Enum.find(s.log, fn x -> elem(x,0).uid == payload.uid end) == nil do
+    # append new request
+    Monitor.notify(s, { :CLIENT_REQUEST, s.id })
+    Monitor.server(s, 0, "append uid #{inspect payload.uid}")
+    Map.put(s, :log, s.log ++ [{payload, s.curr_term}])
+  else
+    # reply exisiting request
+    # with new address
+    Monitor.server(s, 0, "reply existing uid #{inspect payload.uid}")
+    send payload.clientP, {:CLIENT_REPLY, %{:leaderP=>self(), :uid=>payload.uid}}
+    s
+  end
+end
+
 
 end # Leader

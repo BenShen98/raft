@@ -29,6 +29,11 @@ def next(db) do
     Monitor.notify db, { :DB_MOVE, db.server_id, db.seqnum, command }
 
     Database.next(db)
+
+  {:dinspect} ->
+    Monitor.dinspect(db)
+
+    Database.next(db)
   unexpected ->
     Monitor.halt(db, "Database: unexpected message #{inspect unexpected}")
   end # receive

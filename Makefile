@@ -49,6 +49,10 @@ clean:
 install:
 	mix deps.get
 
+.PHONY: test
+test:
+	mix test
+
 # -- 'make ps' will list Elixir nodes running locally
 ps:
 	@echo ------------------------------------------------------------

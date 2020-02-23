@@ -48,10 +48,11 @@ end
 defp more_parameters(config) do
   Map.merge config, %{
 
-    debug_level:     10,         # debug level, use 0 DEBUG, 10 LOG, 20 WARNING, 30 ERROR, 40 MANMADE DISASTER
+    debug_level:     20,        # debug level, use 0 DEBUG, 10 LOG, 20 WARNING, 30 ERROR, 40 MANMADE DISASTER
+    show_server:     true,      # print of server and database content on inspection
     print_after:     2_000,     # print transaction log summary every print_after millisecs
 
-    client_requests: 1,    	# max requests each client will make
+    client_requests: 100,    	# max requests each client will make
     client_sleep:    5,        	# time to sleep before sending next request
     client_stop:     60_000,  	# time after which client should stop sending requests
     client_timeout:  500,       # timeout for expecting reply to client request

@@ -17,9 +17,9 @@ def start(:multi_node_start, config) do
   monitorP = spawn(Monitor, :start, [config])
   config   = Map.put(config, :monitorP, monitorP) |> Map.put(:raftP, self())
 
-  IO.puts("====RUNNNING WITH CONFIG====")
+  IO.puts("\n====RUNNNING WITH CONFIG====")
   IO.puts(inspect config)
-  IO.puts("====   CONFIG    END   ====")
+  IO.puts("====   CONFIG    END   ====\n")
 
   # co-locate 1 server and 1 database at each server node
   servers = for id <- 0 .. config.n_servers-1 do # such serverP = servers[id]

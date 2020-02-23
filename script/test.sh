@@ -27,9 +27,12 @@ for tpath in $TSTDIR/*.json; do
 
   tname="${tpath##*/}"
   tname="${tname%.json}"
-  echo "run test on $tname, output to $OUTDIR/$tname.log with $n_clients client, $n_servers server"
 
-  (cd $WKDIR; make run SERVERS=$n_servers CLIENTS=$n_clients CONFIGJSON=$tpath) > $OUTDIR/$tname.log
+  logfile=$OUTDIR/$tname.log
+
+  echo "run test on $tname, output to $logfile with $n_clients client, $n_servers server"
+
+  (cd $WKDIR; make run SERVERS=$n_servers CLIENTS=$n_clients CONFIGJSON=$tpath) > $logfile
 
 done
 

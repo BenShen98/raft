@@ -20,6 +20,9 @@ def next(s) do
   {s_next, escape} =
     receive do
 
+      {:CLIENT_REQUEST, payload} ->
+        {State.forward_client_request(s, payload), false}
+
       {:ele_timeout, data} ->
         if data=={s.curr_term, s.role} do
           # timeout from current msg
@@ -39,6 +42,7 @@ def next(s) do
 
               s = if data.term==s.curr_term do State.restart_election_timer(s) else s end
 
+
               {s, false} # not implemented
 
             :VOTE_REQUEST ->
@@ -52,6 +56,10 @@ def next(s) do
 
     {:disaster, d} ->
       Disaster.handel(s, d)
+
+    {:sinspect} ->
+      Monitor.sinspect(s)
+      {s, false}
   end
 
   # state update

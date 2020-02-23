@@ -18,7 +18,7 @@ def start(s) do
     |> State.restart_election_timer()
 
   # request for vote
-  {lastLogTerm, lastLogIndex} = State.get_prev_log(s)
+  {lastLogTerm, lastLogIndex} = State.get_last_log(s)
   for server <- s.servers do
     send server, {:VOTE_REQUEST, %{
       :term => s.curr_term,
@@ -40,6 +40,9 @@ def next(s) do
 
   {s_next, escape} =
     receive do
+
+      {:CLIENT_REQUEST, payload} ->
+        {State.forward_client_request(s, payload), false}
 
       {:ele_timeout, data} ->
         if data=={s.curr_term, s.role} do
@@ -87,6 +90,11 @@ def next(s) do
 
       {:disaster, d} ->
         Disaster.handel(s, d)
+
+      {:sinspect} ->
+        Monitor.sinspect(s)
+        {s, false}
+
 
     end
 
