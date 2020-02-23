@@ -35,14 +35,14 @@ def next(s) do
         fn(s) ->
           case type do
             :APE_REQUEST ->
-              %{:s=>s} = State.handel_ape_request(s, data)
+              %{:s=>s} = State.handle_ape_request(s, data)
 
               s = if data.term==s.curr_term do State.restart_election_timer(s) else s end
 
               {s, false} # not implemented
 
             :VOTE_REQUEST ->
-              %{:voteGranted=>granted, :s=>s} = State.handel_vote_request(s, data)
+              %{:voteGranted=>granted, :s=>s} = State.handle_vote_request(s, data)
 
               s = if granted do State.restart_election_timer(s) else s end
               {s, false}
@@ -51,7 +51,7 @@ def next(s) do
         end)
 
     {:disaster, d} ->
-      Disaster.handel(s, d)
+      Disaster.handle(s, d)
   end
 
   # state update

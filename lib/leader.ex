@@ -39,7 +39,7 @@ def next(s) do
           case type do
 
             :VOTE_REQUEST ->
-              %{:s=>s} = State.handel_ape_request(s, data)
+              %{:s=>s} = State.handle_ape_request(s, data)
 
               {s, false}
           end
@@ -47,7 +47,7 @@ def next(s) do
         end)
 
       {:disaster, d} ->
-        Disaster.handel(s, d)
+        Disaster.handle(s, d)
 
     end
 

@@ -28,8 +28,8 @@ def start(s) do
     }}
   end
 
-  # NOTE: dont vote for self yet, bordcast include myself, accept it then
-  # VOTE_REQUEST can only sned once in each term,
+  # NOTE: dont vote for self yet, broadcast include myself, accept it then
+  # VOTE_REQUEST can only send once in each term,
   # to prevent vote being counted twice
 
   Monitor.server(s,10, "switched to #{s.role}")
@@ -58,18 +58,18 @@ def next(s) do
             :APE_REQUEST ->
               # data.term>s.curr_term handled by check_term_and
               if data.term==s.curr_term do
-                send self(), {type, data} # make it a will, to be handeled by next state
+                send self(), {type, data} # make it a will, to be handled by next state
                 {State.role(s, :FOLLOWER), true}
 
               else
-                %{:s=>s} = State.handel_ape_request(s, data)
+                %{:s=>s} = State.handle_ape_request(s, data)
 
                 {s, false}
               end
 
             # NOTE: here it will vote for itself
             :VOTE_REQUEST ->
-              %{:s=>s}=State.handel_vote_request(s, data)
+              %{:s=>s}=State.handle_vote_request(s, data)
               {s, false}
 
             :VOTE_REPLY ->
@@ -86,7 +86,7 @@ def next(s) do
         end)
 
       {:disaster, d} ->
-        Disaster.handel(s, d)
+        Disaster.handle(s, d)
 
     end
 

@@ -6,7 +6,7 @@
 
 defmodule Disaster do
 
-def handel(s, d) do
+def handle(s, d) do
   Monitor.server(s,40, "AFFECTED BY #{d.type}")
   case d.type do
     "offline" ->
