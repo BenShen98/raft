@@ -125,7 +125,10 @@ def inc_vote(s), do: Map.put(s, :votes, s.votes+1)
 def next_index(s, id, v), do: Map.put(s, :next_index, :erlang.setelement(id+1,s.next_index, v ))
 def match_index(s, id, v), do: Map.put(s, :match_index, :erlang.setelement(id+1,s.match_index, v ))
 def dec_next_index(s, id) do
-  next_index(s, id, elem(s.next_index, id)-1)
+  IO.puts("dec #{inspect s}")
+  s=next_index(s, id, elem(s.next_index, id)-1)
+  IO.puts("dec #{inspect s}")
+  s
 end
 
 defp append_logs(s, entries) do # for follower
@@ -203,8 +206,11 @@ def handel_ape_request(s, data) do
       Monitor.assert s, s.curr_term==data.term
       {true, append_logs(s, data.entries) |> update_commit_index(data.leaderCommit) |> apply_commited_log() } # NOTE:new log has the current term
 
-    (get_log(s, data.prevLogIndex)|>elem(0)) > data.prevLogTerm ->
-      Monitor.halt("this should not happen")
+    get_log(s, data.prevLogIndex)|>elem(0) > data.prevLogTerm -> # TO BE REMOVED
+      Monitor.server(s, "ERROR?????? this #{inspect get_log(s, data.prevLogIndex)}|>elem(0) > #{data.prevLogTerm} should not happen\n\t\tdata: #{inspect data},\n\t\ts: #{inspect s},")
+      # existing entry conflicts, delete it and what follows
+      {l, _}=Enum.split(s.log, data.prevLogIndex-1)
+      {false, Map.put(s, :log, l)}
 
     true ->
       # existing entry conflicts, delete it and what follows

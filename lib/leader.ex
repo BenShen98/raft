@@ -16,7 +16,7 @@ def start(s) do
     if id != s.id do send self(), {:send_ape, id} end
   end
 
-  Monitor.server(s,10, "switched to #{s.role}")
+  Monitor.server(s, "switched to #{s.role}")
   send s.config.raftP, {:leader_start, s.id}
   next(s)
 end # start
@@ -47,7 +47,7 @@ def next(s) do
               if success do
                 Monitor.server(s,30, "LEADER SHOULD NOT RECEIVE AND RETURN SUCCESS FOR APE_REQUEST")
               else
-                Monitor.server(s,20, "LEADER SHOULD NOT RECEIVE APE_REQUEST (success=false)")
+                Monitor.server(s,20, "LEADER SHOULD NOT RECEIVE APE_REQUEST (success=false) currT:#{s.curr_term}, requestT #{data.term}")
               end
               {s, false}
 
@@ -93,7 +93,7 @@ def next(s) do
     end
 
   # state update
-  if escape do
+  if escape==true do
     s_next
   else
     next(s_next)

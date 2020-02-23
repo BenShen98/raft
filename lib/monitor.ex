@@ -24,13 +24,17 @@ end # debug
 
 def sinspect(s) do
   leader = if s.role == :LEADER, do: "nextIdx: #{inspect s.next_index}, matchIdx: #{inspect s.match_index},"
-  IO.puts("#{s.curr_term}_#{s.role}@#{s.id}: commitIdx: #{s.commit_index}, appliedIdx: #{s.last_applied}, log(uid): #{inspect Enum.map(s.log, &(elem(&1,0).uid))} #{leader} ")
+  IO.puts("#{s.curr_term}_#{s.role}@#{s.id}: commitIdx: #{s.commit_index}, appliedIdx: #{s.last_applied}, loglen: #{inspect length(s.log)}, loglast:#{inspect List.last(s.log)} #{leader} ")
   send s.databaseP, {:dinspect}
 end
 
 def dinspect(d) do
   IO.puts("DATABASE@#{d.server_id}, seqnum: #{d.seqnum}, balances: #{inspect d.balances}")
 end
+
+def db(d, string) do #assume highest level
+  IO.puts "#{Time.to_string(Time.utc_now)}: DATABASE@#{d.server_id}: #{string}"
+end # debug
 
 def server(s, string) do #assume highest level
   IO.puts "#{Time.to_string(Time.utc_now)}: #{s.curr_term}_#{s.role}@#{s.id}: #{string}"
@@ -49,14 +53,17 @@ def state(s, level, string) do
  end # if
 end # state
 
-def halt(string) do
+def stop(string) do
   IO.puts "HALT: monitor: #{string}"
   System.stop
+end
+
+def halt(string) do
+  raise "HALT: monitor: #{string}"
 end # halt
 
 def halt(s, string) do
-  IO.puts "HALT: server #{s.id}: #{string}"
-  System.stop
+  raise "HALT: server #{s.id}: #{string}"
 end # halt
 
 def letter(s, letter) do
@@ -108,7 +115,7 @@ def next(state) do
     done = Map.get(state.updates, db, 0)
 
     if seqnum != done + 1, do:
-       Monitor.halt "  ** error db #{db}: seq #{seqnum} expecting #{done+1}"
+       Monitor.halt "  ** error DATEBASE@#{db}: seq #{seqnum} expecting #{done+1}"
 
     moves =
       case Map.get(state.moves, seqnum) do
@@ -118,7 +125,7 @@ def next(state) do
 
       t -> # already logged - check command
         if amount != t.amount or from != t.from or to != t.to, do:
-	  Monitor.halt " ** error db #{db}.#{done} [#{amount},#{from},#{to}] " <>
+	  Monitor.halt " ** error DATEBASE@#{db} .#{done} [#{amount},#{from},#{to}] " <>
             "= log #{done}/#{map_size(state.moves)} [#{t.amount},#{t.from},#{t.to}]"
         state.moves
       end # case

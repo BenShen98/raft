@@ -42,13 +42,17 @@ defp offline(s) do
         false
       end
 
+    {:sinspect} ->
+      Monitor.sinspect(s)
+      false
+
     msg->
       Monitor.server(s, 0, "offline: #{inspect msg}")
       false
 
   end
 
-  if escape do
+  if escape==true do
     # restart server FSM
     {s, true}
   else
@@ -57,6 +61,7 @@ defp offline(s) do
 end
 
 defp crash(s) do
+  send s.databaseP, {:restart, "diaster crash happened to server, wipeed storage"}
   State.initialise(s.config, s.id, s.servers, s.databaseP)
   |> offline()
 end

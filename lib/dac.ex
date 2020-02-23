@@ -50,6 +50,7 @@ defp more_parameters(config) do
 
     debug_level:     20,        # debug level, use 0 DEBUG, 10 LOG, 20 WARNING, 30 ERROR, 40 MANMADE DISASTER
     show_server:     true,      # print of server and database content on inspection
+    show_role_switch: true,     # leader switch will always show, control cancidate & follower switch
     print_after:     2_000,     # print transaction log summary every print_after millisecs
 
     client_requests: 100,    	# max requests each client will make

@@ -45,7 +45,7 @@ def next(c) do
   if terminate==false do
     Client.next(c)
   else
-    Monitor.halt "Client #{c.id} going to sleep, sent = #{c.cmd_seqnum}"
+    Monitor.stop "Client #{c.id} going to sleep, sent = #{c.cmd_seqnum}"
   end
 
 end # next

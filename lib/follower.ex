@@ -11,7 +11,7 @@ def start(s) do
 
   s=State.restart_election_timer(s)
 
-  Monitor.server(s,10, "switched to #{s.role}")
+  if s.config.show_role_switch, do: Monitor.server(s, "switched to #{s.role}")
   next(s)
 end # start
 
@@ -63,7 +63,7 @@ def next(s) do
   end
 
   # state update
-  if escape do
+  if escape==true do
     s_next
   else
     next(s_next)
