@@ -1,0 +1,19 @@
+{
+    "description": "Simulate a network partition by turning nodes off and on",
+    "n_clients":2,
+    "n_servers":5,
+    "show_server": false,
+    "disasters": [
+        {"t":100, "type":"offline", "id":0},
+        {"t":100, "type":"offline", "id":1},
+        {"t":2000, "type":"offline", "id":2},
+        {"t":2000, "type":"offline", "id":3},
+        {"t":2000, "type":"offline", "id":4},
+        {"t":4000, "type":"online", "id":0},
+        {"t":4000, "type":"online", "id":1},
+        {"t":6000, "type":"online", "id":2},
+        {"t":6000, "type":"online", "id":3},
+        {"t":6000, "type":"online", "id":4}
+    ],
+    "debug_level":10
+}
