@@ -56,11 +56,23 @@ def send_request(c, client_request) do
   receive do
   { :CLIENT_REPLY, result } ->
     c  = Map.put(c, :leaderP, result.leaderP)  # update leaderP
-    if c.cmd_seqnum == c.config.client_requests do
-      {c, true} # exit
+
+    # check is right response
+    if elem(client_request,1).uid == result.uid do
+      # reply for the correct uid
+      if c.cmd_seqnum == c.config.client_requests do
+        {c, true} # exit
+      else
+        {c, false} # continue
+      end
+
     else
-      {c, false} # continue
+      # reply to wrong uid, ignore and retry
+      Monitor.client(c, 30, "expecting #{inspect elem(client_request,1).uid} reply, get #{inspect result.uid}")
+      Client.send_request(c, client_request)
     end
+
+
 
 
   { :CLIENT_STOP } ->
