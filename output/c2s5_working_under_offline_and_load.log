@@ -1,0 +1,154 @@
+mix deps.get
+Resolving Hex dependencies...
+Dependency resolution completed:
+Unchanged:
+  poison 3.1.0
+All dependencies are up to date
+mix compile
+
+====RUNNNING WITH CONFIG====
+%{append_entries_timeout: 10, client_requests: 100, client_sleep: 5, client_stop: 60000, client_timeout: 500, debug_level: 30, disasters: [%{id: 0, ref: "a", t: 500, type: "timeout"}, %{id: "a", t: 1000, type: "offline"}, %{id: 1, ref: "b", t: 1010, type: "timeout"}, %{id: "b", t: 1500, type: "offline"}, %{id: 2, ref: "c", t: 1510, type: "timeout"}, %{id: "c", t: 2000, type: "offline"}, %{id: "b", t: 2100, type: "online"}], election_timeout: 100, max_amount: 1000, max_time: 15000, monitorP: #PID<0.179.0>, n_accounts: 100, n_clients: 2, n_servers: 5, node_suffix: "53_ben@127.0.0.1", print_after: 1000, raftP: #PID<0.99.0>, show_role_switch: false, show_server: false, start_function: :multi_node_start}
+====   CONFIG    END   ====
+
+05:03:57.505349: 1_LEADER@2: switched to LEADER
+Disaster reference name %{"leader" => 2}
+Disaster reference name %{"a" => 0, "leader" => 2}
+05:03:57.841156: 1_FOLLOWER@0: AFFECTED BY timeout
+05:03:57.866988: 2_LEADER@0: switched to LEADER
+Disaster reference name %{"a" => 0, "leader" => 0}
+05:03:57.864729: CLIENT 0: client timeout while waiting reply for uid {0, 1}
+05:03:57.868133: CLIENT 1: client timeout while waiting reply for uid {1, 1}
+time = 1000      db updates done = [{0, 38}, {1, 37}, {2, 37}, {3, 37}, {4, 37}]
+time = 1000 client requests seen = [{0, 38}], (when the node was leader)
+time = 1000        server roles  = %{0 => {2, :LEADER}, 1 => {2, :FOLLOWER}, 2 => {2, :FOLLOWER}, 3 => {2, :FOLLOWER}, 4 => {2, :FOLLOWER}}
+time = 1000           total seen = 38 max lag = 1
+Disaster reference name %{"a" => 0, "leader" => 0}
+05:03:58.330885: 2_LEADER@0: AFFECTED BY offline
+Disaster reference name %{"a" => 0, "b" => 1, "leader" => 0}
+05:03:58.343772: 2_FOLLOWER@1: AFFECTED BY timeout
+05:03:58.349715: 3_LEADER@1: switched to LEADER
+Disaster reference name %{"a" => 0, "b" => 1, "leader" => 1}
+05:03:58.376151: CLIENT 1: client timeout while waiting reply for uid {1, 1}
+05:03:58.384824: CLIENT 0: expecting {0, 42} reply, get {0, 41}
+Disaster reference name %{"a" => 0, "b" => 1, "leader" => 1}
+05:03:58.830357: 3_LEADER@1: AFFECTED BY offline
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 2, "leader" => 1}
+05:03:58.842432: 3_FOLLOWER@2: AFFECTED BY timeout
+05:03:58.843223: 4_LEADER@2: switched to LEADER
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 2, "leader" => 2}
+time = 2000      db updates done = [{0, 41}, {1, 82}, {2, 81}, {3, 81}, {4, 82}]
+time = 2000 client requests seen = [{0, 42}, {1, 42}], (when the node was leader)
+time = 2000        server roles  = %{0 => {2, :LEADER}, 1 => {3, :LEADER}, 2 => {4, :LEADER}, 3 => {4, :FOLLOWER}, 4 => {4, :FOLLOWER}}
+time = 2000           total seen = 84 max lag = 43
+05:03:59.323838: CLIENT 0: client timeout while waiting reply for uid {0, 62}
+05:03:59.330558: CLIENT 1: expecting {1, 22} reply, get {1, 21}
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 2, "leader" => 2}
+05:03:59.331212: 4_LEADER@2: AFFECTED BY offline
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 2, "leader" => 2}
+05:03:59.430979: 3_LEADER@1: AFFECTED BY online
+05:03:59.431308: 3_LEADER@1: switched to LEADER
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 2, "leader" => 1}
+05:03:59.453335: 5_LEADER@3: switched to LEADER
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 2, "leader" => 3}
+05:03:59.457063: 5_LEADER@3: decrement next_index {84, 83, 84, 84, 84}
+05:03:59.832715: CLIENT 1: client timeout while waiting reply for uid {1, 22}
+05:03:59.837728: CLIENT 0: client timeout while waiting reply for uid {0, 63}
+05:03:59.850393: CLIENT 1: expecting {1, 22} reply, get {1, 21}
+05:03:59.850738: CLIENT 0: expecting {0, 63} reply, get {0, 62}
+05:03:59.857960: CLIENT 0: expecting {0, 64} reply, get {0, 63}
+05:03:59.874463: CLIENT 0: expecting {0, 65} reply, get {0, 64}
+05:03:59.885571: CLIENT 0: expecting {0, 66} reply, get {0, 65}
+05:03:59.907685: CLIENT 0: expecting {0, 67} reply, get {0, 66}
+05:03:59.918973: CLIENT 0: expecting {0, 68} reply, get {0, 67}
+05:03:59.943079: CLIENT 0: expecting {0, 69} reply, get {0, 68}
+05:03:59.954575: CLIENT 0: expecting {0, 70} reply, get {0, 69}
+05:03:59.976452: CLIENT 0: expecting {0, 71} reply, get {0, 70}
+05:03:59.987442: CLIENT 0: expecting {0, 72} reply, get {0, 71}
+05:04:00.009759: CLIENT 0: expecting {0, 73} reply, get {0, 72}
+05:04:00.020334: CLIENT 0: expecting {0, 74} reply, get {0, 73}
+05:04:00.042304: CLIENT 0: expecting {0, 75} reply, get {0, 74}
+05:04:00.054243: CLIENT 0: expecting {0, 76} reply, get {0, 75}
+05:04:00.076954: CLIENT 0: expecting {0, 77} reply, get {0, 76}
+05:04:00.087870: CLIENT 0: expecting {0, 78} reply, get {0, 77}
+05:04:00.110558: CLIENT 0: expecting {0, 79} reply, get {0, 78}
+05:04:00.123037: CLIENT 0: expecting {0, 80} reply, get {0, 79}
+05:04:00.145800: CLIENT 0: expecting {0, 81} reply, get {0, 80}
+05:04:00.157044: CLIENT 0: expecting {0, 82} reply, get {0, 81}
+05:04:00.179601: CLIENT 0: expecting {0, 83} reply, get {0, 82}
+05:04:00.190229: CLIENT 0: expecting {0, 84} reply, get {0, 83}
+05:04:00.212179: CLIENT 0: expecting {0, 85} reply, get {0, 84}
+05:04:00.222907: CLIENT 0: expecting {0, 86} reply, get {0, 85}
+05:04:00.244678: CLIENT 0: expecting {0, 87} reply, get {0, 86}
+05:04:00.255923: CLIENT 0: expecting {0, 88} reply, get {0, 87}
+05:04:00.278346: CLIENT 0: expecting {0, 89} reply, get {0, 88}
+05:04:00.288767: CLIENT 0: expecting {0, 90} reply, get {0, 89}
+time = 3000      db updates done = [{0, 41}, {1, 123}, {2, 83}, {3, 124}, {4, 123}]
+time = 3000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 43}], (when the node was leader)
+time = 3000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 3000           total seen = 128 max lag = 87
+05:04:00.312023: CLIENT 0: expecting {0, 91} reply, get {0, 90}
+05:04:00.323821: CLIENT 0: expecting {0, 92} reply, get {0, 91}
+05:04:00.346954: CLIENT 0: expecting {0, 93} reply, get {0, 92}
+05:04:00.357829: CLIENT 0: expecting {0, 94} reply, get {0, 93}
+05:04:00.379936: CLIENT 0: expecting {0, 95} reply, get {0, 94}
+05:04:00.391112: CLIENT 0: expecting {0, 96} reply, get {0, 95}
+05:04:00.413310: CLIENT 0: expecting {0, 97} reply, get {0, 96}
+05:04:00.423733: CLIENT 0: expecting {0, 98} reply, get {0, 97}
+05:04:00.445971: CLIENT 0: expecting {0, 99} reply, get {0, 98}
+05:04:00.456812: CLIENT 0: expecting {0, 100} reply, get {0, 99}
+HALT: monitor: Client 0 going to sleep, sent = 100
+HALT: monitor: Client 1 going to sleep, sent = 100
+time = 4000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 4000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 4000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 4000           total seen = 202 max lag = 161
+time = 5000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 5000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 5000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 5000           total seen = 202 max lag = 161
+time = 6000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 6000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 6000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 6000           total seen = 202 max lag = 161
+time = 7000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 7000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 7000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 7000           total seen = 202 max lag = 161
+time = 8000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 8000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 8000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 8000           total seen = 202 max lag = 161
+time = 9000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 9000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 9000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 9000           total seen = 202 max lag = 161
+time = 10000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 10000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 10000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 10000           total seen = 202 max lag = 161
+time = 11000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 11000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 11000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 11000           total seen = 202 max lag = 161
+time = 12000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 12000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 12000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 12000           total seen = 202 max lag = 161
+time = 13000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 13000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 13000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 13000           total seen = 202 max lag = 161
+Exiting server1_53_ben@127.0.0.1
+Exiting server3_53_ben@127.0.0.1
+Exiting server4_53_ben@127.0.0.1
+Exiting server0_53_ben@127.0.0.1
+Exiting server2_53_ben@127.0.0.1
+time = 14000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 14000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 14000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 14000           total seen = 202 max lag = 161
+Exiting raft_53_ben@127.0.0.1
+time = 15000      db updates done = [{0, 41}, {1, 200}, {2, 83}, {3, 200}, {4, 200}]
+time = 15000 client requests seen = [{0, 42}, {1, 42}, {2, 1}, {3, 117}], (when the node was leader)
+time = 15000        server roles  = %{0 => {2, :LEADER}, 1 => {5, :FOLLOWER}, 2 => {4, :LEADER}, 3 => {5, :LEADER}, 4 => {5, :FOLLOWER}}
+time = 15000           total seen = 202 max lag = 161

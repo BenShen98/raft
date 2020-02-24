@@ -1,0 +1,25 @@
+{
+    "description": "Testing system under load and failure",
+    "n_clients":2,
+    "n_servers":5,
+    "disasters": [
+        {"t":500, "type":"timeout", "id":0, "ref":"a"},
+        {"t":1000, "type":"offline", "id":"a"},
+
+        {"t":1010, "type":"timeout", "id":1, "ref":"b"},
+        {"t":1500,"type":"offline", "id":"b"},
+
+        {"t":1510, "type":"timeout", "id":2, "ref":"c"},
+        {"t":2000,"type":"offline", "id":"c"},
+
+        {"t":2100,"type":"online", "id":"b"}
+    ],
+    "debug_level":30,
+    "client_requests": 100,
+    "client_timeout": 500,
+    "print_after": 1000,
+    "max_time": 15000,
+    "show_role_switch": false,
+    "show_server": false
+
+}
