@@ -16,7 +16,7 @@ def start(s) do
     if id != s.id do send self(), {:send_ape, id} end
   end
 
-  Monitor.server(s,10, "switched to #{s.role}")
+  Monitor.server(s, "switched to #{s.role}")
   send s.config.raftP, {:leader_start, s.id}
   next(s)
 end # start
@@ -43,12 +43,9 @@ def next(s) do
         fn(s) ->
           case type do
             :APE_REQUEST ->
-              %{:s => s, :success => success} = State.handel_ape_request(s, data)
-              if success do
-                Monitor.server(s,30, "LEADER SHOULD NOT RECEIVE AND RETURN SUCCESS FOR APE_REQUEST")
-              else
-                Monitor.server(s,20, "LEADER SHOULD NOT RECEIVE APE_REQUEST (success=false)")
-              end
+              # %{:s => s, :success => success} = State.handel_ape_request(s, data)
+              Monitor.server(s, "***LEADER SHOULD NOT RECEIVE APE_REQUEST, ignore!")
+
               {s, false}
 
             :APE_REPLY ->
@@ -71,8 +68,9 @@ def next(s) do
 
               else
                 # decrement nextIndex
-                {State.dec_next_index(s, data.id)
-                |> ape(data.id), false} # async retry
+                # {State.dec_next_index(s, data.id)
+                # |> ape(data.id), false} # async retry
+                {State.dec_next_index(s, data.id), false} # async retry # BUG? no async?
               end
 
             :VOTE_REQUEST ->
@@ -93,7 +91,7 @@ def next(s) do
     end
 
   # state update
-  if escape do
+  if escape==true do
     s_next
   else
     next(s_next)
@@ -104,9 +102,9 @@ defp ape(s, id) do
   next_index = elem(s.next_index, id)
   {term, index} = State.get_prev_log(s, next_index)
 
-  # start by send one entries at a time
+  # TODO: start by send one entries at a time
   entries = if length(s.log) >= next_index do
-    [Enum.at(s.log, next_index-1) |> elem(0)]
+    [Enum.at(s.log, next_index-1)]
   else
     # client has its entries in sync, send heartbeat
     []

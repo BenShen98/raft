@@ -16,6 +16,10 @@ def balances(db, i, v), do:
 
 def next(db) do
   receive do
+  { :restart, reason }->
+    Monitor.db(db, "restart due to #{reason}")
+    start(db.config, db.server_id)
+
   { :EXECUTE, command } ->  # should send a result back, but assuming always okay
     { :move, amount, account1, account2 } = command
 

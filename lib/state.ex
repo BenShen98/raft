@@ -129,10 +129,7 @@ def dec_next_index(s, id) do
 end
 
 defp append_logs(s, entries) do # for follower
-  new_logs = for entry <- entries do
-    {entry, s.curr_term}
-  end
-  Map.put(s, :log, s.log ++ new_logs)
+  Map.put(s, :log, s.log ++ entries)
 end
 
 def apply_commited_log(s) do
