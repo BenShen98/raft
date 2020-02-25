@@ -1,0 +1,1239 @@
+mix deps.get
+Resolving Hex dependencies...
+Dependency resolution completed:
+Unchanged:
+  poison 3.1.0
+All dependencies are up to date
+mix compile
+
+====RUNNNING WITH CONFIG====
+%{append_entries_timeout: 10, client_requests: 100, client_sleep: 5, client_stop: 60000, client_timeout: 500, debug_level: 10, disasters: [%{id: 0, t: 500, type: "crash"}, %{id: 0, t: 575, type: "online"}, %{id: 1, t: 575, type: "crash"}, %{id: 1, t: 650, type: "online"}, %{id: 2, t: 650, type: "crash"}, %{id: 2, t: 725, type: "online"}, %{id: 3, t: 725, type: "crash"}, %{id: 3, t: 800, type: "online"}, %{id: 4, t: 800, type: "crash"}, %{id: 4, t: 875, type: "online"}, %{id: 0, t: 875, type: "crash"}, %{id: 0, t: 950, type: "online"}, %{id: 1, t: 950, type: "crash"}, %{id: 1, t: 1025, type: "online"}, %{id: 2, t: 1025, type: "crash"}, %{id: 2, t: 1100, type: "online"}, %{id: 3, t: 1100, type: "crash"}, %{id: 3, t: 1175, type: "online"}, %{id: 4, t: 1175, type: "crash"}, %{id: 4, t: 1250, type: "online"}, %{id: 0, t: 1250, type: "crash"}], election_timeout: 150, max_amount: 1000, max_time: 10000, monitorP: #PID<0.178.0>, n_accounts: 100, n_clients: 2, n_servers: 5, node_suffix: "39_jc5616@127.0.0.1", print_after: 2000, raftP: #PID<0.98.0>, show_role_switch: true, show_server: false, start_function: :multi_node_start}
+====   CONFIG    END   ====
+
+11:57:43.718917: 0_FOLLOWER@2: switched to FOLLOWER
+11:57:43.721424: 0_FOLLOWER@0: switched to FOLLOWER
+11:57:43.719435: 0_FOLLOWER@4: switched to FOLLOWER
+11:57:43.721642: 0_FOLLOWER@1: switched to FOLLOWER
+11:57:43.723546: 0_FOLLOWER@3: switched to FOLLOWER
+11:57:43.738674: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}}
+11:57:43.746436: 0_FOLLOWER@3: ignore client request while dont know leader
+11:57:43.745037: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 617, 38, 73}, uid: {1, 1}}}
+11:57:43.751165: 0_FOLLOWER@4: ignore client request while dont know leader
+11:57:43.896639: 1_CANDIDATE@1: switched to CANDIDATE
+11:57:43.897107: 1_CANDIDATE@1: vote request from 1, true,  -> 1
+11:57:43.906061: 1_CANDIDATE@4: switched to CANDIDATE
+11:57:43.906664: 1_CANDIDATE@4: vote request from 4, true,  -> 4
+11:57:43.925052: 1_CANDIDATE@3: switched to CANDIDATE
+11:57:43.926318: 1_CANDIDATE@3: vote request from 3, true,  -> 3
+11:57:43.921799: 1_CANDIDATE@0: switched to CANDIDATE
+11:57:43.948296: 1_CANDIDATE@0: vote request from 0, true,  -> 0
+11:57:44.046659: 0_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.046870: 1_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.047007: 1_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.047250: 1_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.047416: 1_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.047570: 1_FOLLOWER@2: switched to FOLLOWER
+11:57:44.047699: 1_FOLLOWER@2: vote request from 4, true,  -> 4
+11:57:44.110651: 2_CANDIDATE@3: switched to CANDIDATE
+11:57:44.110955: 1_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.111400: 2_CANDIDATE@3: vote request from 3, true,  -> 3
+11:57:44.112526: 2_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.112831: 2_FOLLOWER@2: switched to FOLLOWER
+11:57:44.113080: 2_FOLLOWER@2: vote request from 3, true,  -> 3
+11:57:44.125464: 1_CANDIDATE@1: Higher term found {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.125884: 2_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.126187: 2_FOLLOWER@1: switched to FOLLOWER
+11:57:44.126408: 2_FOLLOWER@1: vote request from 3, true,  -> 3
+11:57:44.126815: 1_CANDIDATE@4: Higher term found {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.127315: 2_FOLLOWER@4: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.127361: 1_CANDIDATE@0: Higher term found {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.127657: 2_FOLLOWER@4: switched to FOLLOWER
+11:57:44.127843: 2_FOLLOWER@0: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.128246: 2_FOLLOWER@4: vote request from 3, true,  -> 3
+11:57:44.128307: 2_FOLLOWER@0: switched to FOLLOWER
+11:57:44.128647: 2_FOLLOWER@0: vote request from 3, true,  -> 3
+11:57:44.131907: 2_LEADER@3: switched to LEADER
+Disaster reference name %{"leader" => 3}
+Disaster reference name %{"leader" => 3}
+11:57:44.215678: 2_FOLLOWER@0: AFFECTED BY crash
+11:57:44.216266: DATABASE@0: restart due to diaster crash happened to server, wipeed storage
+11:57:44.241858: CLIENT 0: client timeout while waiting reply for uid {0, 1}
+11:57:44.247889: CLIENT 1: client timeout while waiting reply for uid {1, 1}
+11:57:44.258725: 2_LEADER@3: send client confirmation {0, 1}
+11:57:44.262447: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 0, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.262497: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17788.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 0, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.262592: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 0, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.264838: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 405, 52, 4}, uid: {0, 2}}}
+11:57:44.272922: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17830.182.0>, cmd: {:move, 617, 38, 73}, uid: {1, 1}}, 2}], leaderCommit: 1, leaderId: 3, prevLogIndex: 1, prevLogTerm: 2, term: 2}
+11:57:44.273087: 2_LEADER@3: send client confirmation {1, 1}
+11:57:44.273148: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 617, 38, 73}, uid: {1, 1}}, 2}], leaderCommit: 1, leaderId: 3, prevLogIndex: 1, prevLogTerm: 2, term: 2}
+11:57:44.273167: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 617, 38, 73}, uid: {1, 1}}, 2}], leaderCommit: 1, leaderId: 3, prevLogIndex: 1, prevLogTerm: 2, term: 2}
+11:57:44.280089: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}}
+11:57:44.281021: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17788.182.0>, cmd: {:move, 405, 52, 4}, uid: {0, 2}}, 2}], leaderCommit: 2, leaderId: 3, prevLogIndex: 2, prevLogTerm: 2, term: 2}
+11:57:44.280936: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 405, 52, 4}, uid: {0, 2}}, 2}], leaderCommit: 2, leaderId: 3, prevLogIndex: 2, prevLogTerm: 2, term: 2}
+11:57:44.281027: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 405, 52, 4}, uid: {0, 2}}, 2}], leaderCommit: 2, leaderId: 3, prevLogIndex: 2, prevLogTerm: 2, term: 2}
+11:57:44.281258: 2_LEADER@3: send client confirmation {0, 2}
+Disaster reference name %{"leader" => 3}
+Disaster reference name %{"leader" => 3}
+11:57:44.286242: 0_FOLLOWER@0: AFFECTED BY online
+11:57:44.286659: 0_FOLLOWER@0: switched to FOLLOWER
+11:57:44.287918: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 710, 40, 85}, uid: {0, 3}}}
+11:57:44.289575: 2_FOLLOWER@1: AFFECTED BY crash
+11:57:44.289994: DATABASE@1: restart due to diaster crash happened to server, wipeed storage
+11:57:44.291805: 0_FOLLOWER@0: Higher term found {:APE_REQUEST, %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 3, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}}
+11:57:44.291793: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}, 2}], leaderCommit: 3, leaderId: 3, prevLogIndex: 3, prevLogTerm: 2, term: 2}
+11:57:44.291984: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17830.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}, 2}], leaderCommit: 3, leaderId: 3, prevLogIndex: 3, prevLogTerm: 2, term: 2}
+11:57:44.292250: 2_LEADER@3: send client confirmation {1, 2}
+11:57:44.292479: 2_FOLLOWER@0: give will: {:APE_REQUEST, %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 3, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}}
+11:57:44.293194: 2_FOLLOWER@0: switched to FOLLOWER
+11:57:44.296562: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 3, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.299148: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 562, 65, 54}, uid: {1, 3}}}
+11:57:44.302773: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 617, 38, 73}, uid: {1, 1}}, 2}], leaderCommit: 4, leaderId: 3, prevLogIndex: 1, prevLogTerm: 2, term: 2}
+11:57:44.302782: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17788.182.0>, cmd: {:move, 710, 40, 85}, uid: {0, 3}}, 2}], leaderCommit: 4, leaderId: 3, prevLogIndex: 4, prevLogTerm: 2, term: 2}
+11:57:44.302789: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 710, 40, 85}, uid: {0, 3}}, 2}], leaderCommit: 4, leaderId: 3, prevLogIndex: 4, prevLogTerm: 2, term: 2}
+11:57:44.303138: 2_LEADER@3: send client confirmation {0, 3}
+11:57:44.310892: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 130, 43, 79}, uid: {0, 4}}}
+11:57:44.314303: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 405, 52, 4}, uid: {0, 2}}, 2}], leaderCommit: 5, leaderId: 3, prevLogIndex: 2, prevLogTerm: 2, term: 2}
+11:57:44.314472: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17830.182.0>, cmd: {:move, 562, 65, 54}, uid: {1, 3}}, 2}], leaderCommit: 5, leaderId: 3, prevLogIndex: 5, prevLogTerm: 2, term: 2}
+11:57:44.314501: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 562, 65, 54}, uid: {1, 3}}, 2}], leaderCommit: 5, leaderId: 3, prevLogIndex: 5, prevLogTerm: 2, term: 2}
+11:57:44.314831: 2_LEADER@3: send client confirmation {1, 3}
+11:57:44.322107: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 912, 68, 57}, uid: {1, 4}}}
+11:57:44.325507: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17788.182.0>, cmd: {:move, 130, 43, 79}, uid: {0, 4}}, 2}], leaderCommit: 6, leaderId: 3, prevLogIndex: 6, prevLogTerm: 2, term: 2}
+11:57:44.325492: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 130, 43, 79}, uid: {0, 4}}, 2}], leaderCommit: 6, leaderId: 3, prevLogIndex: 6, prevLogTerm: 2, term: 2}
+11:57:44.325546: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}, 2}], leaderCommit: 6, leaderId: 3, prevLogIndex: 3, prevLogTerm: 2, term: 2}
+11:57:44.325788: 2_LEADER@3: send client confirmation {0, 4}
+11:57:44.332844: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 168, 45, 49}, uid: {0, 5}}}
+11:57:44.335695: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17830.182.0>, cmd: {:move, 912, 68, 57}, uid: {1, 4}}, 2}], leaderCommit: 7, leaderId: 3, prevLogIndex: 7, prevLogTerm: 2, term: 2}
+11:57:44.335720: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 710, 40, 85}, uid: {0, 3}}, 2}], leaderCommit: 7, leaderId: 3, prevLogIndex: 4, prevLogTerm: 2, term: 2}
+11:57:44.335808: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 912, 68, 57}, uid: {1, 4}}, 2}], leaderCommit: 7, leaderId: 3, prevLogIndex: 7, prevLogTerm: 2, term: 2}
+11:57:44.336059: 2_LEADER@3: send client confirmation {1, 4}
+11:57:44.344076: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 999, 21, 94}, uid: {1, 5}}}
+11:57:44.346797: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 562, 65, 54}, uid: {1, 3}}, 2}], leaderCommit: 8, leaderId: 3, prevLogIndex: 5, prevLogTerm: 2, term: 2}
+11:57:44.346798: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17788.182.0>, cmd: {:move, 168, 45, 49}, uid: {0, 5}}, 2}], leaderCommit: 8, leaderId: 3, prevLogIndex: 8, prevLogTerm: 2, term: 2}
+11:57:44.346820: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 168, 45, 49}, uid: {0, 5}}, 2}], leaderCommit: 8, leaderId: 3, prevLogIndex: 8, prevLogTerm: 2, term: 2}
+11:57:44.347199: 2_LEADER@3: send client confirmation {0, 5}
+11:57:44.354844: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 427, 9, 44}, uid: {0, 6}}}
+11:57:44.357759: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17830.182.0>, cmd: {:move, 999, 21, 94}, uid: {1, 5}}, 2}], leaderCommit: 9, leaderId: 3, prevLogIndex: 9, prevLogTerm: 2, term: 2}
+11:57:44.357740: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 130, 43, 79}, uid: {0, 4}}, 2}], leaderCommit: 9, leaderId: 3, prevLogIndex: 6, prevLogTerm: 2, term: 2}
+11:57:44.357785: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 999, 21, 94}, uid: {1, 5}}, 2}], leaderCommit: 9, leaderId: 3, prevLogIndex: 9, prevLogTerm: 2, term: 2}
+11:57:44.358097: 2_LEADER@3: send client confirmation {1, 5}
+Disaster reference name %{"leader" => 3}
+Disaster reference name %{"leader" => 3}
+11:57:44.361201: 0_FOLLOWER@1: AFFECTED BY online
+11:57:44.361603: 0_FOLLOWER@1: switched to FOLLOWER
+11:57:44.364084: 2_FOLLOWER@2: AFFECTED BY crash
+11:57:44.364572: DATABASE@2: restart due to diaster crash happened to server, wipeed storage
+11:57:44.366080: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 277, 77, 63}, uid: {1, 6}}}
+11:57:44.368766: 0_FOLLOWER@1: Higher term found {:APE_REQUEST, %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 3, prevLogTerm: 2, term: 2}}
+11:57:44.368708: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 912, 68, 57}, uid: {1, 4}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 7, prevLogTerm: 2, term: 2}
+11:57:44.368787: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 427, 9, 44}, uid: {0, 6}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 10, prevLogTerm: 2, term: 2}
+11:57:44.369464: 2_FOLLOWER@1: give will: {:APE_REQUEST, %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 3, prevLogTerm: 2, term: 2}}
+11:57:44.370804: 2_FOLLOWER@1: switched to FOLLOWER
+11:57:44.371622: 2_LEADER@3: decrement next_index {9, 3, 11, 13, 12}
+11:57:44.379686: 2_LEADER@3: decrement next_index {9, 2, 11, 13, 12}
+11:57:44.379859: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 168, 45, 49}, uid: {0, 5}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 8, prevLogTerm: 2, term: 2}
+11:57:44.379941: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 277, 77, 63}, uid: {1, 6}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 11, prevLogTerm: 2, term: 2}
+11:57:44.391132: 2_LEADER@3: decrement next_index {10, 1, 11, 13, 13}
+11:57:44.391274: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 999, 21, 94}, uid: {1, 5}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 9, prevLogTerm: 2, term: 2}
+11:57:44.402145: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 427, 9, 44}, uid: {0, 6}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 10, prevLogTerm: 2, term: 2}
+11:57:44.402223: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 536, 27, 15}, uid: {0, 1}}, 2}], leaderCommit: 10, leaderId: 3, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.402460: 2_LEADER@3: send client confirmation {0, 6}
+11:57:44.409887: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 71, 32, 7}, uid: {0, 7}}}
+11:57:44.412751: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 617, 38, 73}, uid: {1, 1}}, 2}], leaderCommit: 11, leaderId: 3, prevLogIndex: 1, prevLogTerm: 2, term: 2}
+11:57:44.412811: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 71, 32, 7}, uid: {0, 7}}, 2}], leaderCommit: 11, leaderId: 3, prevLogIndex: 12, prevLogTerm: 2, term: 2}
+11:57:44.412874: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 277, 77, 63}, uid: {1, 6}}, 2}], leaderCommit: 11, leaderId: 3, prevLogIndex: 11, prevLogTerm: 2, term: 2}
+11:57:44.413089: 2_LEADER@3: send client confirmation {1, 6}
+11:57:44.421125: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 564, 26, 14}, uid: {1, 7}}}
+11:57:44.423679: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 405, 52, 4}, uid: {0, 2}}, 2}], leaderCommit: 12, leaderId: 3, prevLogIndex: 2, prevLogTerm: 2, term: 2}
+11:57:44.423871: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17780.182.0>, cmd: {:move, 71, 32, 7}, uid: {0, 7}}, 2}], leaderCommit: 12, leaderId: 3, prevLogIndex: 12, prevLogTerm: 2, term: 2}
+11:57:44.423845: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 564, 26, 14}, uid: {1, 7}}, 2}], leaderCommit: 12, leaderId: 3, prevLogIndex: 13, prevLogTerm: 2, term: 2}
+11:57:44.424232: 2_LEADER@3: send client confirmation {0, 7}
+11:57:44.431846: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 437, 12, 87}, uid: {0, 8}}}
+11:57:44.434836: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 697, 46, 85}, uid: {1, 2}}, 2}], leaderCommit: 13, leaderId: 3, prevLogIndex: 3, prevLogTerm: 2, term: 2}
+11:57:44.434883: 2_FOLLOWER@0: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 564, 26, 14}, uid: {1, 7}}, 2}], leaderCommit: 13, leaderId: 3, prevLogIndex: 13, prevLogTerm: 2, term: 2}
+11:57:44.434841: 2_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 437, 12, 87}, uid: {0, 8}}, 2}], leaderCommit: 13, leaderId: 3, prevLogIndex: 14, prevLogTerm: 2, term: 2}
+Disaster reference name %{"leader" => 3}
+Disaster reference name %{"leader" => 3}
+11:57:44.435211: 2_LEADER@3: send client confirmation {1, 7}
+11:57:44.437480: 0_FOLLOWER@2: AFFECTED BY online
+11:57:44.438013: 0_FOLLOWER@2: switched to FOLLOWER
+11:57:44.440368: 2_LEADER@3: AFFECTED BY crash
+11:57:44.440834: DATABASE@3: restart due to diaster crash happened to server, wipeed storage
+11:57:44.443016: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 76, 70, 28}, uid: {1, 8}}}
+11:57:44.475968: 3_CANDIDATE@0: switched to CANDIDATE
+11:57:44.476531: 2_FOLLOWER@4: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 14, lastLogTerm: 2, term: 3}}
+11:57:44.476412: 0_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 14, lastLogTerm: 2, term: 3}}
+11:57:44.476492: 3_CANDIDATE@0: vote request from 0, true,  -> 0
+11:57:44.476491: 2_FOLLOWER@1: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 14, lastLogTerm: 2, term: 3}}
+11:57:44.478908: 3_FOLLOWER@4: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 14, lastLogTerm: 2, term: 3}}
+11:57:44.478995: 3_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 14, lastLogTerm: 2, term: 3}}
+11:57:44.479092: 3_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 14, lastLogTerm: 2, term: 3}}
+11:57:44.479862: 3_FOLLOWER@4: switched to FOLLOWER
+11:57:44.479734: 3_FOLLOWER@2: switched to FOLLOWER
+11:57:44.479622: 3_FOLLOWER@1: switched to FOLLOWER
+11:57:44.480400: 3_FOLLOWER@1: vote request from 0, true,  -> 0
+11:57:44.480626: 3_FOLLOWER@2: vote request from 0, true,  -> 0
+11:57:44.493469: 3_LEADER@0: switched to LEADER
+Disaster reference name %{"leader" => 0}
+11:57:44.497813: 3_LEADER@0: decrement next_index {15, 14, 15, 15, 15}
+11:57:44.498485: 3_LEADER@0: decrement next_index {15, 14, 14, 15, 15}
+11:57:44.508363: 3_LEADER@0: decrement next_index {15, 13, 14, 15, 15}
+11:57:44.508866: 3_LEADER@0: decrement next_index {15, 13, 13, 15, 15}
+Disaster reference name %{"leader" => 0}
+Disaster reference name %{"leader" => 0}
+11:57:44.511349: 0_FOLLOWER@3: AFFECTED BY online
+11:57:44.511794: 0_FOLLOWER@3: switched to FOLLOWER
+11:57:44.514388: 3_FOLLOWER@4: AFFECTED BY crash
+11:57:44.514914: DATABASE@4: restart due to diaster crash happened to server, wipeed storage
+11:57:44.519291: 0_FOLLOWER@3: Higher term found {:APE_REQUEST, %{entries: [], leaderCommit: 13, leaderId: 0, prevLogIndex: 14, prevLogTerm: 2, term: 3}}
+11:57:44.519488: 3_LEADER@0: decrement next_index {15, 13, 12, 15, 15}
+11:57:44.519795: 3_FOLLOWER@3: give will: {:APE_REQUEST, %{entries: [], leaderCommit: 13, leaderId: 0, prevLogIndex: 14, prevLogTerm: 2, term: 3}}
+11:57:44.519916: 3_LEADER@0: decrement next_index {15, 12, 12, 15, 15}
+11:57:44.520177: 3_FOLLOWER@3: switched to FOLLOWER
+11:57:44.520756: 3_LEADER@0: decrement next_index {15, 12, 12, 14, 15}
+11:57:44.530446: 3_LEADER@0: decrement next_index {15, 12, 12, 13, 15}
+11:57:44.530922: 3_LEADER@0: decrement next_index {15, 11, 12, 13, 15}
+11:57:44.531366: 3_LEADER@0: decrement next_index {15, 11, 11, 13, 15}
+11:57:44.541436: 3_LEADER@0: decrement next_index {15, 11, 11, 12, 15}
+11:57:44.541965: 3_LEADER@0: decrement next_index {15, 10, 11, 12, 15}
+11:57:44.542532: 3_LEADER@0: decrement next_index {15, 10, 10, 12, 15}
+11:57:44.552580: 3_LEADER@0: decrement next_index {15, 9, 10, 12, 15}
+11:57:44.553174: 3_LEADER@0: decrement next_index {15, 9, 10, 11, 15}
+11:57:44.553695: 3_LEADER@0: decrement next_index {15, 9, 9, 11, 15}
+11:57:44.563526: 3_LEADER@0: decrement next_index {15, 9, 9, 10, 15}
+11:57:44.564074: 3_LEADER@0: decrement next_index {15, 9, 8, 10, 15}
+11:57:44.564570: 3_LEADER@0: decrement next_index {15, 8, 8, 10, 15}
+11:57:44.574646: 3_LEADER@0: decrement next_index {15, 7, 8, 10, 15}
+11:57:44.575170: 3_LEADER@0: decrement next_index {15, 7, 8, 9, 15}
+11:57:44.575796: 3_LEADER@0: decrement next_index {15, 7, 7, 9, 15}
+11:57:44.585361: 3_LEADER@0: decrement next_index {15, 6, 7, 9, 15}
+11:57:44.585801: 3_LEADER@0: decrement next_index {15, 6, 6, 9, 15}
+Disaster reference name %{"leader" => 0}
+Disaster reference name %{"leader" => 0}
+11:57:44.586316: 3_LEADER@0: decrement next_index {15, 6, 6, 8, 15}
+11:57:44.586249: 0_FOLLOWER@4: AFFECTED BY online
+11:57:44.586690: 3_LEADER@0: AFFECTED BY crash
+11:57:44.586849: 0_FOLLOWER@4: switched to FOLLOWER
+11:57:44.587181: DATABASE@0: restart due to diaster crash happened to server, wipeed storage
+Disaster reference name %{"leader" => 0}
+Disaster reference name %{"leader" => 0}
+11:57:44.661349: 0_FOLLOWER@0: AFFECTED BY online
+11:57:44.661498: 3_FOLLOWER@1: AFFECTED BY crash
+11:57:44.661870: 0_FOLLOWER@0: switched to FOLLOWER
+11:57:44.662041: DATABASE@1: restart due to diaster crash happened to server, wipeed storage
+Disaster reference name %{"leader" => 0}
+Disaster reference name %{"leader" => 0}
+11:57:44.736415: 0_FOLLOWER@1: AFFECTED BY online
+11:57:44.736409: 3_FOLLOWER@2: AFFECTED BY crash
+11:57:44.736956: 0_FOLLOWER@1: switched to FOLLOWER
+11:57:44.737086: DATABASE@2: restart due to diaster crash happened to server, wipeed storage
+11:57:44.738176: 1_CANDIDATE@4: switched to CANDIDATE
+11:57:44.738715: 0_FOLLOWER@1: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.738869: 1_CANDIDATE@4: vote request from 4, true,  -> 4
+11:57:44.738843: 0_FOLLOWER@0: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.739414: 1_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.739636: 1_CANDIDATE@4: Higher term found {:VOTE_REPLY, %{term: 3, voteGranted: false}}
+11:57:44.739729: 1_FOLLOWER@0: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+11:57:44.739859: 1_FOLLOWER@1: switched to FOLLOWER
+11:57:44.740219: 3_FOLLOWER@4: switched to FOLLOWER
+11:57:44.740252: 1_FOLLOWER@0: switched to FOLLOWER
+11:57:44.740293: 1_FOLLOWER@1: vote request from 4, true,  -> 4
+11:57:44.740687: 1_FOLLOWER@0: vote request from 4, true,  -> 4
+Disaster reference name %{"leader" => 0}
+Disaster reference name %{"leader" => 0}
+11:57:44.811632: 0_FOLLOWER@2: AFFECTED BY online
+11:57:44.811885: 3_FOLLOWER@3: AFFECTED BY crash
+11:57:44.812111: 0_FOLLOWER@2: switched to FOLLOWER
+11:57:44.812426: DATABASE@3: restart due to diaster crash happened to server, wipeed storage
+Disaster reference name %{"leader" => 0}
+Disaster reference name %{"leader" => 0}
+11:57:44.886597: 0_FOLLOWER@3: AFFECTED BY online
+11:57:44.886754: 3_FOLLOWER@4: AFFECTED BY crash
+11:57:44.887237: 0_FOLLOWER@3: switched to FOLLOWER
+11:57:44.887433: DATABASE@4: restart due to diaster crash happened to server, wipeed storage
+11:57:44.932904: CLIENT 0: client timeout while waiting reply for uid {0, 8}
+11:57:44.936995: 2_CANDIDATE@0: switched to CANDIDATE
+11:57:44.937560: 0_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.937536: 1_FOLLOWER@1: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.937628: 2_CANDIDATE@0: vote request from 0, true,  -> 0
+11:57:44.937678: 0_FOLLOWER@3: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.938202: 2_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.938212: 2_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.938364: 2_FOLLOWER@3: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+11:57:44.938792: 2_FOLLOWER@1: switched to FOLLOWER
+11:57:44.938768: 2_FOLLOWER@2: switched to FOLLOWER
+11:57:44.938793: 2_FOLLOWER@3: switched to FOLLOWER
+11:57:44.939398: 2_FOLLOWER@2: vote request from 0, true,  -> 0
+11:57:44.939369: 2_FOLLOWER@3: vote request from 0, true,  -> 0
+11:57:44.939407: 2_FOLLOWER@1: vote request from 0, true,  -> 0
+11:57:44.940154: 2_LEADER@0: switched to LEADER
+Disaster reference name %{"leader" => 0}
+11:57:44.943972: CLIENT 1: client timeout while waiting reply for uid {1, 8}
+11:57:44.951746: 2_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 76, 70, 28}, uid: {1, 8}}, 2}], leaderCommit: 0, leaderId: 0, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.951848: 2_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 76, 70, 28}, uid: {1, 8}}, 2}], leaderCommit: 0, leaderId: 0, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.951749: 2_FOLLOWER@2: accept %{entries: [{%{clientP: #PID<17830.182.0>, cmd: {:move, 76, 70, 28}, uid: {1, 8}}, 2}], leaderCommit: 0, leaderId: 0, prevLogIndex: 0, prevLogTerm: 0, term: 2}
+11:57:44.952070: 2_LEADER@0: send client confirmation {1, 8}
+Disaster reference name %{"leader" => 0}
+11:57:44.959081: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 15, 18, 37}, uid: {1, 9}}}
+Disaster reference name %{"leader" => 0}
+11:57:44.961257: 0_FOLLOWER@4: AFFECTED BY online
+11:57:44.961501: 2_LEADER@0: AFFECTED BY crash
+11:57:44.961870: 0_FOLLOWER@4: switched to FOLLOWER
+11:57:44.962010: DATABASE@0: restart due to diaster crash happened to server, wipeed storage
+
+11:57:44.972 [error] Process #PID<0.178.0> on node :"raft_39_jc5616@127.0.0.1" raised an exception
+** (RuntimeError) HALT: monitor:  ** error DATEBASE@0 .13 [76,70,28] = log 13/14 [536,27,15]
+    (raft 0.1.0) lib/monitor.ex:62: Monitor.halt/1
+    (raft 0.1.0) lib/monitor.ex:134: Monitor.next/1
+11:57:45.125644: 3_CANDIDATE@2: switched to CANDIDATE
+11:57:45.126051: 2_FOLLOWER@3: Higher term found {:VOTE_REQUEST, %{candidateId: 2, lastLogIndex: 1, lastLogTerm: 2, term: 3}}
+11:57:45.126143: 0_FOLLOWER@4: Higher term found {:VOTE_REQUEST, %{candidateId: 2, lastLogIndex: 1, lastLogTerm: 2, term: 3}}
+11:57:45.126231: 2_FOLLOWER@1: Higher term found {:VOTE_REQUEST, %{candidateId: 2, lastLogIndex: 1, lastLogTerm: 2, term: 3}}
+11:57:45.126243: 3_CANDIDATE@2: vote request from 2, true,  -> 2
+11:57:45.126760: 3_FOLLOWER@3: give will: {:VOTE_REQUEST, %{candidateId: 2, lastLogIndex: 1, lastLogTerm: 2, term: 3}}
+11:57:45.126762: 3_FOLLOWER@4: give will: {:VOTE_REQUEST, %{candidateId: 2, lastLogIndex: 1, lastLogTerm: 2, term: 3}}
+11:57:45.126962: 3_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 2, lastLogIndex: 1, lastLogTerm: 2, term: 3}}
+11:57:45.127251: 3_FOLLOWER@3: switched to FOLLOWER
+11:57:45.127409: 3_FOLLOWER@4: switched to FOLLOWER
+11:57:45.127521: 3_FOLLOWER@1: switched to FOLLOWER
+11:57:45.127737: 3_FOLLOWER@3: vote request from 2, true,  -> 2
+11:57:45.127835: 3_FOLLOWER@4: vote request from 2, true,  -> 2
+11:57:45.127966: 3_FOLLOWER@1: vote request from 2, true,  -> 2
+11:57:45.129519: 3_LEADER@2: switched to LEADER
+Disaster reference name %{"leader" => 2}
+11:57:45.129770: 3_LEADER@2: decrement next_index {2, 2, 2, 2, 1}
+11:57:45.140753: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 76, 70, 28}, uid: {1, 8}}, 2}], leaderCommit: 0, leaderId: 2, prevLogIndex: 0, prevLogTerm: 0, term: 3}
+11:57:45.434983: CLIENT 0: client timeout while waiting reply for uid {0, 8}
+11:57:45.439295: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 437, 12, 87}, uid: {0, 8}}, 3}], leaderCommit: 0, leaderId: 2, prevLogIndex: 1, prevLogTerm: 2, term: 3}
+11:57:45.439438: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 437, 12, 87}, uid: {0, 8}}, 3}], leaderCommit: 0, leaderId: 2, prevLogIndex: 1, prevLogTerm: 2, term: 3}
+11:57:45.439436: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 437, 12, 87}, uid: {0, 8}}, 3}], leaderCommit: 0, leaderId: 2, prevLogIndex: 1, prevLogTerm: 2, term: 3}
+11:57:45.439716: 3_LEADER@2: send client confirmation {1, 8}
+11:57:45.440254: 3_LEADER@2: send client confirmation {0, 8}
+11:57:45.440593: CLIENT 1: expecting {1, 9} reply, get {1, 8}
+11:57:45.446897: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 396, 84, 38}, uid: {0, 9}}}
+11:57:45.450715: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 15, 18, 37}, uid: {1, 9}}, 3}], leaderCommit: 2, leaderId: 2, prevLogIndex: 2, prevLogTerm: 3, term: 3}
+11:57:45.450718: 3_LEADER@2: send client confirmation {1, 9}
+11:57:45.450709: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 15, 18, 37}, uid: {1, 9}}, 3}], leaderCommit: 2, leaderId: 2, prevLogIndex: 2, prevLogTerm: 3, term: 3}
+11:57:45.450732: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 15, 18, 37}, uid: {1, 9}}, 3}], leaderCommit: 2, leaderId: 2, prevLogIndex: 2, prevLogTerm: 3, term: 3}
+11:57:45.457126: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 757, 41, 97}, uid: {1, 10}}}
+11:57:45.460844: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 396, 84, 38}, uid: {0, 9}}, 3}], leaderCommit: 3, leaderId: 2, prevLogIndex: 3, prevLogTerm: 3, term: 3}
+11:57:45.460962: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 396, 84, 38}, uid: {0, 9}}, 3}], leaderCommit: 3, leaderId: 2, prevLogIndex: 3, prevLogTerm: 3, term: 3}
+11:57:45.460940: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 396, 84, 38}, uid: {0, 9}}, 3}], leaderCommit: 3, leaderId: 2, prevLogIndex: 3, prevLogTerm: 3, term: 3}
+11:57:45.461008: 3_LEADER@2: send client confirmation {0, 9}
+11:57:45.467863: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 761, 7, 71}, uid: {0, 10}}}
+11:57:45.471964: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 757, 41, 97}, uid: {1, 10}}, 3}], leaderCommit: 4, leaderId: 2, prevLogIndex: 4, prevLogTerm: 3, term: 3}
+11:57:45.472000: 3_LEADER@2: send client confirmation {1, 10}
+11:57:45.472056: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 757, 41, 97}, uid: {1, 10}}, 3}], leaderCommit: 4, leaderId: 2, prevLogIndex: 4, prevLogTerm: 3, term: 3}
+11:57:45.472029: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 757, 41, 97}, uid: {1, 10}}, 3}], leaderCommit: 4, leaderId: 2, prevLogIndex: 4, prevLogTerm: 3, term: 3}
+11:57:45.478086: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 845, 78, 31}, uid: {1, 11}}}
+11:57:45.482941: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 761, 7, 71}, uid: {0, 10}}, 3}], leaderCommit: 5, leaderId: 2, prevLogIndex: 5, prevLogTerm: 3, term: 3}
+11:57:45.483121: 3_LEADER@2: send client confirmation {0, 10}
+11:57:45.483162: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 761, 7, 71}, uid: {0, 10}}, 3}], leaderCommit: 5, leaderId: 2, prevLogIndex: 5, prevLogTerm: 3, term: 3}
+11:57:45.483227: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 761, 7, 71}, uid: {0, 10}}, 3}], leaderCommit: 5, leaderId: 2, prevLogIndex: 5, prevLogTerm: 3, term: 3}
+11:57:45.489848: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 559, 40, 86}, uid: {0, 11}}}
+11:57:45.494054: 3_LEADER@2: send client confirmation {1, 11}
+11:57:45.494056: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 845, 78, 31}, uid: {1, 11}}, 3}], leaderCommit: 6, leaderId: 2, prevLogIndex: 6, prevLogTerm: 3, term: 3}
+11:57:45.494075: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 845, 78, 31}, uid: {1, 11}}, 3}], leaderCommit: 6, leaderId: 2, prevLogIndex: 6, prevLogTerm: 3, term: 3}
+11:57:45.494104: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 845, 78, 31}, uid: {1, 11}}, 3}], leaderCommit: 6, leaderId: 2, prevLogIndex: 6, prevLogTerm: 3, term: 3}
+11:57:45.500056: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 343, 70, 95}, uid: {1, 12}}}
+11:57:45.505041: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 559, 40, 86}, uid: {0, 11}}, 3}], leaderCommit: 7, leaderId: 2, prevLogIndex: 7, prevLogTerm: 3, term: 3}
+11:57:45.505064: 3_LEADER@2: send client confirmation {0, 11}
+11:57:45.505100: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 559, 40, 86}, uid: {0, 11}}, 3}], leaderCommit: 7, leaderId: 2, prevLogIndex: 7, prevLogTerm: 3, term: 3}
+11:57:45.505045: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 559, 40, 86}, uid: {0, 11}}, 3}], leaderCommit: 7, leaderId: 2, prevLogIndex: 7, prevLogTerm: 3, term: 3}
+11:57:45.511843: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 84, 97, 18}, uid: {0, 12}}}
+11:57:45.515873: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 343, 70, 95}, uid: {1, 12}}, 3}], leaderCommit: 8, leaderId: 2, prevLogIndex: 8, prevLogTerm: 3, term: 3}
+11:57:45.516011: 3_LEADER@2: send client confirmation {1, 12}
+11:57:45.516101: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 343, 70, 95}, uid: {1, 12}}, 3}], leaderCommit: 8, leaderId: 2, prevLogIndex: 8, prevLogTerm: 3, term: 3}
+11:57:45.516021: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 343, 70, 95}, uid: {1, 12}}, 3}], leaderCommit: 8, leaderId: 2, prevLogIndex: 8, prevLogTerm: 3, term: 3}
+11:57:45.523087: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 793, 45, 71}, uid: {1, 13}}}
+11:57:45.526910: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 84, 97, 18}, uid: {0, 12}}, 3}], leaderCommit: 9, leaderId: 2, prevLogIndex: 9, prevLogTerm: 3, term: 3}
+11:57:45.527148: 3_LEADER@2: send client confirmation {0, 12}
+11:57:45.527118: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 84, 97, 18}, uid: {0, 12}}, 3}], leaderCommit: 9, leaderId: 2, prevLogIndex: 9, prevLogTerm: 3, term: 3}
+11:57:45.527122: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 84, 97, 18}, uid: {0, 12}}, 3}], leaderCommit: 9, leaderId: 2, prevLogIndex: 9, prevLogTerm: 3, term: 3}
+11:57:45.533879: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 277, 86, 35}, uid: {0, 13}}}
+11:57:45.537956: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 793, 45, 71}, uid: {1, 13}}, 3}], leaderCommit: 10, leaderId: 2, prevLogIndex: 10, prevLogTerm: 3, term: 3}
+11:57:45.538165: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 793, 45, 71}, uid: {1, 13}}, 3}], leaderCommit: 10, leaderId: 2, prevLogIndex: 10, prevLogTerm: 3, term: 3}
+11:57:45.538080: 3_LEADER@2: send client confirmation {1, 13}
+11:57:45.538177: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 793, 45, 71}, uid: {1, 13}}, 3}], leaderCommit: 10, leaderId: 2, prevLogIndex: 10, prevLogTerm: 3, term: 3}
+11:57:45.544110: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 601, 25, 31}, uid: {1, 14}}}
+11:57:45.548941: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 277, 86, 35}, uid: {0, 13}}, 3}], leaderCommit: 11, leaderId: 2, prevLogIndex: 11, prevLogTerm: 3, term: 3}
+11:57:45.549063: 3_LEADER@2: send client confirmation {0, 13}
+11:57:45.549116: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 277, 86, 35}, uid: {0, 13}}, 3}], leaderCommit: 11, leaderId: 2, prevLogIndex: 11, prevLogTerm: 3, term: 3}
+11:57:45.549116: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 277, 86, 35}, uid: {0, 13}}, 3}], leaderCommit: 11, leaderId: 2, prevLogIndex: 11, prevLogTerm: 3, term: 3}
+11:57:45.555843: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 495, 10, 24}, uid: {0, 14}}}
+11:57:45.559976: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 601, 25, 31}, uid: {1, 14}}, 3}], leaderCommit: 12, leaderId: 2, prevLogIndex: 12, prevLogTerm: 3, term: 3}
+11:57:45.560016: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 601, 25, 31}, uid: {1, 14}}, 3}], leaderCommit: 12, leaderId: 2, prevLogIndex: 12, prevLogTerm: 3, term: 3}
+11:57:45.560080: 3_LEADER@2: send client confirmation {1, 14}
+11:57:45.560064: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 601, 25, 31}, uid: {1, 14}}, 3}], leaderCommit: 12, leaderId: 2, prevLogIndex: 12, prevLogTerm: 3, term: 3}
+11:57:45.567130: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 923, 6, 84}, uid: {1, 15}}}
+11:57:45.570964: 3_LEADER@2: send client confirmation {0, 14}
+11:57:45.570985: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 495, 10, 24}, uid: {0, 14}}, 3}], leaderCommit: 13, leaderId: 2, prevLogIndex: 13, prevLogTerm: 3, term: 3}
+11:57:45.571008: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 495, 10, 24}, uid: {0, 14}}, 3}], leaderCommit: 13, leaderId: 2, prevLogIndex: 13, prevLogTerm: 3, term: 3}
+11:57:45.570968: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 495, 10, 24}, uid: {0, 14}}, 3}], leaderCommit: 13, leaderId: 2, prevLogIndex: 13, prevLogTerm: 3, term: 3}
+11:57:45.577832: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 489, 41, 5}, uid: {0, 15}}}
+11:57:45.581823: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 923, 6, 84}, uid: {1, 15}}, 3}], leaderCommit: 14, leaderId: 2, prevLogIndex: 14, prevLogTerm: 3, term: 3}
+11:57:45.581914: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 923, 6, 84}, uid: {1, 15}}, 3}], leaderCommit: 14, leaderId: 2, prevLogIndex: 14, prevLogTerm: 3, term: 3}
+11:57:45.581914: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 923, 6, 84}, uid: {1, 15}}, 3}], leaderCommit: 14, leaderId: 2, prevLogIndex: 14, prevLogTerm: 3, term: 3}
+11:57:45.582068: 3_LEADER@2: send client confirmation {1, 15}
+11:57:45.589064: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 215, 97, 25}, uid: {1, 16}}}
+11:57:45.592945: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 489, 41, 5}, uid: {0, 15}}, 3}], leaderCommit: 15, leaderId: 2, prevLogIndex: 15, prevLogTerm: 3, term: 3}
+11:57:45.592986: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 489, 41, 5}, uid: {0, 15}}, 3}], leaderCommit: 15, leaderId: 2, prevLogIndex: 15, prevLogTerm: 3, term: 3}
+11:57:45.593040: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 489, 41, 5}, uid: {0, 15}}, 3}], leaderCommit: 15, leaderId: 2, prevLogIndex: 15, prevLogTerm: 3, term: 3}
+11:57:45.593076: 3_LEADER@2: send client confirmation {0, 15}
+11:57:45.599906: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 687, 31, 28}, uid: {0, 16}}}
+11:57:45.603852: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 215, 97, 25}, uid: {1, 16}}, 3}], leaderCommit: 16, leaderId: 2, prevLogIndex: 16, prevLogTerm: 3, term: 3}
+11:57:45.604005: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 215, 97, 25}, uid: {1, 16}}, 3}], leaderCommit: 16, leaderId: 2, prevLogIndex: 16, prevLogTerm: 3, term: 3}
+11:57:45.604023: 3_LEADER@2: send client confirmation {1, 16}
+11:57:45.604040: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 215, 97, 25}, uid: {1, 16}}, 3}], leaderCommit: 16, leaderId: 2, prevLogIndex: 16, prevLogTerm: 3, term: 3}
+11:57:45.611088: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 651, 13, 48}, uid: {1, 17}}}
+11:57:45.614951: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 687, 31, 28}, uid: {0, 16}}, 3}], leaderCommit: 17, leaderId: 2, prevLogIndex: 17, prevLogTerm: 3, term: 3}
+11:57:45.615020: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 687, 31, 28}, uid: {0, 16}}, 3}], leaderCommit: 17, leaderId: 2, prevLogIndex: 17, prevLogTerm: 3, term: 3}
+11:57:45.615138: 3_LEADER@2: send client confirmation {0, 16}
+11:57:45.615020: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 687, 31, 28}, uid: {0, 16}}, 3}], leaderCommit: 17, leaderId: 2, prevLogIndex: 17, prevLogTerm: 3, term: 3}
+11:57:45.621901: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 764, 23, 39}, uid: {0, 17}}}
+11:57:45.626016: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 651, 13, 48}, uid: {1, 17}}, 3}], leaderCommit: 18, leaderId: 2, prevLogIndex: 18, prevLogTerm: 3, term: 3}
+11:57:45.626109: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 651, 13, 48}, uid: {1, 17}}, 3}], leaderCommit: 18, leaderId: 2, prevLogIndex: 18, prevLogTerm: 3, term: 3}
+11:57:45.626115: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 651, 13, 48}, uid: {1, 17}}, 3}], leaderCommit: 18, leaderId: 2, prevLogIndex: 18, prevLogTerm: 3, term: 3}
+11:57:45.626127: 3_LEADER@2: send client confirmation {1, 17}
+11:57:45.633102: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 226, 27, 99}, uid: {1, 18}}}
+11:57:45.636862: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 764, 23, 39}, uid: {0, 17}}, 3}], leaderCommit: 19, leaderId: 2, prevLogIndex: 19, prevLogTerm: 3, term: 3}
+11:57:45.636927: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 764, 23, 39}, uid: {0, 17}}, 3}], leaderCommit: 19, leaderId: 2, prevLogIndex: 19, prevLogTerm: 3, term: 3}
+11:57:45.636930: 3_LEADER@2: send client confirmation {0, 17}
+11:57:45.636996: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 764, 23, 39}, uid: {0, 17}}, 3}], leaderCommit: 19, leaderId: 2, prevLogIndex: 19, prevLogTerm: 3, term: 3}
+11:57:45.643855: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 586, 7, 20}, uid: {0, 18}}}
+11:57:45.648083: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 226, 27, 99}, uid: {1, 18}}, 3}], leaderCommit: 20, leaderId: 2, prevLogIndex: 20, prevLogTerm: 3, term: 3}
+11:57:45.648157: 3_LEADER@2: send client confirmation {1, 18}
+11:57:45.648065: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 226, 27, 99}, uid: {1, 18}}, 3}], leaderCommit: 20, leaderId: 2, prevLogIndex: 20, prevLogTerm: 3, term: 3}
+11:57:45.648162: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 226, 27, 99}, uid: {1, 18}}, 3}], leaderCommit: 20, leaderId: 2, prevLogIndex: 20, prevLogTerm: 3, term: 3}
+11:57:45.655014: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 104, 70, 9}, uid: {1, 19}}}
+11:57:45.659097: 3_LEADER@2: send client confirmation {0, 18}
+11:57:45.659086: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 586, 7, 20}, uid: {0, 18}}, 3}], leaderCommit: 21, leaderId: 2, prevLogIndex: 21, prevLogTerm: 3, term: 3}
+11:57:45.659205: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 586, 7, 20}, uid: {0, 18}}, 3}], leaderCommit: 21, leaderId: 2, prevLogIndex: 21, prevLogTerm: 3, term: 3}
+11:57:45.659163: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 586, 7, 20}, uid: {0, 18}}, 3}], leaderCommit: 21, leaderId: 2, prevLogIndex: 21, prevLogTerm: 3, term: 3}
+11:57:45.665775: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 707, 74, 98}, uid: {0, 19}}}
+11:57:45.670089: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 104, 70, 9}, uid: {1, 19}}, 3}], leaderCommit: 22, leaderId: 2, prevLogIndex: 22, prevLogTerm: 3, term: 3}
+11:57:45.670175: 3_LEADER@2: send client confirmation {1, 19}
+11:57:45.670138: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 104, 70, 9}, uid: {1, 19}}, 3}], leaderCommit: 22, leaderId: 2, prevLogIndex: 22, prevLogTerm: 3, term: 3}
+11:57:45.670164: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 104, 70, 9}, uid: {1, 19}}, 3}], leaderCommit: 22, leaderId: 2, prevLogIndex: 22, prevLogTerm: 3, term: 3}
+11:57:45.677053: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 743, 38, 30}, uid: {1, 20}}}
+11:57:45.681099: 3_LEADER@2: send client confirmation {0, 19}
+11:57:45.681014: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 707, 74, 98}, uid: {0, 19}}, 3}], leaderCommit: 23, leaderId: 2, prevLogIndex: 23, prevLogTerm: 3, term: 3}
+11:57:45.681150: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 707, 74, 98}, uid: {0, 19}}, 3}], leaderCommit: 23, leaderId: 2, prevLogIndex: 23, prevLogTerm: 3, term: 3}
+11:57:45.681185: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 707, 74, 98}, uid: {0, 19}}, 3}], leaderCommit: 23, leaderId: 2, prevLogIndex: 23, prevLogTerm: 3, term: 3}
+11:57:45.687828: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 316, 93, 68}, uid: {0, 20}}}
+11:57:45.692027: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 743, 38, 30}, uid: {1, 20}}, 3}], leaderCommit: 24, leaderId: 2, prevLogIndex: 24, prevLogTerm: 3, term: 3}
+11:57:45.692052: 3_LEADER@2: send client confirmation {1, 20}
+11:57:45.692102: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 743, 38, 30}, uid: {1, 20}}, 3}], leaderCommit: 24, leaderId: 2, prevLogIndex: 24, prevLogTerm: 3, term: 3}
+11:57:45.692068: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 743, 38, 30}, uid: {1, 20}}, 3}], leaderCommit: 24, leaderId: 2, prevLogIndex: 24, prevLogTerm: 3, term: 3}
+11:57:45.699129: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 388, 29, 91}, uid: {1, 21}}}
+11:57:45.703019: 3_LEADER@2: send client confirmation {0, 20}
+11:57:45.702984: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 316, 93, 68}, uid: {0, 20}}, 3}], leaderCommit: 25, leaderId: 2, prevLogIndex: 25, prevLogTerm: 3, term: 3}
+11:57:45.702998: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 316, 93, 68}, uid: {0, 20}}, 3}], leaderCommit: 25, leaderId: 2, prevLogIndex: 25, prevLogTerm: 3, term: 3}
+11:57:45.703094: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 316, 93, 68}, uid: {0, 20}}, 3}], leaderCommit: 25, leaderId: 2, prevLogIndex: 25, prevLogTerm: 3, term: 3}
+11:57:45.709879: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 580, 23, 58}, uid: {0, 21}}}
+11:57:45.713958: 3_LEADER@2: send client confirmation {1, 21}
+11:57:45.713955: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 388, 29, 91}, uid: {1, 21}}, 3}], leaderCommit: 26, leaderId: 2, prevLogIndex: 26, prevLogTerm: 3, term: 3}
+11:57:45.713943: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 388, 29, 91}, uid: {1, 21}}, 3}], leaderCommit: 26, leaderId: 2, prevLogIndex: 26, prevLogTerm: 3, term: 3}
+11:57:45.713992: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 388, 29, 91}, uid: {1, 21}}, 3}], leaderCommit: 26, leaderId: 2, prevLogIndex: 26, prevLogTerm: 3, term: 3}
+11:57:45.720069: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 952, 72, 47}, uid: {1, 22}}}
+11:57:45.724875: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 580, 23, 58}, uid: {0, 21}}, 3}], leaderCommit: 27, leaderId: 2, prevLogIndex: 27, prevLogTerm: 3, term: 3}
+11:57:45.724906: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 580, 23, 58}, uid: {0, 21}}, 3}], leaderCommit: 27, leaderId: 2, prevLogIndex: 27, prevLogTerm: 3, term: 3}
+11:57:45.725071: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 580, 23, 58}, uid: {0, 21}}, 3}], leaderCommit: 27, leaderId: 2, prevLogIndex: 27, prevLogTerm: 3, term: 3}
+11:57:45.725186: 3_LEADER@2: send client confirmation {0, 21}
+11:57:45.731842: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 461, 84, 80}, uid: {0, 22}}}
+11:57:45.735805: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 952, 72, 47}, uid: {1, 22}}, 3}], leaderCommit: 28, leaderId: 2, prevLogIndex: 28, prevLogTerm: 3, term: 3}
+11:57:45.735906: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 952, 72, 47}, uid: {1, 22}}, 3}], leaderCommit: 28, leaderId: 2, prevLogIndex: 28, prevLogTerm: 3, term: 3}
+11:57:45.735928: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 952, 72, 47}, uid: {1, 22}}, 3}], leaderCommit: 28, leaderId: 2, prevLogIndex: 28, prevLogTerm: 3, term: 3}
+11:57:45.736048: 3_LEADER@2: send client confirmation {1, 22}
+11:57:45.743064: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 812, 57, 53}, uid: {1, 23}}}
+11:57:45.746853: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 461, 84, 80}, uid: {0, 22}}, 3}], leaderCommit: 29, leaderId: 2, prevLogIndex: 29, prevLogTerm: 3, term: 3}
+11:57:45.746952: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 461, 84, 80}, uid: {0, 22}}, 3}], leaderCommit: 29, leaderId: 2, prevLogIndex: 29, prevLogTerm: 3, term: 3}
+11:57:45.746977: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 461, 84, 80}, uid: {0, 22}}, 3}], leaderCommit: 29, leaderId: 2, prevLogIndex: 29, prevLogTerm: 3, term: 3}
+11:57:45.747104: 3_LEADER@2: send client confirmation {0, 22}
+11:57:45.753845: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 80, 59, 68}, uid: {0, 23}}}
+11:57:45.757871: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 812, 57, 53}, uid: {1, 23}}, 3}], leaderCommit: 30, leaderId: 2, prevLogIndex: 30, prevLogTerm: 3, term: 3}
+11:57:45.757925: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 812, 57, 53}, uid: {1, 23}}, 3}], leaderCommit: 30, leaderId: 2, prevLogIndex: 30, prevLogTerm: 3, term: 3}
+11:57:45.757943: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 812, 57, 53}, uid: {1, 23}}, 3}], leaderCommit: 30, leaderId: 2, prevLogIndex: 30, prevLogTerm: 3, term: 3}
+11:57:45.758155: 3_LEADER@2: send client confirmation {1, 23}
+11:57:45.765103: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 624, 4, 16}, uid: {1, 24}}}
+11:57:45.768915: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 80, 59, 68}, uid: {0, 23}}, 3}], leaderCommit: 31, leaderId: 2, prevLogIndex: 31, prevLogTerm: 3, term: 3}
+11:57:45.768961: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 80, 59, 68}, uid: {0, 23}}, 3}], leaderCommit: 31, leaderId: 2, prevLogIndex: 31, prevLogTerm: 3, term: 3}
+11:57:45.768940: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 80, 59, 68}, uid: {0, 23}}, 3}], leaderCommit: 31, leaderId: 2, prevLogIndex: 31, prevLogTerm: 3, term: 3}
+11:57:45.769204: 3_LEADER@2: send client confirmation {0, 23}
+11:57:45.775858: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 228, 60, 72}, uid: {0, 24}}}
+11:57:45.779844: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 624, 4, 16}, uid: {1, 24}}, 3}], leaderCommit: 32, leaderId: 2, prevLogIndex: 32, prevLogTerm: 3, term: 3}
+11:57:45.779890: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 624, 4, 16}, uid: {1, 24}}, 3}], leaderCommit: 32, leaderId: 2, prevLogIndex: 32, prevLogTerm: 3, term: 3}
+11:57:45.779958: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 624, 4, 16}, uid: {1, 24}}, 3}], leaderCommit: 32, leaderId: 2, prevLogIndex: 32, prevLogTerm: 3, term: 3}
+11:57:45.780083: 3_LEADER@2: send client confirmation {1, 24}
+11:57:45.787082: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 689, 82, 47}, uid: {1, 25}}}
+11:57:45.790773: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 228, 60, 72}, uid: {0, 24}}, 3}], leaderCommit: 33, leaderId: 2, prevLogIndex: 33, prevLogTerm: 3, term: 3}
+11:57:45.790899: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 228, 60, 72}, uid: {0, 24}}, 3}], leaderCommit: 33, leaderId: 2, prevLogIndex: 33, prevLogTerm: 3, term: 3}
+11:57:45.791002: 3_LEADER@2: send client confirmation {0, 24}
+11:57:45.790940: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 228, 60, 72}, uid: {0, 24}}, 3}], leaderCommit: 33, leaderId: 2, prevLogIndex: 33, prevLogTerm: 3, term: 3}
+11:57:45.797841: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 925, 77, 74}, uid: {0, 25}}}
+11:57:45.801948: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 689, 82, 47}, uid: {1, 25}}, 3}], leaderCommit: 34, leaderId: 2, prevLogIndex: 34, prevLogTerm: 3, term: 3}
+11:57:45.801907: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 689, 82, 47}, uid: {1, 25}}, 3}], leaderCommit: 34, leaderId: 2, prevLogIndex: 34, prevLogTerm: 3, term: 3}
+11:57:45.801939: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 689, 82, 47}, uid: {1, 25}}, 3}], leaderCommit: 34, leaderId: 2, prevLogIndex: 34, prevLogTerm: 3, term: 3}
+11:57:45.802139: 3_LEADER@2: send client confirmation {1, 25}
+11:57:45.809050: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 552, 58, 24}, uid: {1, 26}}}
+11:57:45.812806: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 925, 77, 74}, uid: {0, 25}}, 3}], leaderCommit: 35, leaderId: 2, prevLogIndex: 35, prevLogTerm: 3, term: 3}
+11:57:45.812926: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 925, 77, 74}, uid: {0, 25}}, 3}], leaderCommit: 35, leaderId: 2, prevLogIndex: 35, prevLogTerm: 3, term: 3}
+11:57:45.812931: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 925, 77, 74}, uid: {0, 25}}, 3}], leaderCommit: 35, leaderId: 2, prevLogIndex: 35, prevLogTerm: 3, term: 3}
+11:57:45.813041: 3_LEADER@2: send client confirmation {0, 25}
+11:57:45.819878: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 858, 51, 46}, uid: {0, 26}}}
+11:57:45.823789: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 552, 58, 24}, uid: {1, 26}}, 3}], leaderCommit: 36, leaderId: 2, prevLogIndex: 36, prevLogTerm: 3, term: 3}
+11:57:45.823871: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 552, 58, 24}, uid: {1, 26}}, 3}], leaderCommit: 36, leaderId: 2, prevLogIndex: 36, prevLogTerm: 3, term: 3}
+11:57:45.823944: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 552, 58, 24}, uid: {1, 26}}, 3}], leaderCommit: 36, leaderId: 2, prevLogIndex: 36, prevLogTerm: 3, term: 3}
+11:57:45.824011: 3_LEADER@2: send client confirmation {1, 26}
+11:57:45.830087: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 563, 86, 65}, uid: {1, 27}}}
+11:57:45.834832: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 858, 51, 46}, uid: {0, 26}}, 3}], leaderCommit: 37, leaderId: 2, prevLogIndex: 37, prevLogTerm: 3, term: 3}
+11:57:45.835009: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 858, 51, 46}, uid: {0, 26}}, 3}], leaderCommit: 37, leaderId: 2, prevLogIndex: 37, prevLogTerm: 3, term: 3}
+11:57:45.835105: 3_LEADER@2: send client confirmation {0, 26}
+11:57:45.835038: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 858, 51, 46}, uid: {0, 26}}, 3}], leaderCommit: 37, leaderId: 2, prevLogIndex: 37, prevLogTerm: 3, term: 3}
+11:57:45.841849: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 461, 52, 74}, uid: {0, 27}}}
+11:57:45.845915: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 563, 86, 65}, uid: {1, 27}}, 3}], leaderCommit: 38, leaderId: 2, prevLogIndex: 38, prevLogTerm: 3, term: 3}
+11:57:45.845939: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 563, 86, 65}, uid: {1, 27}}, 3}], leaderCommit: 38, leaderId: 2, prevLogIndex: 38, prevLogTerm: 3, term: 3}
+11:57:45.846005: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 563, 86, 65}, uid: {1, 27}}, 3}], leaderCommit: 38, leaderId: 2, prevLogIndex: 38, prevLogTerm: 3, term: 3}
+11:57:45.846211: 3_LEADER@2: send client confirmation {1, 27}
+11:57:45.853050: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 564, 49, 9}, uid: {1, 28}}}
+11:57:45.856964: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 461, 52, 74}, uid: {0, 27}}, 3}], leaderCommit: 39, leaderId: 2, prevLogIndex: 39, prevLogTerm: 3, term: 3}
+11:57:45.856923: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 461, 52, 74}, uid: {0, 27}}, 3}], leaderCommit: 39, leaderId: 2, prevLogIndex: 39, prevLogTerm: 3, term: 3}
+11:57:45.856944: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 461, 52, 74}, uid: {0, 27}}, 3}], leaderCommit: 39, leaderId: 2, prevLogIndex: 39, prevLogTerm: 3, term: 3}
+11:57:45.857246: 3_LEADER@2: send client confirmation {0, 27}
+11:57:45.863842: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 169, 43, 13}, uid: {0, 28}}}
+11:57:45.867829: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 564, 49, 9}, uid: {1, 28}}, 3}], leaderCommit: 40, leaderId: 2, prevLogIndex: 40, prevLogTerm: 3, term: 3}
+11:57:45.867833: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 564, 49, 9}, uid: {1, 28}}, 3}], leaderCommit: 40, leaderId: 2, prevLogIndex: 40, prevLogTerm: 3, term: 3}
+11:57:45.867929: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 564, 49, 9}, uid: {1, 28}}, 3}], leaderCommit: 40, leaderId: 2, prevLogIndex: 40, prevLogTerm: 3, term: 3}
+11:57:45.868148: 3_LEADER@2: send client confirmation {1, 28}
+11:57:45.875079: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 923, 20, 75}, uid: {1, 29}}}
+11:57:45.878837: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 169, 43, 13}, uid: {0, 28}}, 3}], leaderCommit: 41, leaderId: 2, prevLogIndex: 41, prevLogTerm: 3, term: 3}
+11:57:45.878956: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 169, 43, 13}, uid: {0, 28}}, 3}], leaderCommit: 41, leaderId: 2, prevLogIndex: 41, prevLogTerm: 3, term: 3}
+11:57:45.879091: 3_LEADER@2: send client confirmation {0, 28}
+11:57:45.879100: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 169, 43, 13}, uid: {0, 28}}, 3}], leaderCommit: 41, leaderId: 2, prevLogIndex: 41, prevLogTerm: 3, term: 3}
+11:57:45.885862: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 881, 13, 25}, uid: {0, 29}}}
+11:57:45.889873: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 923, 20, 75}, uid: {1, 29}}, 3}], leaderCommit: 42, leaderId: 2, prevLogIndex: 42, prevLogTerm: 3, term: 3}
+11:57:45.889929: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 923, 20, 75}, uid: {1, 29}}, 3}], leaderCommit: 42, leaderId: 2, prevLogIndex: 42, prevLogTerm: 3, term: 3}
+11:57:45.890000: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 923, 20, 75}, uid: {1, 29}}, 3}], leaderCommit: 42, leaderId: 2, prevLogIndex: 42, prevLogTerm: 3, term: 3}
+11:57:45.890083: 3_LEADER@2: send client confirmation {1, 29}
+11:57:45.897108: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 629, 49, 20}, uid: {1, 30}}}
+11:57:45.900824: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 881, 13, 25}, uid: {0, 29}}, 3}], leaderCommit: 43, leaderId: 2, prevLogIndex: 43, prevLogTerm: 3, term: 3}
+11:57:45.900905: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 881, 13, 25}, uid: {0, 29}}, 3}], leaderCommit: 43, leaderId: 2, prevLogIndex: 43, prevLogTerm: 3, term: 3}
+11:57:45.900933: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 881, 13, 25}, uid: {0, 29}}, 3}], leaderCommit: 43, leaderId: 2, prevLogIndex: 43, prevLogTerm: 3, term: 3}
+11:57:45.901044: 3_LEADER@2: send client confirmation {0, 29}
+11:57:45.907817: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 710, 86, 10}, uid: {0, 30}}}
+11:57:45.911827: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 629, 49, 20}, uid: {1, 30}}, 3}], leaderCommit: 44, leaderId: 2, prevLogIndex: 44, prevLogTerm: 3, term: 3}
+11:57:45.911903: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 629, 49, 20}, uid: {1, 30}}, 3}], leaderCommit: 44, leaderId: 2, prevLogIndex: 44, prevLogTerm: 3, term: 3}
+11:57:45.911999: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 629, 49, 20}, uid: {1, 30}}, 3}], leaderCommit: 44, leaderId: 2, prevLogIndex: 44, prevLogTerm: 3, term: 3}
+11:57:45.912095: 3_LEADER@2: send client confirmation {1, 30}
+11:57:45.919022: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 348, 95, 55}, uid: {1, 31}}}
+11:57:45.922877: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 710, 86, 10}, uid: {0, 30}}, 3}], leaderCommit: 45, leaderId: 2, prevLogIndex: 45, prevLogTerm: 3, term: 3}
+11:57:45.922983: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 710, 86, 10}, uid: {0, 30}}, 3}], leaderCommit: 45, leaderId: 2, prevLogIndex: 45, prevLogTerm: 3, term: 3}
+11:57:45.922983: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 710, 86, 10}, uid: {0, 30}}, 3}], leaderCommit: 45, leaderId: 2, prevLogIndex: 45, prevLogTerm: 3, term: 3}
+11:57:45.923125: 3_LEADER@2: send client confirmation {0, 30}
+11:57:45.929881: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 834, 88, 18}, uid: {0, 31}}}
+11:57:45.933850: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 348, 95, 55}, uid: {1, 31}}, 3}], leaderCommit: 46, leaderId: 2, prevLogIndex: 46, prevLogTerm: 3, term: 3}
+11:57:45.933899: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 348, 95, 55}, uid: {1, 31}}, 3}], leaderCommit: 46, leaderId: 2, prevLogIndex: 46, prevLogTerm: 3, term: 3}
+11:57:45.933992: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 348, 95, 55}, uid: {1, 31}}, 3}], leaderCommit: 46, leaderId: 2, prevLogIndex: 46, prevLogTerm: 3, term: 3}
+11:57:45.934104: 3_LEADER@2: send client confirmation {1, 31}
+11:57:45.940049: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 21, 81, 86}, uid: {1, 32}}}
+11:57:45.944821: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 834, 88, 18}, uid: {0, 31}}, 3}], leaderCommit: 47, leaderId: 2, prevLogIndex: 47, prevLogTerm: 3, term: 3}
+11:57:45.944966: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 834, 88, 18}, uid: {0, 31}}, 3}], leaderCommit: 47, leaderId: 2, prevLogIndex: 47, prevLogTerm: 3, term: 3}
+11:57:45.944896: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 834, 88, 18}, uid: {0, 31}}, 3}], leaderCommit: 47, leaderId: 2, prevLogIndex: 47, prevLogTerm: 3, term: 3}
+11:57:45.945064: 3_LEADER@2: send client confirmation {0, 31}
+11:57:45.951843: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 203, 33, 56}, uid: {0, 32}}}
+11:57:45.955860: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 21, 81, 86}, uid: {1, 32}}, 3}], leaderCommit: 48, leaderId: 2, prevLogIndex: 48, prevLogTerm: 3, term: 3}
+11:57:45.955870: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 21, 81, 86}, uid: {1, 32}}, 3}], leaderCommit: 48, leaderId: 2, prevLogIndex: 48, prevLogTerm: 3, term: 3}
+11:57:45.955976: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 21, 81, 86}, uid: {1, 32}}, 3}], leaderCommit: 48, leaderId: 2, prevLogIndex: 48, prevLogTerm: 3, term: 3}
+11:57:45.956091: 3_LEADER@2: send client confirmation {1, 32}
+11:57:45.963162: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 90, 63, 25}, uid: {1, 33}}}
+11:57:45.966868: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 203, 33, 56}, uid: {0, 32}}, 3}], leaderCommit: 49, leaderId: 2, prevLogIndex: 49, prevLogTerm: 3, term: 3}
+11:57:45.966859: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 203, 33, 56}, uid: {0, 32}}, 3}], leaderCommit: 49, leaderId: 2, prevLogIndex: 49, prevLogTerm: 3, term: 3}
+11:57:45.966993: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 203, 33, 56}, uid: {0, 32}}, 3}], leaderCommit: 49, leaderId: 2, prevLogIndex: 49, prevLogTerm: 3, term: 3}
+11:57:45.967142: 3_LEADER@2: send client confirmation {0, 32}
+11:57:45.973834: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 695, 26, 52}, uid: {0, 33}}}
+11:57:45.977786: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 90, 63, 25}, uid: {1, 33}}, 3}], leaderCommit: 50, leaderId: 2, prevLogIndex: 50, prevLogTerm: 3, term: 3}
+11:57:45.977915: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 90, 63, 25}, uid: {1, 33}}, 3}], leaderCommit: 50, leaderId: 2, prevLogIndex: 50, prevLogTerm: 3, term: 3}
+11:57:45.977975: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 90, 63, 25}, uid: {1, 33}}, 3}], leaderCommit: 50, leaderId: 2, prevLogIndex: 50, prevLogTerm: 3, term: 3}
+11:57:45.978009: 3_LEADER@2: send client confirmation {1, 33}
+11:57:45.985067: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 874, 21, 80}, uid: {1, 34}}}
+11:57:45.988842: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 695, 26, 52}, uid: {0, 33}}, 3}], leaderCommit: 51, leaderId: 2, prevLogIndex: 51, prevLogTerm: 3, term: 3}
+11:57:45.988890: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 695, 26, 52}, uid: {0, 33}}, 3}], leaderCommit: 51, leaderId: 2, prevLogIndex: 51, prevLogTerm: 3, term: 3}
+11:57:45.988945: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 695, 26, 52}, uid: {0, 33}}, 3}], leaderCommit: 51, leaderId: 2, prevLogIndex: 51, prevLogTerm: 3, term: 3}
+11:57:45.989093: 3_LEADER@2: send client confirmation {0, 33}
+11:57:45.995846: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 33, 20, 37}, uid: {0, 34}}}
+11:57:45.999792: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 874, 21, 80}, uid: {1, 34}}, 3}], leaderCommit: 52, leaderId: 2, prevLogIndex: 52, prevLogTerm: 3, term: 3}
+11:57:45.999846: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 874, 21, 80}, uid: {1, 34}}, 3}], leaderCommit: 52, leaderId: 2, prevLogIndex: 52, prevLogTerm: 3, term: 3}
+11:57:46.000031: 3_LEADER@2: send client confirmation {1, 34}
+11:57:46.000077: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 874, 21, 80}, uid: {1, 34}}, 3}], leaderCommit: 52, leaderId: 2, prevLogIndex: 52, prevLogTerm: 3, term: 3}
+11:57:46.007065: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 708, 85, 79}, uid: {1, 35}}}
+11:57:46.010916: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 33, 20, 37}, uid: {0, 34}}, 3}], leaderCommit: 53, leaderId: 2, prevLogIndex: 53, prevLogTerm: 3, term: 3}
+11:57:46.011032: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 33, 20, 37}, uid: {0, 34}}, 3}], leaderCommit: 53, leaderId: 2, prevLogIndex: 53, prevLogTerm: 3, term: 3}
+11:57:46.011008: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 33, 20, 37}, uid: {0, 34}}, 3}], leaderCommit: 53, leaderId: 2, prevLogIndex: 53, prevLogTerm: 3, term: 3}
+11:57:46.011199: 3_LEADER@2: send client confirmation {0, 34}
+11:57:46.017835: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 417, 22, 35}, uid: {0, 35}}}
+11:57:46.021850: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 708, 85, 79}, uid: {1, 35}}, 3}], leaderCommit: 54, leaderId: 2, prevLogIndex: 54, prevLogTerm: 3, term: 3}
+11:57:46.021955: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 708, 85, 79}, uid: {1, 35}}, 3}], leaderCommit: 54, leaderId: 2, prevLogIndex: 54, prevLogTerm: 3, term: 3}
+11:57:46.022018: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 708, 85, 79}, uid: {1, 35}}, 3}], leaderCommit: 54, leaderId: 2, prevLogIndex: 54, prevLogTerm: 3, term: 3}
+11:57:46.022089: 3_LEADER@2: send client confirmation {1, 35}
+11:57:46.029095: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 217, 37, 9}, uid: {1, 36}}}
+11:57:46.032853: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 417, 22, 35}, uid: {0, 35}}, 3}], leaderCommit: 55, leaderId: 2, prevLogIndex: 55, prevLogTerm: 3, term: 3}
+11:57:46.033021: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 417, 22, 35}, uid: {0, 35}}, 3}], leaderCommit: 55, leaderId: 2, prevLogIndex: 55, prevLogTerm: 3, term: 3}
+11:57:46.033085: 3_LEADER@2: send client confirmation {0, 35}
+11:57:46.033036: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 417, 22, 35}, uid: {0, 35}}, 3}], leaderCommit: 55, leaderId: 2, prevLogIndex: 55, prevLogTerm: 3, term: 3}
+11:57:46.039899: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 529, 4, 61}, uid: {0, 36}}}
+11:57:46.043763: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 217, 37, 9}, uid: {1, 36}}, 3}], leaderCommit: 56, leaderId: 2, prevLogIndex: 56, prevLogTerm: 3, term: 3}
+11:57:46.043910: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 217, 37, 9}, uid: {1, 36}}, 3}], leaderCommit: 56, leaderId: 2, prevLogIndex: 56, prevLogTerm: 3, term: 3}
+11:57:46.043971: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 217, 37, 9}, uid: {1, 36}}, 3}], leaderCommit: 56, leaderId: 2, prevLogIndex: 56, prevLogTerm: 3, term: 3}
+11:57:46.044172: 3_LEADER@2: send client confirmation {1, 36}
+11:57:46.051087: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 276, 42, 97}, uid: {1, 37}}}
+11:57:46.054887: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 529, 4, 61}, uid: {0, 36}}, 3}], leaderCommit: 57, leaderId: 2, prevLogIndex: 57, prevLogTerm: 3, term: 3}
+11:57:46.054970: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 529, 4, 61}, uid: {0, 36}}, 3}], leaderCommit: 57, leaderId: 2, prevLogIndex: 57, prevLogTerm: 3, term: 3}
+11:57:46.055136: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 529, 4, 61}, uid: {0, 36}}, 3}], leaderCommit: 57, leaderId: 2, prevLogIndex: 57, prevLogTerm: 3, term: 3}
+11:57:46.055163: 3_LEADER@2: send client confirmation {0, 36}
+11:57:46.061865: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 53, 40, 44}, uid: {0, 37}}}
+11:57:46.065864: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 276, 42, 97}, uid: {1, 37}}, 3}], leaderCommit: 58, leaderId: 2, prevLogIndex: 58, prevLogTerm: 3, term: 3}
+11:57:46.065994: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 276, 42, 97}, uid: {1, 37}}, 3}], leaderCommit: 58, leaderId: 2, prevLogIndex: 58, prevLogTerm: 3, term: 3}
+11:57:46.065985: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 276, 42, 97}, uid: {1, 37}}, 3}], leaderCommit: 58, leaderId: 2, prevLogIndex: 58, prevLogTerm: 3, term: 3}
+11:57:46.066139: 3_LEADER@2: send client confirmation {1, 37}
+11:57:46.073036: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 546, 89, 3}, uid: {1, 38}}}
+11:57:46.076868: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 53, 40, 44}, uid: {0, 37}}, 3}], leaderCommit: 59, leaderId: 2, prevLogIndex: 59, prevLogTerm: 3, term: 3}
+11:57:46.076862: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 53, 40, 44}, uid: {0, 37}}, 3}], leaderCommit: 59, leaderId: 2, prevLogIndex: 59, prevLogTerm: 3, term: 3}
+11:57:46.076950: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 53, 40, 44}, uid: {0, 37}}, 3}], leaderCommit: 59, leaderId: 2, prevLogIndex: 59, prevLogTerm: 3, term: 3}
+11:57:46.077134: 3_LEADER@2: send client confirmation {0, 37}
+11:57:46.083835: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 502, 21, 42}, uid: {0, 38}}}
+11:57:46.087789: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 546, 89, 3}, uid: {1, 38}}, 3}], leaderCommit: 60, leaderId: 2, prevLogIndex: 60, prevLogTerm: 3, term: 3}
+11:57:46.087860: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 546, 89, 3}, uid: {1, 38}}, 3}], leaderCommit: 60, leaderId: 2, prevLogIndex: 60, prevLogTerm: 3, term: 3}
+11:57:46.087911: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 546, 89, 3}, uid: {1, 38}}, 3}], leaderCommit: 60, leaderId: 2, prevLogIndex: 60, prevLogTerm: 3, term: 3}
+11:57:46.088061: 3_LEADER@2: send client confirmation {1, 38}
+11:57:46.095130: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 557, 1, 73}, uid: {1, 39}}}
+11:57:46.098858: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 502, 21, 42}, uid: {0, 38}}, 3}], leaderCommit: 61, leaderId: 2, prevLogIndex: 61, prevLogTerm: 3, term: 3}
+11:57:46.098902: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 502, 21, 42}, uid: {0, 38}}, 3}], leaderCommit: 61, leaderId: 2, prevLogIndex: 61, prevLogTerm: 3, term: 3}
+11:57:46.099019: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 502, 21, 42}, uid: {0, 38}}, 3}], leaderCommit: 61, leaderId: 2, prevLogIndex: 61, prevLogTerm: 3, term: 3}
+11:57:46.099170: 3_LEADER@2: send client confirmation {0, 38}
+11:57:46.105809: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 510, 81, 10}, uid: {0, 39}}}
+11:57:46.109882: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 557, 1, 73}, uid: {1, 39}}, 3}], leaderCommit: 62, leaderId: 2, prevLogIndex: 62, prevLogTerm: 3, term: 3}
+11:57:46.110035: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 557, 1, 73}, uid: {1, 39}}, 3}], leaderCommit: 62, leaderId: 2, prevLogIndex: 62, prevLogTerm: 3, term: 3}
+11:57:46.110037: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 557, 1, 73}, uid: {1, 39}}, 3}], leaderCommit: 62, leaderId: 2, prevLogIndex: 62, prevLogTerm: 3, term: 3}
+11:57:46.110133: 3_LEADER@2: send client confirmation {1, 39}
+11:57:46.117233: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 366, 76, 46}, uid: {1, 40}}}
+11:57:46.120907: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 510, 81, 10}, uid: {0, 39}}, 3}], leaderCommit: 63, leaderId: 2, prevLogIndex: 63, prevLogTerm: 3, term: 3}
+11:57:46.120894: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 510, 81, 10}, uid: {0, 39}}, 3}], leaderCommit: 63, leaderId: 2, prevLogIndex: 63, prevLogTerm: 3, term: 3}
+11:57:46.121027: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 510, 81, 10}, uid: {0, 39}}, 3}], leaderCommit: 63, leaderId: 2, prevLogIndex: 63, prevLogTerm: 3, term: 3}
+11:57:46.121176: 3_LEADER@2: send client confirmation {0, 39}
+11:57:46.127862: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 779, 33, 17}, uid: {0, 40}}}
+11:57:46.131769: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 366, 76, 46}, uid: {1, 40}}, 3}], leaderCommit: 64, leaderId: 2, prevLogIndex: 64, prevLogTerm: 3, term: 3}
+11:57:46.131834: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 366, 76, 46}, uid: {1, 40}}, 3}], leaderCommit: 64, leaderId: 2, prevLogIndex: 64, prevLogTerm: 3, term: 3}
+11:57:46.132016: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 366, 76, 46}, uid: {1, 40}}, 3}], leaderCommit: 64, leaderId: 2, prevLogIndex: 64, prevLogTerm: 3, term: 3}
+11:57:46.132038: 3_LEADER@2: send client confirmation {1, 40}
+11:57:46.139077: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 129, 99, 72}, uid: {1, 41}}}
+11:57:46.142914: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 779, 33, 17}, uid: {0, 40}}, 3}], leaderCommit: 65, leaderId: 2, prevLogIndex: 65, prevLogTerm: 3, term: 3}
+11:57:46.142908: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 779, 33, 17}, uid: {0, 40}}, 3}], leaderCommit: 65, leaderId: 2, prevLogIndex: 65, prevLogTerm: 3, term: 3}
+11:57:46.143040: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 779, 33, 17}, uid: {0, 40}}, 3}], leaderCommit: 65, leaderId: 2, prevLogIndex: 65, prevLogTerm: 3, term: 3}
+11:57:46.143214: 3_LEADER@2: send client confirmation {0, 40}
+11:57:46.149837: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 347, 96, 91}, uid: {0, 41}}}
+11:57:46.153878: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 129, 99, 72}, uid: {1, 41}}, 3}], leaderCommit: 66, leaderId: 2, prevLogIndex: 66, prevLogTerm: 3, term: 3}
+11:57:46.153971: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 129, 99, 72}, uid: {1, 41}}, 3}], leaderCommit: 66, leaderId: 2, prevLogIndex: 66, prevLogTerm: 3, term: 3}
+11:57:46.154117: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 129, 99, 72}, uid: {1, 41}}, 3}], leaderCommit: 66, leaderId: 2, prevLogIndex: 66, prevLogTerm: 3, term: 3}
+11:57:46.154217: 3_LEADER@2: send client confirmation {1, 41}
+11:57:46.161102: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 743, 19, 38}, uid: {1, 42}}}
+11:57:46.164879: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 347, 96, 91}, uid: {0, 41}}, 3}], leaderCommit: 67, leaderId: 2, prevLogIndex: 67, prevLogTerm: 3, term: 3}
+11:57:46.164931: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 347, 96, 91}, uid: {0, 41}}, 3}], leaderCommit: 67, leaderId: 2, prevLogIndex: 67, prevLogTerm: 3, term: 3}
+11:57:46.165025: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 347, 96, 91}, uid: {0, 41}}, 3}], leaderCommit: 67, leaderId: 2, prevLogIndex: 67, prevLogTerm: 3, term: 3}
+11:57:46.165154: 3_LEADER@2: send client confirmation {0, 41}
+11:57:46.171899: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 846, 37, 40}, uid: {0, 42}}}
+11:57:46.175888: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 743, 19, 38}, uid: {1, 42}}, 3}], leaderCommit: 68, leaderId: 2, prevLogIndex: 68, prevLogTerm: 3, term: 3}
+11:57:46.175807: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 743, 19, 38}, uid: {1, 42}}, 3}], leaderCommit: 68, leaderId: 2, prevLogIndex: 68, prevLogTerm: 3, term: 3}
+11:57:46.175971: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 743, 19, 38}, uid: {1, 42}}, 3}], leaderCommit: 68, leaderId: 2, prevLogIndex: 68, prevLogTerm: 3, term: 3}
+11:57:46.176118: 3_LEADER@2: send client confirmation {1, 42}
+11:57:46.183116: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 97, 18, 83}, uid: {1, 43}}}
+11:57:46.186876: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 846, 37, 40}, uid: {0, 42}}, 3}], leaderCommit: 69, leaderId: 2, prevLogIndex: 69, prevLogTerm: 3, term: 3}
+11:57:46.186944: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 846, 37, 40}, uid: {0, 42}}, 3}], leaderCommit: 69, leaderId: 2, prevLogIndex: 69, prevLogTerm: 3, term: 3}
+11:57:46.186962: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 846, 37, 40}, uid: {0, 42}}, 3}], leaderCommit: 69, leaderId: 2, prevLogIndex: 69, prevLogTerm: 3, term: 3}
+11:57:46.187278: 3_LEADER@2: send client confirmation {0, 42}
+11:57:46.193867: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 106, 5, 65}, uid: {0, 43}}}
+11:57:46.198065: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 97, 18, 83}, uid: {1, 43}}, 3}], leaderCommit: 70, leaderId: 2, prevLogIndex: 70, prevLogTerm: 3, term: 3}
+11:57:46.198037: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 97, 18, 83}, uid: {1, 43}}, 3}], leaderCommit: 70, leaderId: 2, prevLogIndex: 70, prevLogTerm: 3, term: 3}
+11:57:46.198145: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 97, 18, 83}, uid: {1, 43}}, 3}], leaderCommit: 70, leaderId: 2, prevLogIndex: 70, prevLogTerm: 3, term: 3}
+11:57:46.198301: 3_LEADER@2: send client confirmation {1, 43}
+11:57:46.205015: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 502, 67, 23}, uid: {1, 44}}}
+11:57:46.208887: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 106, 5, 65}, uid: {0, 43}}, 3}], leaderCommit: 71, leaderId: 2, prevLogIndex: 71, prevLogTerm: 3, term: 3}
+11:57:46.208952: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 106, 5, 65}, uid: {0, 43}}, 3}], leaderCommit: 71, leaderId: 2, prevLogIndex: 71, prevLogTerm: 3, term: 3}
+11:57:46.209105: 3_LEADER@2: send client confirmation {0, 43}
+11:57:46.209073: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 106, 5, 65}, uid: {0, 43}}, 3}], leaderCommit: 71, leaderId: 2, prevLogIndex: 71, prevLogTerm: 3, term: 3}
+11:57:46.215837: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 807, 87, 2}, uid: {0, 44}}}
+11:57:46.219790: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 502, 67, 23}, uid: {1, 44}}, 3}], leaderCommit: 72, leaderId: 2, prevLogIndex: 72, prevLogTerm: 3, term: 3}
+11:57:46.219885: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 502, 67, 23}, uid: {1, 44}}, 3}], leaderCommit: 72, leaderId: 2, prevLogIndex: 72, prevLogTerm: 3, term: 3}
+11:57:46.219942: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 502, 67, 23}, uid: {1, 44}}, 3}], leaderCommit: 72, leaderId: 2, prevLogIndex: 72, prevLogTerm: 3, term: 3}
+11:57:46.220037: 3_LEADER@2: send client confirmation {1, 44}
+11:57:46.227152: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 218, 54, 95}, uid: {1, 45}}}
+11:57:46.230828: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 807, 87, 2}, uid: {0, 44}}, 3}], leaderCommit: 73, leaderId: 2, prevLogIndex: 73, prevLogTerm: 3, term: 3}
+11:57:46.230901: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 807, 87, 2}, uid: {0, 44}}, 3}], leaderCommit: 73, leaderId: 2, prevLogIndex: 73, prevLogTerm: 3, term: 3}
+11:57:46.230957: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 807, 87, 2}, uid: {0, 44}}, 3}], leaderCommit: 73, leaderId: 2, prevLogIndex: 73, prevLogTerm: 3, term: 3}
+11:57:46.231084: 3_LEADER@2: send client confirmation {0, 44}
+11:57:46.237844: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 17, 82, 72}, uid: {0, 45}}}
+11:57:46.241933: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 218, 54, 95}, uid: {1, 45}}, 3}], leaderCommit: 74, leaderId: 2, prevLogIndex: 74, prevLogTerm: 3, term: 3}
+11:57:46.241923: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 218, 54, 95}, uid: {1, 45}}, 3}], leaderCommit: 74, leaderId: 2, prevLogIndex: 74, prevLogTerm: 3, term: 3}
+11:57:46.242041: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 218, 54, 95}, uid: {1, 45}}, 3}], leaderCommit: 74, leaderId: 2, prevLogIndex: 74, prevLogTerm: 3, term: 3}
+11:57:46.242219: 3_LEADER@2: send client confirmation {1, 45}
+11:57:46.249073: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 527, 59, 40}, uid: {1, 46}}}
+11:57:46.252965: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 17, 82, 72}, uid: {0, 45}}, 3}], leaderCommit: 75, leaderId: 2, prevLogIndex: 75, prevLogTerm: 3, term: 3}
+11:57:46.252936: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 17, 82, 72}, uid: {0, 45}}, 3}], leaderCommit: 75, leaderId: 2, prevLogIndex: 75, prevLogTerm: 3, term: 3}
+11:57:46.253062: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 17, 82, 72}, uid: {0, 45}}, 3}], leaderCommit: 75, leaderId: 2, prevLogIndex: 75, prevLogTerm: 3, term: 3}
+11:57:46.253222: 3_LEADER@2: send client confirmation {0, 45}
+11:57:46.259846: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 432, 18, 45}, uid: {0, 46}}}
+11:57:46.263819: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 527, 59, 40}, uid: {1, 46}}, 3}], leaderCommit: 76, leaderId: 2, prevLogIndex: 76, prevLogTerm: 3, term: 3}
+11:57:46.263863: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 527, 59, 40}, uid: {1, 46}}, 3}], leaderCommit: 76, leaderId: 2, prevLogIndex: 76, prevLogTerm: 3, term: 3}
+11:57:46.263918: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 527, 59, 40}, uid: {1, 46}}, 3}], leaderCommit: 76, leaderId: 2, prevLogIndex: 76, prevLogTerm: 3, term: 3}
+11:57:46.264078: 3_LEADER@2: send client confirmation {1, 46}
+11:57:46.271163: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 969, 81, 69}, uid: {1, 47}}}
+11:57:46.274927: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 432, 18, 45}, uid: {0, 46}}, 3}], leaderCommit: 77, leaderId: 2, prevLogIndex: 77, prevLogTerm: 3, term: 3}
+11:57:46.274941: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 432, 18, 45}, uid: {0, 46}}, 3}], leaderCommit: 77, leaderId: 2, prevLogIndex: 77, prevLogTerm: 3, term: 3}
+11:57:46.275003: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 432, 18, 45}, uid: {0, 46}}, 3}], leaderCommit: 77, leaderId: 2, prevLogIndex: 77, prevLogTerm: 3, term: 3}
+11:57:46.275285: 3_LEADER@2: send client confirmation {0, 46}
+11:57:46.281853: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 8, 79, 81}, uid: {0, 47}}}
+11:57:46.285918: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 969, 81, 69}, uid: {1, 47}}, 3}], leaderCommit: 78, leaderId: 2, prevLogIndex: 78, prevLogTerm: 3, term: 3}
+11:57:46.285942: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 969, 81, 69}, uid: {1, 47}}, 3}], leaderCommit: 78, leaderId: 2, prevLogIndex: 78, prevLogTerm: 3, term: 3}
+11:57:46.285995: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 969, 81, 69}, uid: {1, 47}}, 3}], leaderCommit: 78, leaderId: 2, prevLogIndex: 78, prevLogTerm: 3, term: 3}
+11:57:46.286202: 3_LEADER@2: send client confirmation {1, 47}
+11:57:46.293108: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 808, 51, 98}, uid: {1, 48}}}
+11:57:46.296943: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 8, 79, 81}, uid: {0, 47}}, 3}], leaderCommit: 79, leaderId: 2, prevLogIndex: 79, prevLogTerm: 3, term: 3}
+11:57:46.297004: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 8, 79, 81}, uid: {0, 47}}, 3}], leaderCommit: 79, leaderId: 2, prevLogIndex: 79, prevLogTerm: 3, term: 3}
+11:57:46.297009: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 8, 79, 81}, uid: {0, 47}}, 3}], leaderCommit: 79, leaderId: 2, prevLogIndex: 79, prevLogTerm: 3, term: 3}
+11:57:46.297243: 3_LEADER@2: send client confirmation {0, 47}
+11:57:46.303883: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 788, 91, 97}, uid: {0, 48}}}
+11:57:46.307794: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 808, 51, 98}, uid: {1, 48}}, 3}], leaderCommit: 80, leaderId: 2, prevLogIndex: 80, prevLogTerm: 3, term: 3}
+11:57:46.307885: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 808, 51, 98}, uid: {1, 48}}, 3}], leaderCommit: 80, leaderId: 2, prevLogIndex: 80, prevLogTerm: 3, term: 3}
+11:57:46.307977: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 808, 51, 98}, uid: {1, 48}}, 3}], leaderCommit: 80, leaderId: 2, prevLogIndex: 80, prevLogTerm: 3, term: 3}
+11:57:46.308079: 3_LEADER@2: send client confirmation {1, 48}
+11:57:46.315123: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 129, 63, 75}, uid: {1, 49}}}
+11:57:46.318988: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 788, 91, 97}, uid: {0, 48}}, 3}], leaderCommit: 81, leaderId: 2, prevLogIndex: 81, prevLogTerm: 3, term: 3}
+11:57:46.318917: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 788, 91, 97}, uid: {0, 48}}, 3}], leaderCommit: 81, leaderId: 2, prevLogIndex: 81, prevLogTerm: 3, term: 3}
+11:57:46.318952: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 788, 91, 97}, uid: {0, 48}}, 3}], leaderCommit: 81, leaderId: 2, prevLogIndex: 81, prevLogTerm: 3, term: 3}
+11:57:46.319231: 3_LEADER@2: send client confirmation {0, 48}
+11:57:46.325863: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 320, 25, 36}, uid: {0, 49}}}
+11:57:46.329887: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 129, 63, 75}, uid: {1, 49}}, 3}], leaderCommit: 82, leaderId: 2, prevLogIndex: 82, prevLogTerm: 3, term: 3}
+11:57:46.329887: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 129, 63, 75}, uid: {1, 49}}, 3}], leaderCommit: 82, leaderId: 2, prevLogIndex: 82, prevLogTerm: 3, term: 3}
+11:57:46.330128: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 129, 63, 75}, uid: {1, 49}}, 3}], leaderCommit: 82, leaderId: 2, prevLogIndex: 82, prevLogTerm: 3, term: 3}
+11:57:46.330215: 3_LEADER@2: send client confirmation {1, 49}
+11:57:46.337050: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 837, 57, 92}, uid: {1, 50}}}
+11:57:46.340867: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 320, 25, 36}, uid: {0, 49}}, 3}], leaderCommit: 83, leaderId: 2, prevLogIndex: 83, prevLogTerm: 3, term: 3}
+11:57:46.340985: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 320, 25, 36}, uid: {0, 49}}, 3}], leaderCommit: 83, leaderId: 2, prevLogIndex: 83, prevLogTerm: 3, term: 3}
+11:57:46.341036: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 320, 25, 36}, uid: {0, 49}}, 3}], leaderCommit: 83, leaderId: 2, prevLogIndex: 83, prevLogTerm: 3, term: 3}
+11:57:46.341124: 3_LEADER@2: send client confirmation {0, 49}
+11:57:46.347865: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 469, 29, 29}, uid: {0, 50}}}
+11:57:46.351784: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 837, 57, 92}, uid: {1, 50}}, 3}], leaderCommit: 84, leaderId: 2, prevLogIndex: 84, prevLogTerm: 3, term: 3}
+11:57:46.351876: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 837, 57, 92}, uid: {1, 50}}, 3}], leaderCommit: 84, leaderId: 2, prevLogIndex: 84, prevLogTerm: 3, term: 3}
+11:57:46.351966: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 837, 57, 92}, uid: {1, 50}}, 3}], leaderCommit: 84, leaderId: 2, prevLogIndex: 84, prevLogTerm: 3, term: 3}
+11:57:46.352071: 3_LEADER@2: send client confirmation {1, 50}
+11:57:46.359089: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 55, 83, 18}, uid: {1, 51}}}
+11:57:46.362964: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 469, 29, 29}, uid: {0, 50}}, 3}], leaderCommit: 85, leaderId: 2, prevLogIndex: 85, prevLogTerm: 3, term: 3}
+11:57:46.362925: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 469, 29, 29}, uid: {0, 50}}, 3}], leaderCommit: 85, leaderId: 2, prevLogIndex: 85, prevLogTerm: 3, term: 3}
+11:57:46.363029: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 469, 29, 29}, uid: {0, 50}}, 3}], leaderCommit: 85, leaderId: 2, prevLogIndex: 85, prevLogTerm: 3, term: 3}
+11:57:46.363259: 3_LEADER@2: send client confirmation {0, 50}
+11:57:46.369833: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 368, 14, 33}, uid: {0, 51}}}
+11:57:46.373885: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 55, 83, 18}, uid: {1, 51}}, 3}], leaderCommit: 86, leaderId: 2, prevLogIndex: 86, prevLogTerm: 3, term: 3}
+11:57:46.373891: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 55, 83, 18}, uid: {1, 51}}, 3}], leaderCommit: 86, leaderId: 2, prevLogIndex: 86, prevLogTerm: 3, term: 3}
+11:57:46.373998: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 55, 83, 18}, uid: {1, 51}}, 3}], leaderCommit: 86, leaderId: 2, prevLogIndex: 86, prevLogTerm: 3, term: 3}
+11:57:46.374153: 3_LEADER@2: send client confirmation {1, 51}
+11:57:46.381094: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 814, 96, 76}, uid: {1, 52}}}
+11:57:46.384870: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 368, 14, 33}, uid: {0, 51}}, 3}], leaderCommit: 87, leaderId: 2, prevLogIndex: 87, prevLogTerm: 3, term: 3}
+11:57:46.385010: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 368, 14, 33}, uid: {0, 51}}, 3}], leaderCommit: 87, leaderId: 2, prevLogIndex: 87, prevLogTerm: 3, term: 3}
+11:57:46.385066: 3_LEADER@2: send client confirmation {0, 51}
+11:57:46.385109: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 368, 14, 33}, uid: {0, 51}}, 3}], leaderCommit: 87, leaderId: 2, prevLogIndex: 87, prevLogTerm: 3, term: 3}
+11:57:46.391826: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 981, 49, 56}, uid: {0, 52}}}
+11:57:46.395795: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 814, 96, 76}, uid: {1, 52}}, 3}], leaderCommit: 88, leaderId: 2, prevLogIndex: 88, prevLogTerm: 3, term: 3}
+11:57:46.395842: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 814, 96, 76}, uid: {1, 52}}, 3}], leaderCommit: 88, leaderId: 2, prevLogIndex: 88, prevLogTerm: 3, term: 3}
+11:57:46.395968: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 814, 96, 76}, uid: {1, 52}}, 3}], leaderCommit: 88, leaderId: 2, prevLogIndex: 88, prevLogTerm: 3, term: 3}
+11:57:46.396035: 3_LEADER@2: send client confirmation {1, 52}
+11:57:46.403111: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 940, 58, 22}, uid: {1, 53}}}
+11:57:46.407090: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 981, 49, 56}, uid: {0, 52}}, 3}], leaderCommit: 89, leaderId: 2, prevLogIndex: 89, prevLogTerm: 3, term: 3}
+11:57:46.407099: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 981, 49, 56}, uid: {0, 52}}, 3}], leaderCommit: 89, leaderId: 2, prevLogIndex: 89, prevLogTerm: 3, term: 3}
+11:57:46.407180: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 981, 49, 56}, uid: {0, 52}}, 3}], leaderCommit: 89, leaderId: 2, prevLogIndex: 89, prevLogTerm: 3, term: 3}
+11:57:46.407388: 3_LEADER@2: send client confirmation {0, 52}
+11:57:46.413821: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 356, 29, 91}, uid: {0, 53}}}
+11:57:46.418060: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 940, 58, 22}, uid: {1, 53}}, 3}], leaderCommit: 90, leaderId: 2, prevLogIndex: 90, prevLogTerm: 3, term: 3}
+11:57:46.418033: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 940, 58, 22}, uid: {1, 53}}, 3}], leaderCommit: 90, leaderId: 2, prevLogIndex: 90, prevLogTerm: 3, term: 3}
+11:57:46.418081: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 940, 58, 22}, uid: {1, 53}}, 3}], leaderCommit: 90, leaderId: 2, prevLogIndex: 90, prevLogTerm: 3, term: 3}
+11:57:46.418299: 3_LEADER@2: send client confirmation {1, 53}
+11:57:46.425048: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 534, 94, 59}, uid: {1, 54}}}
+11:57:46.428873: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 356, 29, 91}, uid: {0, 53}}, 3}], leaderCommit: 91, leaderId: 2, prevLogIndex: 91, prevLogTerm: 3, term: 3}
+11:57:46.428931: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 356, 29, 91}, uid: {0, 53}}, 3}], leaderCommit: 91, leaderId: 2, prevLogIndex: 91, prevLogTerm: 3, term: 3}
+11:57:46.428911: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 356, 29, 91}, uid: {0, 53}}, 3}], leaderCommit: 91, leaderId: 2, prevLogIndex: 91, prevLogTerm: 3, term: 3}
+11:57:46.429110: 3_LEADER@2: send client confirmation {0, 53}
+11:57:46.435898: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 560, 33, 11}, uid: {0, 54}}}
+11:57:46.439801: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 534, 94, 59}, uid: {1, 54}}, 3}], leaderCommit: 92, leaderId: 2, prevLogIndex: 92, prevLogTerm: 3, term: 3}
+11:57:46.439869: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 534, 94, 59}, uid: {1, 54}}, 3}], leaderCommit: 92, leaderId: 2, prevLogIndex: 92, prevLogTerm: 3, term: 3}
+11:57:46.440014: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 534, 94, 59}, uid: {1, 54}}, 3}], leaderCommit: 92, leaderId: 2, prevLogIndex: 92, prevLogTerm: 3, term: 3}
+11:57:46.440087: 3_LEADER@2: send client confirmation {1, 54}
+11:57:46.447272: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 642, 78, 82}, uid: {1, 55}}}
+11:57:46.450896: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 560, 33, 11}, uid: {0, 54}}, 3}], leaderCommit: 93, leaderId: 2, prevLogIndex: 93, prevLogTerm: 3, term: 3}
+11:57:46.450982: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 560, 33, 11}, uid: {0, 54}}, 3}], leaderCommit: 93, leaderId: 2, prevLogIndex: 93, prevLogTerm: 3, term: 3}
+11:57:46.451000: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 560, 33, 11}, uid: {0, 54}}, 3}], leaderCommit: 93, leaderId: 2, prevLogIndex: 93, prevLogTerm: 3, term: 3}
+11:57:46.451168: 3_LEADER@2: send client confirmation {0, 54}
+11:57:46.457868: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 206, 62, 38}, uid: {0, 55}}}
+11:57:46.462035: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 642, 78, 82}, uid: {1, 55}}, 3}], leaderCommit: 94, leaderId: 2, prevLogIndex: 94, prevLogTerm: 3, term: 3}
+11:57:46.462070: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 642, 78, 82}, uid: {1, 55}}, 3}], leaderCommit: 94, leaderId: 2, prevLogIndex: 94, prevLogTerm: 3, term: 3}
+11:57:46.462116: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 642, 78, 82}, uid: {1, 55}}, 3}], leaderCommit: 94, leaderId: 2, prevLogIndex: 94, prevLogTerm: 3, term: 3}
+11:57:46.462304: 3_LEADER@2: send client confirmation {1, 55}
+11:57:46.469217: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 177, 36, 66}, uid: {1, 56}}}
+11:57:46.472807: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 206, 62, 38}, uid: {0, 55}}, 3}], leaderCommit: 95, leaderId: 2, prevLogIndex: 95, prevLogTerm: 3, term: 3}
+11:57:46.472965: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 206, 62, 38}, uid: {0, 55}}, 3}], leaderCommit: 95, leaderId: 2, prevLogIndex: 95, prevLogTerm: 3, term: 3}
+11:57:46.472943: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 206, 62, 38}, uid: {0, 55}}, 3}], leaderCommit: 95, leaderId: 2, prevLogIndex: 95, prevLogTerm: 3, term: 3}
+11:57:46.473045: 3_LEADER@2: send client confirmation {0, 55}
+11:57:46.479870: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 237, 82, 50}, uid: {0, 56}}}
+11:57:46.483809: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 177, 36, 66}, uid: {1, 56}}, 3}], leaderCommit: 96, leaderId: 2, prevLogIndex: 96, prevLogTerm: 3, term: 3}
+11:57:46.483831: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 177, 36, 66}, uid: {1, 56}}, 3}], leaderCommit: 96, leaderId: 2, prevLogIndex: 96, prevLogTerm: 3, term: 3}
+11:57:46.483954: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 177, 36, 66}, uid: {1, 56}}, 3}], leaderCommit: 96, leaderId: 2, prevLogIndex: 96, prevLogTerm: 3, term: 3}
+11:57:46.484081: 3_LEADER@2: send client confirmation {1, 56}
+11:57:46.491147: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 842, 9, 94}, uid: {1, 57}}}
+11:57:46.494860: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 237, 82, 50}, uid: {0, 56}}, 3}], leaderCommit: 97, leaderId: 2, prevLogIndex: 97, prevLogTerm: 3, term: 3}
+11:57:46.495004: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 237, 82, 50}, uid: {0, 56}}, 3}], leaderCommit: 97, leaderId: 2, prevLogIndex: 97, prevLogTerm: 3, term: 3}
+11:57:46.495007: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 237, 82, 50}, uid: {0, 56}}, 3}], leaderCommit: 97, leaderId: 2, prevLogIndex: 97, prevLogTerm: 3, term: 3}
+11:57:46.495128: 3_LEADER@2: send client confirmation {0, 56}
+11:57:46.501838: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 476, 14, 94}, uid: {0, 57}}}
+11:57:46.505902: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 842, 9, 94}, uid: {1, 57}}, 3}], leaderCommit: 98, leaderId: 2, prevLogIndex: 98, prevLogTerm: 3, term: 3}
+11:57:46.505988: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 842, 9, 94}, uid: {1, 57}}, 3}], leaderCommit: 98, leaderId: 2, prevLogIndex: 98, prevLogTerm: 3, term: 3}
+11:57:46.506016: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 842, 9, 94}, uid: {1, 57}}, 3}], leaderCommit: 98, leaderId: 2, prevLogIndex: 98, prevLogTerm: 3, term: 3}
+11:57:46.506159: 3_LEADER@2: send client confirmation {1, 57}
+11:57:46.513046: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 548, 13, 39}, uid: {1, 58}}}
+11:57:46.516935: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 476, 14, 94}, uid: {0, 57}}, 3}], leaderCommit: 99, leaderId: 2, prevLogIndex: 99, prevLogTerm: 3, term: 3}
+11:57:46.516932: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 476, 14, 94}, uid: {0, 57}}, 3}], leaderCommit: 99, leaderId: 2, prevLogIndex: 99, prevLogTerm: 3, term: 3}
+11:57:46.516986: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 476, 14, 94}, uid: {0, 57}}, 3}], leaderCommit: 99, leaderId: 2, prevLogIndex: 99, prevLogTerm: 3, term: 3}
+11:57:46.517150: 3_LEADER@2: send client confirmation {0, 57}
+11:57:46.523861: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 91, 80, 6}, uid: {0, 58}}}
+11:57:46.527874: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 548, 13, 39}, uid: {1, 58}}, 3}], leaderCommit: 100, leaderId: 2, prevLogIndex: 100, prevLogTerm: 3, term: 3}
+11:57:46.527955: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 548, 13, 39}, uid: {1, 58}}, 3}], leaderCommit: 100, leaderId: 2, prevLogIndex: 100, prevLogTerm: 3, term: 3}
+11:57:46.528004: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 548, 13, 39}, uid: {1, 58}}, 3}], leaderCommit: 100, leaderId: 2, prevLogIndex: 100, prevLogTerm: 3, term: 3}
+11:57:46.528110: 3_LEADER@2: send client confirmation {1, 58}
+11:57:46.535095: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 219, 6, 8}, uid: {1, 59}}}
+11:57:46.538874: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 91, 80, 6}, uid: {0, 58}}, 3}], leaderCommit: 101, leaderId: 2, prevLogIndex: 101, prevLogTerm: 3, term: 3}
+11:57:46.538930: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 91, 80, 6}, uid: {0, 58}}, 3}], leaderCommit: 101, leaderId: 2, prevLogIndex: 101, prevLogTerm: 3, term: 3}
+11:57:46.539007: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 91, 80, 6}, uid: {0, 58}}, 3}], leaderCommit: 101, leaderId: 2, prevLogIndex: 101, prevLogTerm: 3, term: 3}
+11:57:46.539204: 3_LEADER@2: send client confirmation {0, 58}
+11:57:46.545826: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 934, 36, 98}, uid: {0, 59}}}
+11:57:46.549903: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 219, 6, 8}, uid: {1, 59}}, 3}], leaderCommit: 102, leaderId: 2, prevLogIndex: 102, prevLogTerm: 3, term: 3}
+11:57:46.549925: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 219, 6, 8}, uid: {1, 59}}, 3}], leaderCommit: 102, leaderId: 2, prevLogIndex: 102, prevLogTerm: 3, term: 3}
+11:57:46.549981: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 219, 6, 8}, uid: {1, 59}}, 3}], leaderCommit: 102, leaderId: 2, prevLogIndex: 102, prevLogTerm: 3, term: 3}
+11:57:46.550136: 3_LEADER@2: send client confirmation {1, 59}
+11:57:46.557062: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 542, 33, 57}, uid: {1, 60}}}
+11:57:46.560898: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 934, 36, 98}, uid: {0, 59}}, 3}], leaderCommit: 103, leaderId: 2, prevLogIndex: 103, prevLogTerm: 3, term: 3}
+11:57:46.560897: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 934, 36, 98}, uid: {0, 59}}, 3}], leaderCommit: 103, leaderId: 2, prevLogIndex: 103, prevLogTerm: 3, term: 3}
+11:57:46.560992: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 934, 36, 98}, uid: {0, 59}}, 3}], leaderCommit: 103, leaderId: 2, prevLogIndex: 103, prevLogTerm: 3, term: 3}
+11:57:46.561123: 3_LEADER@2: send client confirmation {0, 59}
+11:57:46.567903: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 21, 72, 6}, uid: {0, 60}}}
+11:57:46.571793: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 542, 33, 57}, uid: {1, 60}}, 3}], leaderCommit: 104, leaderId: 2, prevLogIndex: 104, prevLogTerm: 3, term: 3}
+11:57:46.571874: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 542, 33, 57}, uid: {1, 60}}, 3}], leaderCommit: 104, leaderId: 2, prevLogIndex: 104, prevLogTerm: 3, term: 3}
+11:57:46.571949: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 542, 33, 57}, uid: {1, 60}}, 3}], leaderCommit: 104, leaderId: 2, prevLogIndex: 104, prevLogTerm: 3, term: 3}
+11:57:46.572104: 3_LEADER@2: send client confirmation {1, 60}
+11:57:46.579039: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 254, 63, 97}, uid: {1, 61}}}
+11:57:46.582839: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 21, 72, 6}, uid: {0, 60}}, 3}], leaderCommit: 105, leaderId: 2, prevLogIndex: 105, prevLogTerm: 3, term: 3}
+11:57:46.582905: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 21, 72, 6}, uid: {0, 60}}, 3}], leaderCommit: 105, leaderId: 2, prevLogIndex: 105, prevLogTerm: 3, term: 3}
+11:57:46.582898: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 21, 72, 6}, uid: {0, 60}}, 3}], leaderCommit: 105, leaderId: 2, prevLogIndex: 105, prevLogTerm: 3, term: 3}
+11:57:46.583100: 3_LEADER@2: send client confirmation {0, 60}
+11:57:46.589853: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 98, 4, 65}, uid: {0, 61}}}
+11:57:46.593889: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 254, 63, 97}, uid: {1, 61}}, 3}], leaderCommit: 106, leaderId: 2, prevLogIndex: 106, prevLogTerm: 3, term: 3}
+11:57:46.593910: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 254, 63, 97}, uid: {1, 61}}, 3}], leaderCommit: 106, leaderId: 2, prevLogIndex: 106, prevLogTerm: 3, term: 3}
+11:57:46.594008: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 254, 63, 97}, uid: {1, 61}}, 3}], leaderCommit: 106, leaderId: 2, prevLogIndex: 106, prevLogTerm: 3, term: 3}
+11:57:46.594117: 3_LEADER@2: send client confirmation {1, 61}
+11:57:46.601084: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 462, 84, 78}, uid: {1, 62}}}
+11:57:46.604881: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 98, 4, 65}, uid: {0, 61}}, 3}], leaderCommit: 107, leaderId: 2, prevLogIndex: 107, prevLogTerm: 3, term: 3}
+11:57:46.604937: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 98, 4, 65}, uid: {0, 61}}, 3}], leaderCommit: 107, leaderId: 2, prevLogIndex: 107, prevLogTerm: 3, term: 3}
+11:57:46.605076: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 98, 4, 65}, uid: {0, 61}}, 3}], leaderCommit: 107, leaderId: 2, prevLogIndex: 107, prevLogTerm: 3, term: 3}
+11:57:46.605086: 3_LEADER@2: send client confirmation {0, 61}
+11:57:46.611841: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 861, 95, 38}, uid: {0, 62}}}
+11:57:46.615840: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 462, 84, 78}, uid: {1, 62}}, 3}], leaderCommit: 108, leaderId: 2, prevLogIndex: 108, prevLogTerm: 3, term: 3}
+11:57:46.615987: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 462, 84, 78}, uid: {1, 62}}, 3}], leaderCommit: 108, leaderId: 2, prevLogIndex: 108, prevLogTerm: 3, term: 3}
+11:57:46.615961: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 462, 84, 78}, uid: {1, 62}}, 3}], leaderCommit: 108, leaderId: 2, prevLogIndex: 108, prevLogTerm: 3, term: 3}
+11:57:46.616086: 3_LEADER@2: send client confirmation {1, 62}
+11:57:46.622067: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 208, 18, 38}, uid: {1, 63}}}
+11:57:46.626941: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 861, 95, 38}, uid: {0, 62}}, 3}], leaderCommit: 109, leaderId: 2, prevLogIndex: 109, prevLogTerm: 3, term: 3}
+11:57:46.627027: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 861, 95, 38}, uid: {0, 62}}, 3}], leaderCommit: 109, leaderId: 2, prevLogIndex: 109, prevLogTerm: 3, term: 3}
+11:57:46.627202: 3_LEADER@2: send client confirmation {0, 62}
+11:57:46.627115: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 861, 95, 38}, uid: {0, 62}}, 3}], leaderCommit: 109, leaderId: 2, prevLogIndex: 109, prevLogTerm: 3, term: 3}
+11:57:46.633825: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 995, 56, 89}, uid: {0, 63}}}
+11:57:46.637967: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 208, 18, 38}, uid: {1, 63}}, 3}], leaderCommit: 110, leaderId: 2, prevLogIndex: 110, prevLogTerm: 3, term: 3}
+11:57:46.638046: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 208, 18, 38}, uid: {1, 63}}, 3}], leaderCommit: 110, leaderId: 2, prevLogIndex: 110, prevLogTerm: 3, term: 3}
+11:57:46.637998: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 208, 18, 38}, uid: {1, 63}}, 3}], leaderCommit: 110, leaderId: 2, prevLogIndex: 110, prevLogTerm: 3, term: 3}
+11:57:46.638195: 3_LEADER@2: send client confirmation {1, 63}
+11:57:46.645044: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 964, 7, 83}, uid: {1, 64}}}
+11:57:46.648861: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 995, 56, 89}, uid: {0, 63}}, 3}], leaderCommit: 111, leaderId: 2, prevLogIndex: 111, prevLogTerm: 3, term: 3}
+11:57:46.648994: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 995, 56, 89}, uid: {0, 63}}, 3}], leaderCommit: 111, leaderId: 2, prevLogIndex: 111, prevLogTerm: 3, term: 3}
+11:57:46.648997: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 995, 56, 89}, uid: {0, 63}}, 3}], leaderCommit: 111, leaderId: 2, prevLogIndex: 111, prevLogTerm: 3, term: 3}
+11:57:46.649091: 3_LEADER@2: send client confirmation {0, 63}
+11:57:46.655841: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 613, 86, 26}, uid: {0, 64}}}
+11:57:46.659990: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 964, 7, 83}, uid: {1, 64}}, 3}], leaderCommit: 112, leaderId: 2, prevLogIndex: 112, prevLogTerm: 3, term: 3}
+11:57:46.660043: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 964, 7, 83}, uid: {1, 64}}, 3}], leaderCommit: 112, leaderId: 2, prevLogIndex: 112, prevLogTerm: 3, term: 3}
+11:57:46.660160: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 964, 7, 83}, uid: {1, 64}}, 3}], leaderCommit: 112, leaderId: 2, prevLogIndex: 112, prevLogTerm: 3, term: 3}
+11:57:46.660267: 3_LEADER@2: send client confirmation {1, 64}
+11:57:46.667018: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 442, 100, 48}, uid: {1, 65}}}
+11:57:46.670914: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 613, 86, 26}, uid: {0, 64}}, 3}], leaderCommit: 113, leaderId: 2, prevLogIndex: 113, prevLogTerm: 3, term: 3}
+11:57:46.671095: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 613, 86, 26}, uid: {0, 64}}, 3}], leaderCommit: 113, leaderId: 2, prevLogIndex: 113, prevLogTerm: 3, term: 3}
+11:57:46.670985: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 613, 86, 26}, uid: {0, 64}}, 3}], leaderCommit: 113, leaderId: 2, prevLogIndex: 113, prevLogTerm: 3, term: 3}
+11:57:46.671212: 3_LEADER@2: send client confirmation {0, 64}
+11:57:46.678897: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 599, 29, 64}, uid: {0, 65}}}
+11:57:46.682482: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 442, 100, 48}, uid: {1, 65}}, 3}], leaderCommit: 114, leaderId: 2, prevLogIndex: 114, prevLogTerm: 3, term: 3}
+11:57:46.682576: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 442, 100, 48}, uid: {1, 65}}, 3}], leaderCommit: 114, leaderId: 2, prevLogIndex: 114, prevLogTerm: 3, term: 3}
+11:57:46.682752: 3_LEADER@2: send client confirmation {1, 65}
+11:57:46.682773: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 442, 100, 48}, uid: {1, 65}}, 3}], leaderCommit: 114, leaderId: 2, prevLogIndex: 114, prevLogTerm: 3, term: 3}
+11:57:46.689044: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 333, 11, 85}, uid: {1, 66}}}
+11:57:46.692894: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 599, 29, 64}, uid: {0, 65}}, 3}], leaderCommit: 115, leaderId: 2, prevLogIndex: 115, prevLogTerm: 3, term: 3}
+11:57:46.692944: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 599, 29, 64}, uid: {0, 65}}, 3}], leaderCommit: 115, leaderId: 2, prevLogIndex: 115, prevLogTerm: 3, term: 3}
+11:57:46.693105: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 599, 29, 64}, uid: {0, 65}}, 3}], leaderCommit: 115, leaderId: 2, prevLogIndex: 115, prevLogTerm: 3, term: 3}
+11:57:46.693156: 3_LEADER@2: send client confirmation {0, 65}
+11:57:46.699881: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 807, 91, 89}, uid: {0, 66}}}
+11:57:46.703895: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 333, 11, 85}, uid: {1, 66}}, 3}], leaderCommit: 116, leaderId: 2, prevLogIndex: 116, prevLogTerm: 3, term: 3}
+11:57:46.703966: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 333, 11, 85}, uid: {1, 66}}, 3}], leaderCommit: 116, leaderId: 2, prevLogIndex: 116, prevLogTerm: 3, term: 3}
+11:57:46.704133: 3_LEADER@2: send client confirmation {1, 66}
+11:57:46.704220: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 333, 11, 85}, uid: {1, 66}}, 3}], leaderCommit: 116, leaderId: 2, prevLogIndex: 116, prevLogTerm: 3, term: 3}
+11:57:46.710113: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 679, 58, 28}, uid: {1, 67}}}
+11:57:46.714828: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 807, 91, 89}, uid: {0, 66}}, 3}], leaderCommit: 117, leaderId: 2, prevLogIndex: 117, prevLogTerm: 3, term: 3}
+11:57:46.715121: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 807, 91, 89}, uid: {0, 66}}, 3}], leaderCommit: 117, leaderId: 2, prevLogIndex: 117, prevLogTerm: 3, term: 3}
+11:57:46.714916: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 807, 91, 89}, uid: {0, 66}}, 3}], leaderCommit: 117, leaderId: 2, prevLogIndex: 117, prevLogTerm: 3, term: 3}
+11:57:46.715164: 3_LEADER@2: send client confirmation {0, 66}
+11:57:46.721862: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 395, 88, 19}, uid: {0, 67}}}
+11:57:46.725925: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 679, 58, 28}, uid: {1, 67}}, 3}], leaderCommit: 118, leaderId: 2, prevLogIndex: 118, prevLogTerm: 3, term: 3}
+11:57:46.725927: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 679, 58, 28}, uid: {1, 67}}, 3}], leaderCommit: 118, leaderId: 2, prevLogIndex: 118, prevLogTerm: 3, term: 3}
+11:57:46.726133: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 679, 58, 28}, uid: {1, 67}}, 3}], leaderCommit: 118, leaderId: 2, prevLogIndex: 118, prevLogTerm: 3, term: 3}
+11:57:46.726213: 3_LEADER@2: send client confirmation {1, 67}
+11:57:46.733075: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 239, 92, 79}, uid: {1, 68}}}
+11:57:46.736874: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 395, 88, 19}, uid: {0, 67}}, 3}], leaderCommit: 119, leaderId: 2, prevLogIndex: 119, prevLogTerm: 3, term: 3}
+11:57:46.737031: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 395, 88, 19}, uid: {0, 67}}, 3}], leaderCommit: 119, leaderId: 2, prevLogIndex: 119, prevLogTerm: 3, term: 3}
+11:57:46.737005: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 395, 88, 19}, uid: {0, 67}}, 3}], leaderCommit: 119, leaderId: 2, prevLogIndex: 119, prevLogTerm: 3, term: 3}
+11:57:46.737120: 3_LEADER@2: send client confirmation {0, 67}
+11:57:46.743860: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 127, 37, 71}, uid: {0, 68}}}
+11:57:46.747886: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 239, 92, 79}, uid: {1, 68}}, 3}], leaderCommit: 120, leaderId: 2, prevLogIndex: 120, prevLogTerm: 3, term: 3}
+11:57:46.747874: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 239, 92, 79}, uid: {1, 68}}, 3}], leaderCommit: 120, leaderId: 2, prevLogIndex: 120, prevLogTerm: 3, term: 3}
+11:57:46.748165: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 239, 92, 79}, uid: {1, 68}}, 3}], leaderCommit: 120, leaderId: 2, prevLogIndex: 120, prevLogTerm: 3, term: 3}
+11:57:46.748166: 3_LEADER@2: send client confirmation {1, 68}
+11:57:46.755091: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 301, 53, 41}, uid: {1, 69}}}
+11:57:46.758883: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 127, 37, 71}, uid: {0, 68}}, 3}], leaderCommit: 121, leaderId: 2, prevLogIndex: 121, prevLogTerm: 3, term: 3}
+11:57:46.758949: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 127, 37, 71}, uid: {0, 68}}, 3}], leaderCommit: 121, leaderId: 2, prevLogIndex: 121, prevLogTerm: 3, term: 3}
+11:57:46.759103: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 127, 37, 71}, uid: {0, 68}}, 3}], leaderCommit: 121, leaderId: 2, prevLogIndex: 121, prevLogTerm: 3, term: 3}
+11:57:46.759177: 3_LEADER@2: send client confirmation {0, 68}
+11:57:46.765833: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 712, 60, 9}, uid: {0, 69}}}
+11:57:46.769898: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 301, 53, 41}, uid: {1, 69}}, 3}], leaderCommit: 122, leaderId: 2, prevLogIndex: 122, prevLogTerm: 3, term: 3}
+11:57:46.769924: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 301, 53, 41}, uid: {1, 69}}, 3}], leaderCommit: 122, leaderId: 2, prevLogIndex: 122, prevLogTerm: 3, term: 3}
+11:57:46.770075: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 301, 53, 41}, uid: {1, 69}}, 3}], leaderCommit: 122, leaderId: 2, prevLogIndex: 122, prevLogTerm: 3, term: 3}
+11:57:46.770147: 3_LEADER@2: send client confirmation {1, 69}
+11:57:46.777035: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 495, 81, 22}, uid: {1, 70}}}
+11:57:46.780889: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 712, 60, 9}, uid: {0, 69}}, 3}], leaderCommit: 123, leaderId: 2, prevLogIndex: 123, prevLogTerm: 3, term: 3}
+11:57:46.780883: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 712, 60, 9}, uid: {0, 69}}, 3}], leaderCommit: 123, leaderId: 2, prevLogIndex: 123, prevLogTerm: 3, term: 3}
+11:57:46.781085: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 712, 60, 9}, uid: {0, 69}}, 3}], leaderCommit: 123, leaderId: 2, prevLogIndex: 123, prevLogTerm: 3, term: 3}
+11:57:46.781137: 3_LEADER@2: send client confirmation {0, 69}
+11:57:46.787861: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 316, 33, 66}, uid: {0, 70}}}
+11:57:46.791855: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 495, 81, 22}, uid: {1, 70}}, 3}], leaderCommit: 124, leaderId: 2, prevLogIndex: 124, prevLogTerm: 3, term: 3}
+11:57:46.791913: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 495, 81, 22}, uid: {1, 70}}, 3}], leaderCommit: 124, leaderId: 2, prevLogIndex: 124, prevLogTerm: 3, term: 3}
+11:57:46.791998: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 495, 81, 22}, uid: {1, 70}}, 3}], leaderCommit: 124, leaderId: 2, prevLogIndex: 124, prevLogTerm: 3, term: 3}
+11:57:46.792087: 3_LEADER@2: send client confirmation {1, 70}
+11:57:46.799105: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 154, 71, 46}, uid: {1, 71}}}
+11:57:46.802864: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 316, 33, 66}, uid: {0, 70}}, 3}], leaderCommit: 125, leaderId: 2, prevLogIndex: 125, prevLogTerm: 3, term: 3}
+11:57:46.802939: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 316, 33, 66}, uid: {0, 70}}, 3}], leaderCommit: 125, leaderId: 2, prevLogIndex: 125, prevLogTerm: 3, term: 3}
+11:57:46.803108: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 316, 33, 66}, uid: {0, 70}}, 3}], leaderCommit: 125, leaderId: 2, prevLogIndex: 125, prevLogTerm: 3, term: 3}
+11:57:46.803172: 3_LEADER@2: send client confirmation {0, 70}
+11:57:46.809823: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 524, 1, 33}, uid: {0, 71}}}
+11:57:46.813911: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 154, 71, 46}, uid: {1, 71}}, 3}], leaderCommit: 126, leaderId: 2, prevLogIndex: 126, prevLogTerm: 3, term: 3}
+11:57:46.813965: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 154, 71, 46}, uid: {1, 71}}, 3}], leaderCommit: 126, leaderId: 2, prevLogIndex: 126, prevLogTerm: 3, term: 3}
+11:57:46.814008: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 154, 71, 46}, uid: {1, 71}}, 3}], leaderCommit: 126, leaderId: 2, prevLogIndex: 126, prevLogTerm: 3, term: 3}
+11:57:46.814178: 3_LEADER@2: send client confirmation {1, 71}
+11:57:46.821178: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 807, 51, 33}, uid: {1, 72}}}
+11:57:46.824888: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 524, 1, 33}, uid: {0, 71}}, 3}], leaderCommit: 127, leaderId: 2, prevLogIndex: 127, prevLogTerm: 3, term: 3}
+11:57:46.824937: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 524, 1, 33}, uid: {0, 71}}, 3}], leaderCommit: 127, leaderId: 2, prevLogIndex: 127, prevLogTerm: 3, term: 3}
+11:57:46.825174: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 524, 1, 33}, uid: {0, 71}}, 3}], leaderCommit: 127, leaderId: 2, prevLogIndex: 127, prevLogTerm: 3, term: 3}
+11:57:46.825221: 3_LEADER@2: send client confirmation {0, 71}
+11:57:46.831992: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 171, 75, 16}, uid: {0, 72}}}
+11:57:46.835812: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 807, 51, 33}, uid: {1, 72}}, 3}], leaderCommit: 128, leaderId: 2, prevLogIndex: 128, prevLogTerm: 3, term: 3}
+11:57:46.835886: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 807, 51, 33}, uid: {1, 72}}, 3}], leaderCommit: 128, leaderId: 2, prevLogIndex: 128, prevLogTerm: 3, term: 3}
+11:57:46.836006: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 807, 51, 33}, uid: {1, 72}}, 3}], leaderCommit: 128, leaderId: 2, prevLogIndex: 128, prevLogTerm: 3, term: 3}
+11:57:46.836062: 3_LEADER@2: send client confirmation {1, 72}
+11:57:46.843416: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 852, 65, 97}, uid: {1, 73}}}
+11:57:46.846926: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 171, 75, 16}, uid: {0, 72}}, 3}], leaderCommit: 129, leaderId: 2, prevLogIndex: 129, prevLogTerm: 3, term: 3}
+11:57:46.846960: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 171, 75, 16}, uid: {0, 72}}, 3}], leaderCommit: 129, leaderId: 2, prevLogIndex: 129, prevLogTerm: 3, term: 3}
+11:57:46.847120: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 171, 75, 16}, uid: {0, 72}}, 3}], leaderCommit: 129, leaderId: 2, prevLogIndex: 129, prevLogTerm: 3, term: 3}
+11:57:46.847240: 3_LEADER@2: send client confirmation {0, 72}
+11:57:46.853934: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 359, 99, 63}, uid: {0, 73}}}
+11:57:46.857967: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 852, 65, 97}, uid: {1, 73}}, 3}], leaderCommit: 130, leaderId: 2, prevLogIndex: 130, prevLogTerm: 3, term: 3}
+11:57:46.857957: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 852, 65, 97}, uid: {1, 73}}, 3}], leaderCommit: 130, leaderId: 2, prevLogIndex: 130, prevLogTerm: 3, term: 3}
+11:57:46.858156: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 852, 65, 97}, uid: {1, 73}}, 3}], leaderCommit: 130, leaderId: 2, prevLogIndex: 130, prevLogTerm: 3, term: 3}
+11:57:46.858233: 3_LEADER@2: send client confirmation {1, 73}
+11:57:46.865098: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 557, 6, 63}, uid: {1, 74}}}
+11:57:46.868893: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 359, 99, 63}, uid: {0, 73}}, 3}], leaderCommit: 131, leaderId: 2, prevLogIndex: 131, prevLogTerm: 3, term: 3}
+11:57:46.869022: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 359, 99, 63}, uid: {0, 73}}, 3}], leaderCommit: 131, leaderId: 2, prevLogIndex: 131, prevLogTerm: 3, term: 3}
+11:57:46.868994: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 359, 99, 63}, uid: {0, 73}}, 3}], leaderCommit: 131, leaderId: 2, prevLogIndex: 131, prevLogTerm: 3, term: 3}
+11:57:46.869169: 3_LEADER@2: send client confirmation {0, 73}
+11:57:46.875876: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 806, 84, 74}, uid: {0, 74}}}
+11:57:46.879851: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 557, 6, 63}, uid: {1, 74}}, 3}], leaderCommit: 132, leaderId: 2, prevLogIndex: 132, prevLogTerm: 3, term: 3}
+11:57:46.879897: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 557, 6, 63}, uid: {1, 74}}, 3}], leaderCommit: 132, leaderId: 2, prevLogIndex: 132, prevLogTerm: 3, term: 3}
+11:57:46.879960: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 557, 6, 63}, uid: {1, 74}}, 3}], leaderCommit: 132, leaderId: 2, prevLogIndex: 132, prevLogTerm: 3, term: 3}
+11:57:46.880137: 3_LEADER@2: send client confirmation {1, 74}
+11:57:46.887100: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 166, 23, 45}, uid: {1, 75}}}
+11:57:46.890978: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 806, 84, 74}, uid: {0, 74}}, 3}], leaderCommit: 133, leaderId: 2, prevLogIndex: 133, prevLogTerm: 3, term: 3}
+11:57:46.890917: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 806, 84, 74}, uid: {0, 74}}, 3}], leaderCommit: 133, leaderId: 2, prevLogIndex: 133, prevLogTerm: 3, term: 3}
+11:57:46.891031: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 806, 84, 74}, uid: {0, 74}}, 3}], leaderCommit: 133, leaderId: 2, prevLogIndex: 133, prevLogTerm: 3, term: 3}
+11:57:46.891227: 3_LEADER@2: send client confirmation {0, 74}
+11:57:46.897941: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 83, 46, 42}, uid: {0, 75}}}
+11:57:46.901921: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 166, 23, 45}, uid: {1, 75}}, 3}], leaderCommit: 134, leaderId: 2, prevLogIndex: 134, prevLogTerm: 3, term: 3}
+11:57:46.902080: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 166, 23, 45}, uid: {1, 75}}, 3}], leaderCommit: 134, leaderId: 2, prevLogIndex: 134, prevLogTerm: 3, term: 3}
+11:57:46.902148: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 166, 23, 45}, uid: {1, 75}}, 3}], leaderCommit: 134, leaderId: 2, prevLogIndex: 134, prevLogTerm: 3, term: 3}
+11:57:46.902217: 3_LEADER@2: send client confirmation {1, 75}
+11:57:46.909158: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 124, 13, 39}, uid: {1, 76}}}
+11:57:46.912986: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 83, 46, 42}, uid: {0, 75}}, 3}], leaderCommit: 135, leaderId: 2, prevLogIndex: 135, prevLogTerm: 3, term: 3}
+11:57:46.913047: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 83, 46, 42}, uid: {0, 75}}, 3}], leaderCommit: 135, leaderId: 2, prevLogIndex: 135, prevLogTerm: 3, term: 3}
+11:57:46.913131: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 83, 46, 42}, uid: {0, 75}}, 3}], leaderCommit: 135, leaderId: 2, prevLogIndex: 135, prevLogTerm: 3, term: 3}
+11:57:46.913262: 3_LEADER@2: send client confirmation {0, 75}
+11:57:46.919882: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 688, 73, 66}, uid: {0, 76}}}
+11:57:46.923852: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 124, 13, 39}, uid: {1, 76}}, 3}], leaderCommit: 136, leaderId: 2, prevLogIndex: 136, prevLogTerm: 3, term: 3}
+11:57:46.923915: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 124, 13, 39}, uid: {1, 76}}, 3}], leaderCommit: 136, leaderId: 2, prevLogIndex: 136, prevLogTerm: 3, term: 3}
+11:57:46.923975: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 124, 13, 39}, uid: {1, 76}}, 3}], leaderCommit: 136, leaderId: 2, prevLogIndex: 136, prevLogTerm: 3, term: 3}
+11:57:46.924118: 3_LEADER@2: send client confirmation {1, 76}
+11:57:46.931097: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 743, 28, 20}, uid: {1, 77}}}
+11:57:46.934859: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 688, 73, 66}, uid: {0, 76}}, 3}], leaderCommit: 137, leaderId: 2, prevLogIndex: 137, prevLogTerm: 3, term: 3}
+11:57:46.934974: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 688, 73, 66}, uid: {0, 76}}, 3}], leaderCommit: 137, leaderId: 2, prevLogIndex: 137, prevLogTerm: 3, term: 3}
+11:57:46.935076: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 688, 73, 66}, uid: {0, 76}}, 3}], leaderCommit: 137, leaderId: 2, prevLogIndex: 137, prevLogTerm: 3, term: 3}
+11:57:46.935199: 3_LEADER@2: send client confirmation {0, 76}
+11:57:46.942000: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 615, 62, 48}, uid: {0, 77}}}
+11:57:46.945969: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 743, 28, 20}, uid: {1, 77}}, 3}], leaderCommit: 138, leaderId: 2, prevLogIndex: 138, prevLogTerm: 3, term: 3}
+11:57:46.946065: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 743, 28, 20}, uid: {1, 77}}, 3}], leaderCommit: 138, leaderId: 2, prevLogIndex: 138, prevLogTerm: 3, term: 3}
+11:57:46.946036: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 743, 28, 20}, uid: {1, 77}}, 3}], leaderCommit: 138, leaderId: 2, prevLogIndex: 138, prevLogTerm: 3, term: 3}
+11:57:46.946248: 3_LEADER@2: send client confirmation {1, 77}
+11:57:46.953077: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 204, 77, 89}, uid: {1, 78}}}
+11:57:46.956925: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 615, 62, 48}, uid: {0, 77}}, 3}], leaderCommit: 139, leaderId: 2, prevLogIndex: 139, prevLogTerm: 3, term: 3}
+11:57:46.956983: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 615, 62, 48}, uid: {0, 77}}, 3}], leaderCommit: 139, leaderId: 2, prevLogIndex: 139, prevLogTerm: 3, term: 3}
+11:57:46.957020: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 615, 62, 48}, uid: {0, 77}}, 3}], leaderCommit: 139, leaderId: 2, prevLogIndex: 139, prevLogTerm: 3, term: 3}
+11:57:46.957196: 3_LEADER@2: send client confirmation {0, 77}
+11:57:46.963909: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 166, 40, 56}, uid: {0, 78}}}
+11:57:46.967860: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 204, 77, 89}, uid: {1, 78}}, 3}], leaderCommit: 140, leaderId: 2, prevLogIndex: 140, prevLogTerm: 3, term: 3}
+11:57:46.967935: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 204, 77, 89}, uid: {1, 78}}, 3}], leaderCommit: 140, leaderId: 2, prevLogIndex: 140, prevLogTerm: 3, term: 3}
+11:57:46.967975: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 204, 77, 89}, uid: {1, 78}}, 3}], leaderCommit: 140, leaderId: 2, prevLogIndex: 140, prevLogTerm: 3, term: 3}
+11:57:46.968118: 3_LEADER@2: send client confirmation {1, 78}
+11:57:46.975151: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 876, 2, 64}, uid: {1, 79}}}
+11:57:46.978913: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 166, 40, 56}, uid: {0, 78}}, 3}], leaderCommit: 141, leaderId: 2, prevLogIndex: 141, prevLogTerm: 3, term: 3}
+11:57:46.979029: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 166, 40, 56}, uid: {0, 78}}, 3}], leaderCommit: 141, leaderId: 2, prevLogIndex: 141, prevLogTerm: 3, term: 3}
+11:57:46.979016: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 166, 40, 56}, uid: {0, 78}}, 3}], leaderCommit: 141, leaderId: 2, prevLogIndex: 141, prevLogTerm: 3, term: 3}
+11:57:46.979173: 3_LEADER@2: send client confirmation {0, 78}
+11:57:46.985846: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 68, 96, 100}, uid: {0, 79}}}
+11:57:46.989874: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 876, 2, 64}, uid: {1, 79}}, 3}], leaderCommit: 142, leaderId: 2, prevLogIndex: 142, prevLogTerm: 3, term: 3}
+11:57:46.990024: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 876, 2, 64}, uid: {1, 79}}, 3}], leaderCommit: 142, leaderId: 2, prevLogIndex: 142, prevLogTerm: 3, term: 3}
+11:57:46.990015: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 876, 2, 64}, uid: {1, 79}}, 3}], leaderCommit: 142, leaderId: 2, prevLogIndex: 142, prevLogTerm: 3, term: 3}
+11:57:46.990179: 3_LEADER@2: send client confirmation {1, 79}
+11:57:46.997078: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 42, 33, 44}, uid: {1, 80}}}
+11:57:47.000931: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 68, 96, 100}, uid: {0, 79}}, 3}], leaderCommit: 143, leaderId: 2, prevLogIndex: 143, prevLogTerm: 3, term: 3}
+11:57:47.000995: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 68, 96, 100}, uid: {0, 79}}, 3}], leaderCommit: 143, leaderId: 2, prevLogIndex: 143, prevLogTerm: 3, term: 3}
+11:57:47.001026: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 68, 96, 100}, uid: {0, 79}}, 3}], leaderCommit: 143, leaderId: 2, prevLogIndex: 143, prevLogTerm: 3, term: 3}
+11:57:47.001194: 3_LEADER@2: send client confirmation {0, 79}
+11:57:47.007861: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 175, 92, 26}, uid: {0, 80}}}
+11:57:47.011864: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 42, 33, 44}, uid: {1, 80}}, 3}], leaderCommit: 144, leaderId: 2, prevLogIndex: 144, prevLogTerm: 3, term: 3}
+11:57:47.011882: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 42, 33, 44}, uid: {1, 80}}, 3}], leaderCommit: 144, leaderId: 2, prevLogIndex: 144, prevLogTerm: 3, term: 3}
+11:57:47.011968: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 42, 33, 44}, uid: {1, 80}}, 3}], leaderCommit: 144, leaderId: 2, prevLogIndex: 144, prevLogTerm: 3, term: 3}
+11:57:47.012128: 3_LEADER@2: send client confirmation {1, 80}
+11:57:47.019111: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 751, 14, 37}, uid: {1, 81}}}
+11:57:47.022869: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 175, 92, 26}, uid: {0, 80}}, 3}], leaderCommit: 145, leaderId: 2, prevLogIndex: 145, prevLogTerm: 3, term: 3}
+11:57:47.023013: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 175, 92, 26}, uid: {0, 80}}, 3}], leaderCommit: 145, leaderId: 2, prevLogIndex: 145, prevLogTerm: 3, term: 3}
+11:57:47.023131: 3_LEADER@2: send client confirmation {0, 80}
+11:57:47.023115: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 175, 92, 26}, uid: {0, 80}}, 3}], leaderCommit: 145, leaderId: 2, prevLogIndex: 145, prevLogTerm: 3, term: 3}
+11:57:47.029784: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 52, 19, 6}, uid: {0, 81}}}
+11:57:47.033993: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 751, 14, 37}, uid: {1, 81}}, 3}], leaderCommit: 146, leaderId: 2, prevLogIndex: 146, prevLogTerm: 3, term: 3}
+11:57:47.033981: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 751, 14, 37}, uid: {1, 81}}, 3}], leaderCommit: 146, leaderId: 2, prevLogIndex: 146, prevLogTerm: 3, term: 3}
+11:57:47.034010: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 751, 14, 37}, uid: {1, 81}}, 3}], leaderCommit: 146, leaderId: 2, prevLogIndex: 146, prevLogTerm: 3, term: 3}
+11:57:47.034403: 3_LEADER@2: send client confirmation {1, 81}
+11:57:47.041049: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 816, 99, 42}, uid: {1, 82}}}
+11:57:47.044872: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 52, 19, 6}, uid: {0, 81}}, 3}], leaderCommit: 147, leaderId: 2, prevLogIndex: 147, prevLogTerm: 3, term: 3}
+11:57:47.044935: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 52, 19, 6}, uid: {0, 81}}, 3}], leaderCommit: 147, leaderId: 2, prevLogIndex: 147, prevLogTerm: 3, term: 3}
+11:57:47.045085: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 52, 19, 6}, uid: {0, 81}}, 3}], leaderCommit: 147, leaderId: 2, prevLogIndex: 147, prevLogTerm: 3, term: 3}
+11:57:47.045141: 3_LEADER@2: send client confirmation {0, 81}
+11:57:47.051871: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 913, 51, 44}, uid: {0, 82}}}
+11:57:47.055842: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 816, 99, 42}, uid: {1, 82}}, 3}], leaderCommit: 148, leaderId: 2, prevLogIndex: 148, prevLogTerm: 3, term: 3}
+11:57:47.055983: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 816, 99, 42}, uid: {1, 82}}, 3}], leaderCommit: 148, leaderId: 2, prevLogIndex: 148, prevLogTerm: 3, term: 3}
+11:57:47.056023: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 816, 99, 42}, uid: {1, 82}}, 3}], leaderCommit: 148, leaderId: 2, prevLogIndex: 148, prevLogTerm: 3, term: 3}
+11:57:47.056094: 3_LEADER@2: send client confirmation {1, 82}
+11:57:47.063090: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 472, 62, 30}, uid: {1, 83}}}
+11:57:47.066911: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 913, 51, 44}, uid: {0, 82}}, 3}], leaderCommit: 149, leaderId: 2, prevLogIndex: 149, prevLogTerm: 3, term: 3}
+11:57:47.066995: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 913, 51, 44}, uid: {0, 82}}, 3}], leaderCommit: 149, leaderId: 2, prevLogIndex: 149, prevLogTerm: 3, term: 3}
+11:57:47.067002: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 913, 51, 44}, uid: {0, 82}}, 3}], leaderCommit: 149, leaderId: 2, prevLogIndex: 149, prevLogTerm: 3, term: 3}
+11:57:47.067287: 3_LEADER@2: send client confirmation {0, 82}
+11:57:47.073816: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 187, 96, 88}, uid: {0, 83}}}
+11:57:47.077907: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 472, 62, 30}, uid: {1, 83}}, 3}], leaderCommit: 150, leaderId: 2, prevLogIndex: 150, prevLogTerm: 3, term: 3}
+11:57:47.077994: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 472, 62, 30}, uid: {1, 83}}, 3}], leaderCommit: 150, leaderId: 2, prevLogIndex: 150, prevLogTerm: 3, term: 3}
+11:57:47.078095: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 472, 62, 30}, uid: {1, 83}}, 3}], leaderCommit: 150, leaderId: 2, prevLogIndex: 150, prevLogTerm: 3, term: 3}
+11:57:47.078159: 3_LEADER@2: send client confirmation {1, 83}
+11:57:47.084980: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 689, 91, 20}, uid: {1, 84}}}
+11:57:47.088888: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 187, 96, 88}, uid: {0, 83}}, 3}], leaderCommit: 151, leaderId: 2, prevLogIndex: 151, prevLogTerm: 3, term: 3}
+11:57:47.088965: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 187, 96, 88}, uid: {0, 83}}, 3}], leaderCommit: 151, leaderId: 2, prevLogIndex: 151, prevLogTerm: 3, term: 3}
+11:57:47.088987: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 187, 96, 88}, uid: {0, 83}}, 3}], leaderCommit: 151, leaderId: 2, prevLogIndex: 151, prevLogTerm: 3, term: 3}
+11:57:47.089159: 3_LEADER@2: send client confirmation {0, 83}
+11:57:47.095878: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 379, 40, 2}, uid: {0, 84}}}
+11:57:47.099719: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 689, 91, 20}, uid: {1, 84}}, 3}], leaderCommit: 152, leaderId: 2, prevLogIndex: 152, prevLogTerm: 3, term: 3}
+11:57:47.099752: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 689, 91, 20}, uid: {1, 84}}, 3}], leaderCommit: 152, leaderId: 2, prevLogIndex: 152, prevLogTerm: 3, term: 3}
+11:57:47.099773: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 689, 91, 20}, uid: {1, 84}}, 3}], leaderCommit: 152, leaderId: 2, prevLogIndex: 152, prevLogTerm: 3, term: 3}
+11:57:47.099956: 3_LEADER@2: send client confirmation {1, 84}
+11:57:47.106012: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 140, 62, 27}, uid: {1, 85}}}
+11:57:47.110671: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 379, 40, 2}, uid: {0, 84}}, 3}], leaderCommit: 153, leaderId: 2, prevLogIndex: 153, prevLogTerm: 3, term: 3}
+11:57:47.110737: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 379, 40, 2}, uid: {0, 84}}, 3}], leaderCommit: 153, leaderId: 2, prevLogIndex: 153, prevLogTerm: 3, term: 3}
+11:57:47.110732: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 379, 40, 2}, uid: {0, 84}}, 3}], leaderCommit: 153, leaderId: 2, prevLogIndex: 153, prevLogTerm: 3, term: 3}
+11:57:47.110809: 3_LEADER@2: send client confirmation {0, 84}
+11:57:47.116786: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 650, 54, 15}, uid: {0, 85}}}
+11:57:47.121664: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 140, 62, 27}, uid: {1, 85}}, 3}], leaderCommit: 154, leaderId: 2, prevLogIndex: 154, prevLogTerm: 3, term: 3}
+11:57:47.121723: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 140, 62, 27}, uid: {1, 85}}, 3}], leaderCommit: 154, leaderId: 2, prevLogIndex: 154, prevLogTerm: 3, term: 3}
+11:57:47.121743: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 140, 62, 27}, uid: {1, 85}}, 3}], leaderCommit: 154, leaderId: 2, prevLogIndex: 154, prevLogTerm: 3, term: 3}
+11:57:47.121800: 3_LEADER@2: send client confirmation {1, 85}
+11:57:47.127991: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 535, 10, 32}, uid: {1, 86}}}
+11:57:47.132632: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 650, 54, 15}, uid: {0, 85}}, 3}], leaderCommit: 155, leaderId: 2, prevLogIndex: 155, prevLogTerm: 3, term: 3}
+11:57:47.132707: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 650, 54, 15}, uid: {0, 85}}, 3}], leaderCommit: 155, leaderId: 2, prevLogIndex: 155, prevLogTerm: 3, term: 3}
+11:57:47.132713: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 650, 54, 15}, uid: {0, 85}}, 3}], leaderCommit: 155, leaderId: 2, prevLogIndex: 155, prevLogTerm: 3, term: 3}
+11:57:47.132843: 3_LEADER@2: send client confirmation {0, 85}
+11:57:47.138681: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 10, 33, 47}, uid: {0, 86}}}
+11:57:47.143585: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 535, 10, 32}, uid: {1, 86}}, 3}], leaderCommit: 156, leaderId: 2, prevLogIndex: 156, prevLogTerm: 3, term: 3}
+11:57:47.143641: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 535, 10, 32}, uid: {1, 86}}, 3}], leaderCommit: 156, leaderId: 2, prevLogIndex: 156, prevLogTerm: 3, term: 3}
+11:57:47.143644: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 535, 10, 32}, uid: {1, 86}}, 3}], leaderCommit: 156, leaderId: 2, prevLogIndex: 156, prevLogTerm: 3, term: 3}
+11:57:47.143762: 3_LEADER@2: send client confirmation {1, 86}
+11:57:47.149898: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 99, 33, 46}, uid: {1, 87}}}
+11:57:47.154743: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 10, 33, 47}, uid: {0, 86}}, 3}], leaderCommit: 157, leaderId: 2, prevLogIndex: 157, prevLogTerm: 3, term: 3}
+11:57:47.154809: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 10, 33, 47}, uid: {0, 86}}, 3}], leaderCommit: 157, leaderId: 2, prevLogIndex: 157, prevLogTerm: 3, term: 3}
+11:57:47.154790: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 10, 33, 47}, uid: {0, 86}}, 3}], leaderCommit: 157, leaderId: 2, prevLogIndex: 157, prevLogTerm: 3, term: 3}
+11:57:47.154911: 3_LEADER@2: send client confirmation {0, 86}
+11:57:47.161772: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 859, 23, 89}, uid: {0, 87}}}
+11:57:47.165945: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 99, 33, 46}, uid: {1, 87}}, 3}], leaderCommit: 158, leaderId: 2, prevLogIndex: 158, prevLogTerm: 3, term: 3}
+11:57:47.166051: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 99, 33, 46}, uid: {1, 87}}, 3}], leaderCommit: 158, leaderId: 2, prevLogIndex: 158, prevLogTerm: 3, term: 3}
+11:57:47.166101: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 99, 33, 46}, uid: {1, 87}}, 3}], leaderCommit: 158, leaderId: 2, prevLogIndex: 158, prevLogTerm: 3, term: 3}
+11:57:47.166205: 3_LEADER@2: send client confirmation {1, 87}
+11:57:47.173044: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 415, 48, 59}, uid: {1, 88}}}
+11:57:47.176953: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 859, 23, 89}, uid: {0, 87}}, 3}], leaderCommit: 159, leaderId: 2, prevLogIndex: 159, prevLogTerm: 3, term: 3}
+11:57:47.176909: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 859, 23, 89}, uid: {0, 87}}, 3}], leaderCommit: 159, leaderId: 2, prevLogIndex: 159, prevLogTerm: 3, term: 3}
+11:57:47.177013: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 859, 23, 89}, uid: {0, 87}}, 3}], leaderCommit: 159, leaderId: 2, prevLogIndex: 159, prevLogTerm: 3, term: 3}
+11:57:47.177156: 3_LEADER@2: send client confirmation {0, 87}
+11:57:47.183859: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 980, 22, 7}, uid: {0, 88}}}
+11:57:47.187838: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 415, 48, 59}, uid: {1, 88}}, 3}], leaderCommit: 160, leaderId: 2, prevLogIndex: 160, prevLogTerm: 3, term: 3}
+11:57:47.187957: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 415, 48, 59}, uid: {1, 88}}, 3}], leaderCommit: 160, leaderId: 2, prevLogIndex: 160, prevLogTerm: 3, term: 3}
+11:57:47.188058: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 415, 48, 59}, uid: {1, 88}}, 3}], leaderCommit: 160, leaderId: 2, prevLogIndex: 160, prevLogTerm: 3, term: 3}
+11:57:47.188150: 3_LEADER@2: send client confirmation {1, 88}
+11:57:47.195109: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 436, 95, 16}, uid: {1, 89}}}
+11:57:47.198894: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 980, 22, 7}, uid: {0, 88}}, 3}], leaderCommit: 161, leaderId: 2, prevLogIndex: 161, prevLogTerm: 3, term: 3}
+11:57:47.198969: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 980, 22, 7}, uid: {0, 88}}, 3}], leaderCommit: 161, leaderId: 2, prevLogIndex: 161, prevLogTerm: 3, term: 3}
+11:57:47.199037: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 980, 22, 7}, uid: {0, 88}}, 3}], leaderCommit: 161, leaderId: 2, prevLogIndex: 161, prevLogTerm: 3, term: 3}
+11:57:47.199167: 3_LEADER@2: send client confirmation {0, 88}
+11:57:47.205810: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 286, 95, 15}, uid: {0, 89}}}
+11:57:47.209958: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 436, 95, 16}, uid: {1, 89}}, 3}], leaderCommit: 162, leaderId: 2, prevLogIndex: 162, prevLogTerm: 3, term: 3}
+11:57:47.210050: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 436, 95, 16}, uid: {1, 89}}, 3}], leaderCommit: 162, leaderId: 2, prevLogIndex: 162, prevLogTerm: 3, term: 3}
+11:57:47.210100: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 436, 95, 16}, uid: {1, 89}}, 3}], leaderCommit: 162, leaderId: 2, prevLogIndex: 162, prevLogTerm: 3, term: 3}
+11:57:47.210235: 3_LEADER@2: send client confirmation {1, 89}
+11:57:47.217025: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 68, 72, 13}, uid: {1, 90}}}
+11:57:47.220911: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 286, 95, 15}, uid: {0, 89}}, 3}], leaderCommit: 163, leaderId: 2, prevLogIndex: 163, prevLogTerm: 3, term: 3}
+11:57:47.221163: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 286, 95, 15}, uid: {0, 89}}, 3}], leaderCommit: 163, leaderId: 2, prevLogIndex: 163, prevLogTerm: 3, term: 3}
+11:57:47.220969: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 286, 95, 15}, uid: {0, 89}}, 3}], leaderCommit: 163, leaderId: 2, prevLogIndex: 163, prevLogTerm: 3, term: 3}
+11:57:47.221228: 3_LEADER@2: send client confirmation {0, 89}
+11:57:47.227892: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 531, 21, 3}, uid: {0, 90}}}
+11:57:47.231854: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 68, 72, 13}, uid: {1, 90}}, 3}], leaderCommit: 164, leaderId: 2, prevLogIndex: 164, prevLogTerm: 3, term: 3}
+11:57:47.231883: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 68, 72, 13}, uid: {1, 90}}, 3}], leaderCommit: 164, leaderId: 2, prevLogIndex: 164, prevLogTerm: 3, term: 3}
+11:57:47.231972: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 68, 72, 13}, uid: {1, 90}}, 3}], leaderCommit: 164, leaderId: 2, prevLogIndex: 164, prevLogTerm: 3, term: 3}
+11:57:47.232188: 3_LEADER@2: send client confirmation {1, 90}
+11:57:47.239119: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 925, 81, 43}, uid: {1, 91}}}
+11:57:47.242908: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 531, 21, 3}, uid: {0, 90}}, 3}], leaderCommit: 165, leaderId: 2, prevLogIndex: 165, prevLogTerm: 3, term: 3}
+11:57:47.242961: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 531, 21, 3}, uid: {0, 90}}, 3}], leaderCommit: 165, leaderId: 2, prevLogIndex: 165, prevLogTerm: 3, term: 3}
+11:57:47.243031: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 531, 21, 3}, uid: {0, 90}}, 3}], leaderCommit: 165, leaderId: 2, prevLogIndex: 165, prevLogTerm: 3, term: 3}
+11:57:47.243206: 3_LEADER@2: send client confirmation {0, 90}
+11:57:47.249848: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 935, 78, 77}, uid: {0, 91}}}
+11:57:47.253916: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 925, 81, 43}, uid: {1, 91}}, 3}], leaderCommit: 166, leaderId: 2, prevLogIndex: 166, prevLogTerm: 3, term: 3}
+11:57:47.253894: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 925, 81, 43}, uid: {1, 91}}, 3}], leaderCommit: 166, leaderId: 2, prevLogIndex: 166, prevLogTerm: 3, term: 3}
+11:57:47.254077: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 925, 81, 43}, uid: {1, 91}}, 3}], leaderCommit: 166, leaderId: 2, prevLogIndex: 166, prevLogTerm: 3, term: 3}
+11:57:47.254171: 3_LEADER@2: send client confirmation {1, 91}
+11:57:47.261050: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 318, 38, 84}, uid: {1, 92}}}
+11:57:47.264943: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 935, 78, 77}, uid: {0, 91}}, 3}], leaderCommit: 167, leaderId: 2, prevLogIndex: 167, prevLogTerm: 3, term: 3}
+11:57:47.264972: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 935, 78, 77}, uid: {0, 91}}, 3}], leaderCommit: 167, leaderId: 2, prevLogIndex: 167, prevLogTerm: 3, term: 3}
+11:57:47.265101: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 935, 78, 77}, uid: {0, 91}}, 3}], leaderCommit: 167, leaderId: 2, prevLogIndex: 167, prevLogTerm: 3, term: 3}
+11:57:47.265190: 3_LEADER@2: send client confirmation {0, 91}
+11:57:47.271844: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 283, 59, 60}, uid: {0, 92}}}
+11:57:47.275850: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 318, 38, 84}, uid: {1, 92}}, 3}], leaderCommit: 168, leaderId: 2, prevLogIndex: 168, prevLogTerm: 3, term: 3}
+11:57:47.275907: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 318, 38, 84}, uid: {1, 92}}, 3}], leaderCommit: 168, leaderId: 2, prevLogIndex: 168, prevLogTerm: 3, term: 3}
+11:57:47.276031: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 318, 38, 84}, uid: {1, 92}}, 3}], leaderCommit: 168, leaderId: 2, prevLogIndex: 168, prevLogTerm: 3, term: 3}
+11:57:47.276121: 3_LEADER@2: send client confirmation {1, 92}
+11:57:47.283088: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 681, 34, 62}, uid: {1, 93}}}
+11:57:47.286851: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 283, 59, 60}, uid: {0, 92}}, 3}], leaderCommit: 169, leaderId: 2, prevLogIndex: 169, prevLogTerm: 3, term: 3}
+11:57:47.286881: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 283, 59, 60}, uid: {0, 92}}, 3}], leaderCommit: 169, leaderId: 2, prevLogIndex: 169, prevLogTerm: 3, term: 3}
+11:57:47.287080: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 283, 59, 60}, uid: {0, 92}}, 3}], leaderCommit: 169, leaderId: 2, prevLogIndex: 169, prevLogTerm: 3, term: 3}
+11:57:47.287210: 3_LEADER@2: send client confirmation {0, 92}
+11:57:47.293832: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 678, 33, 49}, uid: {0, 93}}}
+11:57:47.297966: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 681, 34, 62}, uid: {1, 93}}, 3}], leaderCommit: 170, leaderId: 2, prevLogIndex: 170, prevLogTerm: 3, term: 3}
+11:57:47.298064: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 681, 34, 62}, uid: {1, 93}}, 3}], leaderCommit: 170, leaderId: 2, prevLogIndex: 170, prevLogTerm: 3, term: 3}
+11:57:47.298113: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 681, 34, 62}, uid: {1, 93}}, 3}], leaderCommit: 170, leaderId: 2, prevLogIndex: 170, prevLogTerm: 3, term: 3}
+11:57:47.298156: 3_LEADER@2: send client confirmation {1, 93}
+11:57:47.305043: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 655, 17, 89}, uid: {1, 94}}}
+11:57:47.308911: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 678, 33, 49}, uid: {0, 93}}, 3}], leaderCommit: 171, leaderId: 2, prevLogIndex: 171, prevLogTerm: 3, term: 3}
+11:57:47.308952: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 678, 33, 49}, uid: {0, 93}}, 3}], leaderCommit: 171, leaderId: 2, prevLogIndex: 171, prevLogTerm: 3, term: 3}
+11:57:47.308996: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 678, 33, 49}, uid: {0, 93}}, 3}], leaderCommit: 171, leaderId: 2, prevLogIndex: 171, prevLogTerm: 3, term: 3}
+11:57:47.309208: 3_LEADER@2: send client confirmation {0, 93}
+11:57:47.315859: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 857, 94, 57}, uid: {0, 94}}}
+11:57:47.319897: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 655, 17, 89}, uid: {1, 94}}, 3}], leaderCommit: 172, leaderId: 2, prevLogIndex: 172, prevLogTerm: 3, term: 3}
+11:57:47.319910: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 655, 17, 89}, uid: {1, 94}}, 3}], leaderCommit: 172, leaderId: 2, prevLogIndex: 172, prevLogTerm: 3, term: 3}
+11:57:47.320036: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 655, 17, 89}, uid: {1, 94}}, 3}], leaderCommit: 172, leaderId: 2, prevLogIndex: 172, prevLogTerm: 3, term: 3}
+11:57:47.320155: 3_LEADER@2: send client confirmation {1, 94}
+11:57:47.327097: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 556, 51, 88}, uid: {1, 95}}}
+11:57:47.330933: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 857, 94, 57}, uid: {0, 94}}, 3}], leaderCommit: 173, leaderId: 2, prevLogIndex: 173, prevLogTerm: 3, term: 3}
+11:57:47.330962: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 857, 94, 57}, uid: {0, 94}}, 3}], leaderCommit: 173, leaderId: 2, prevLogIndex: 173, prevLogTerm: 3, term: 3}
+11:57:47.331028: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 857, 94, 57}, uid: {0, 94}}, 3}], leaderCommit: 173, leaderId: 2, prevLogIndex: 173, prevLogTerm: 3, term: 3}
+11:57:47.331179: 3_LEADER@2: send client confirmation {0, 94}
+11:57:47.337837: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 716, 22, 37}, uid: {0, 95}}}
+11:57:47.341924: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 556, 51, 88}, uid: {1, 95}}, 3}], leaderCommit: 174, leaderId: 2, prevLogIndex: 174, prevLogTerm: 3, term: 3}
+11:57:47.342074: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 556, 51, 88}, uid: {1, 95}}, 3}], leaderCommit: 174, leaderId: 2, prevLogIndex: 174, prevLogTerm: 3, term: 3}
+11:57:47.341962: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 556, 51, 88}, uid: {1, 95}}, 3}], leaderCommit: 174, leaderId: 2, prevLogIndex: 174, prevLogTerm: 3, term: 3}
+11:57:47.342146: 3_LEADER@2: send client confirmation {1, 95}
+11:57:47.348039: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 226, 27, 51}, uid: {1, 96}}}
+11:57:47.353000: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 716, 22, 37}, uid: {0, 95}}, 3}], leaderCommit: 175, leaderId: 2, prevLogIndex: 175, prevLogTerm: 3, term: 3}
+11:57:47.352976: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 716, 22, 37}, uid: {0, 95}}, 3}], leaderCommit: 175, leaderId: 2, prevLogIndex: 175, prevLogTerm: 3, term: 3}
+11:57:47.353111: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 716, 22, 37}, uid: {0, 95}}, 3}], leaderCommit: 175, leaderId: 2, prevLogIndex: 175, prevLogTerm: 3, term: 3}
+11:57:47.353229: 3_LEADER@2: send client confirmation {0, 95}
+11:57:47.359900: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 921, 73, 81}, uid: {0, 96}}}
+11:57:47.363884: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 226, 27, 51}, uid: {1, 96}}, 3}], leaderCommit: 176, leaderId: 2, prevLogIndex: 176, prevLogTerm: 3, term: 3}
+11:57:47.363914: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 226, 27, 51}, uid: {1, 96}}, 3}], leaderCommit: 176, leaderId: 2, prevLogIndex: 176, prevLogTerm: 3, term: 3}
+11:57:47.364009: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 226, 27, 51}, uid: {1, 96}}, 3}], leaderCommit: 176, leaderId: 2, prevLogIndex: 176, prevLogTerm: 3, term: 3}
+11:57:47.364126: 3_LEADER@2: send client confirmation {1, 96}
+11:57:47.371106: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 785, 29, 38}, uid: {1, 97}}}
+11:57:47.374954: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 921, 73, 81}, uid: {0, 96}}, 3}], leaderCommit: 177, leaderId: 2, prevLogIndex: 177, prevLogTerm: 3, term: 3}
+11:57:47.374940: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 921, 73, 81}, uid: {0, 96}}, 3}], leaderCommit: 177, leaderId: 2, prevLogIndex: 177, prevLogTerm: 3, term: 3}
+11:57:47.375082: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 921, 73, 81}, uid: {0, 96}}, 3}], leaderCommit: 177, leaderId: 2, prevLogIndex: 177, prevLogTerm: 3, term: 3}
+11:57:47.375244: 3_LEADER@2: send client confirmation {0, 96}
+11:57:47.381851: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 982, 42, 20}, uid: {0, 97}}}
+11:57:47.385981: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 785, 29, 38}, uid: {1, 97}}, 3}], leaderCommit: 178, leaderId: 2, prevLogIndex: 178, prevLogTerm: 3, term: 3}
+11:57:47.385990: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 785, 29, 38}, uid: {1, 97}}, 3}], leaderCommit: 178, leaderId: 2, prevLogIndex: 178, prevLogTerm: 3, term: 3}
+11:57:47.386115: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 785, 29, 38}, uid: {1, 97}}, 3}], leaderCommit: 178, leaderId: 2, prevLogIndex: 178, prevLogTerm: 3, term: 3}
+11:57:47.386225: 3_LEADER@2: send client confirmation {1, 97}
+11:57:47.393076: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 958, 66, 91}, uid: {1, 98}}}
+11:57:47.396880: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 982, 42, 20}, uid: {0, 97}}, 3}], leaderCommit: 179, leaderId: 2, prevLogIndex: 179, prevLogTerm: 3, term: 3}
+11:57:47.396867: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 982, 42, 20}, uid: {0, 97}}, 3}], leaderCommit: 179, leaderId: 2, prevLogIndex: 179, prevLogTerm: 3, term: 3}
+11:57:47.396994: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 982, 42, 20}, uid: {0, 97}}, 3}], leaderCommit: 179, leaderId: 2, prevLogIndex: 179, prevLogTerm: 3, term: 3}
+11:57:47.397165: 3_LEADER@2: send client confirmation {0, 97}
+11:57:47.403844: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 518, 60, 14}, uid: {0, 98}}}
+11:57:47.407841: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 958, 66, 91}, uid: {1, 98}}, 3}], leaderCommit: 180, leaderId: 2, prevLogIndex: 180, prevLogTerm: 3, term: 3}
+11:57:47.407873: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 958, 66, 91}, uid: {1, 98}}, 3}], leaderCommit: 180, leaderId: 2, prevLogIndex: 180, prevLogTerm: 3, term: 3}
+11:57:47.408002: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 958, 66, 91}, uid: {1, 98}}, 3}], leaderCommit: 180, leaderId: 2, prevLogIndex: 180, prevLogTerm: 3, term: 3}
+11:57:47.408070: 3_LEADER@2: send client confirmation {1, 98}
+11:57:47.415094: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 44, 81, 43}, uid: {1, 99}}}
+11:57:47.418934: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 518, 60, 14}, uid: {0, 98}}, 3}], leaderCommit: 181, leaderId: 2, prevLogIndex: 181, prevLogTerm: 3, term: 3}
+11:57:47.418967: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 518, 60, 14}, uid: {0, 98}}, 3}], leaderCommit: 181, leaderId: 2, prevLogIndex: 181, prevLogTerm: 3, term: 3}
+11:57:47.419109: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 518, 60, 14}, uid: {0, 98}}, 3}], leaderCommit: 181, leaderId: 2, prevLogIndex: 181, prevLogTerm: 3, term: 3}
+11:57:47.419199: 3_LEADER@2: send client confirmation {0, 98}
+11:57:47.425815: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 405, 15, 58}, uid: {0, 99}}}
+11:57:47.429960: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 44, 81, 43}, uid: {1, 99}}, 3}], leaderCommit: 182, leaderId: 2, prevLogIndex: 182, prevLogTerm: 3, term: 3}
+11:57:47.429961: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 44, 81, 43}, uid: {1, 99}}, 3}], leaderCommit: 182, leaderId: 2, prevLogIndex: 182, prevLogTerm: 3, term: 3}
+11:57:47.430046: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 44, 81, 43}, uid: {1, 99}}, 3}], leaderCommit: 182, leaderId: 2, prevLogIndex: 182, prevLogTerm: 3, term: 3}
+11:57:47.430187: 3_LEADER@2: send client confirmation {1, 99}
+11:57:47.437049: CLIENT 1: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 294, 13, 76}, uid: {1, 100}}}
+11:57:47.440915: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 405, 15, 58}, uid: {0, 99}}, 3}], leaderCommit: 183, leaderId: 2, prevLogIndex: 183, prevLogTerm: 3, term: 3}
+11:57:47.440946: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 405, 15, 58}, uid: {0, 99}}, 3}], leaderCommit: 183, leaderId: 2, prevLogIndex: 183, prevLogTerm: 3, term: 3}
+11:57:47.441062: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 405, 15, 58}, uid: {0, 99}}, 3}], leaderCommit: 183, leaderId: 2, prevLogIndex: 183, prevLogTerm: 3, term: 3}
+11:57:47.441240: 3_LEADER@2: send client confirmation {0, 99}
+11:57:47.447898: CLIENT 0: send to server: {:CLIENT_REQUEST, %{clientP: #PID<0.182.0>, cmd: {:move, 722, 7, 14}, uid: {0, 100}}}
+11:57:47.451882: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17813.182.0>, cmd: {:move, 294, 13, 76}, uid: {1, 100}}, 3}], leaderCommit: 184, leaderId: 2, prevLogIndex: 184, prevLogTerm: 3, term: 3}
+11:57:47.451926: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 294, 13, 76}, uid: {1, 100}}, 3}], leaderCommit: 184, leaderId: 2, prevLogIndex: 184, prevLogTerm: 3, term: 3}
+11:57:47.452082: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 294, 13, 76}, uid: {1, 100}}, 3}], leaderCommit: 184, leaderId: 2, prevLogIndex: 184, prevLogTerm: 3, term: 3}
+11:57:47.452167: 3_LEADER@2: send client confirmation {1, 100}
+HALT: monitor: Client 1 going to sleep, sent = 100
+11:57:47.463020: 3_FOLLOWER@4: accept %{entries: [{%{clientP: #PID<17814.182.0>, cmd: {:move, 722, 7, 14}, uid: {0, 100}}, 3}], leaderCommit: 185, leaderId: 2, prevLogIndex: 185, prevLogTerm: 3, term: 3}
+11:57:47.462997: 3_FOLLOWER@3: accept %{entries: [{%{clientP: #PID<17779.182.0>, cmd: {:move, 722, 7, 14}, uid: {0, 100}}, 3}], leaderCommit: 185, leaderId: 2, prevLogIndex: 185, prevLogTerm: 3, term: 3}
+11:57:47.462960: 3_FOLLOWER@1: accept %{entries: [{%{clientP: #PID<17812.182.0>, cmd: {:move, 722, 7, 14}, uid: {0, 100}}, 3}], leaderCommit: 185, leaderId: 2, prevLogIndex: 185, prevLogTerm: 3, term: 3}
+11:57:47.463307: 3_LEADER@2: send client confirmation {0, 100}
+HALT: monitor: Client 0 going to sleep, sent = 100
+Exiting server2_39_jc5616@127.0.0.1
+Exiting server3_39_jc5616@127.0.0.1
+Exiting server1_39_jc5616@127.0.0.1
+Exiting server0_39_jc5616@127.0.0.1
+Exiting server4_39_jc5616@127.0.0.1
+Exiting raft_39_jc5616@127.0.0.1
