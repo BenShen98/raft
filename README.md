@@ -1,21 +1,12 @@
 # Raft
 
-**TODO: Add description**
 
-## Installation
+## Installation and Execution
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `raft` to your list of dependencies in `mix.exs`:
+To run this implementation with default settings, run the following commands:
+make clean
+make run run_multi
 
-```elixir
-def deps do
-  [
-    {:raft, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/raft](https://hexdocs.pm/raft).
-
+To run the test suite, run the following commands:
+chmod +x script/test.sh
+script/test.sh
