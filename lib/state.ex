@@ -125,7 +125,9 @@ def inc_vote(s), do: Map.put(s, :votes, s.votes+1)
 def next_index(s, id, v), do: Map.put(s, :next_index, :erlang.setelement(id+1,s.next_index, v ))
 def match_index(s, id, v), do: Map.put(s, :match_index, :erlang.setelement(id+1,s.match_index, v ))
 def dec_next_index(s, id) do
-  next_index(s, id, elem(s.next_index, id)-1)
+  s=next_index(s, id, elem(s.next_index, id)-1)
+  Monitor.server(s, "decrement next_index #{inspect s.next_index}")
+  s
 end
 
 defp append_logs(s, entries) do # for follower

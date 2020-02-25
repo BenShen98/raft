@@ -79,6 +79,7 @@ def send_request(c, client_request) do
     {c, true}
 
   after c.config.client_timeout ->
+    Monitor.client(c,30, "client timeout while waiting reply for uid #{inspect elem(client_request,1).uid}")
     # leader probably crashed, retry command with different server
     non_leader = for server <- c.servers, server != c.leaderP do server end
     c = Map.put(c, :leaderP, Enum.random(non_leader))

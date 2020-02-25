@@ -114,8 +114,14 @@ def next(state) do
 
     done = Map.get(state.updates, db, 0)
 
-    if seqnum != done + 1, do:
-       Monitor.halt "  ** error DATEBASE@#{db}: seq #{seqnum} expecting #{done+1}"
+    cond do
+      seqnum < done + 1 -> :skip # caused when server crashed, and redo all the entry
+
+      seqnum != done + 1 ->
+        Monitor.halt "  ** error DATEBASE@#{db}: seq #{seqnum} expecting #{done+1}"
+
+      true-> :skip
+    end
 
     moves =
       case Map.get(state.moves, seqnum) do
