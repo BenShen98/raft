@@ -1,0 +1,12 @@
+{
+    "description": "Testing continued system operation when 2 out of 5 servers have failed",
+    "n_clients":2,
+    "n_servers":5,
+    "show_server": false,
+    "disasters": [
+        {"t":0, "type":"timeout", "id":0},
+        {"t":1000, "type":"offline", "id":"leader", "ref":"a"},
+        {"t":1500,"type":"crash", "id":"leader", "ref":"b"}
+    ],
+    "debug_level":10
+}

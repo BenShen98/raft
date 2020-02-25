@@ -14,7 +14,7 @@
 
         {"t":2100,"type":"online", "id":"b"}
     ],
-    "debug_level":30,
+    "debug_level":10,
     "client_requests": 100,
     "client_timeout": 500,
     "print_after": 1000,

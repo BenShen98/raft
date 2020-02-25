@@ -1,0 +1,139 @@
+mix deps.get
+Resolving Hex dependencies...
+Dependency resolution completed:
+Unchanged:
+  poison 3.1.0
+All dependencies are up to date
+mix compile
+
+====RUNNNING WITH CONFIG====
+%{append_entries_timeout: 10, client_requests: 100, client_sleep: 5, client_stop: 60000, client_timeout: 500, debug_level: 10, disasters: [%{id: 0, t: 0, type: "timeout"}, %{id: "leader", ref: "a", t: 1000, type: "offline"}, %{id: "leader", ref: "b", t: 1500, type: "crash"}, %{id: "leader", ref: "c", t: 2000, type: "offline"}, %{id: "b", t: 2500, type: "online"}], election_timeout: 100, max_amount: 1000, max_time: 10000, monitorP: #PID<0.178.0>, n_accounts: 100, n_clients: 0, n_servers: 5, node_suffix: "17_jc5616@127.0.0.1", print_after: 2000, raftP: #PID<0.98.0>, show_role_switch: true, show_server: false, start_function: :multi_node_start}
+====   CONFIG    END   ====
+
+Disaster reference name %{"leader" => nil}
+
+08:07:21.178 [warn]  ** Can not start Client::start,[%{append_entries_timeout: 10, client_requests: 100, client_sleep: 5, client_stop: 60000, client_timeout: 500, debug_level: 10, disasters: [%{id: 0, t: 0, type: "timeout"}, %{id: "leader", ref: "a", t: 1000, type: "offline"}, %{id: "leader", ref: "b", t: 1500, type: "crash"}, %{id: "leader", ref: "c", t: 2000, type: "offline"}, %{id: "b", t: 2500, type: "online"}], election_timeout: 100, max_amount: 1000, max_time: 10000, monitorP: #PID<0.178.0>, n_accounts: 100, n_clients: 0, n_servers: 5, node_suffix: "17_jc5616@127.0.0.1", print_after: 2000, raftP: #PID<0.98.0>, show_role_switch: true, show_server: false, start_function: :multi_node_start}, -1, [#PID<17594.183.0>, #PID<17676.183.0>, #PID<17677.183.0>, #PID<17678.183.0>, #PID<17679.183.0>]] on :"client-1_17_jc5616@127.0.0.1" **
+
+
+08:07:21.178 [warn]  ** Can not start Client::start,[%{append_entries_timeout: 10, client_requests: 100, client_sleep: 5, client_stop: 60000, client_timeout: 500, debug_level: 10, disasters: [%{id: 0, t: 0, type: "timeout"}, %{id: "leader", ref: "a", t: 1000, type: "offline"}, %{id: "leader", ref: "b", t: 1500, type: "crash"}, %{id: "leader", ref: "c", t: 2000, type: "offline"}, %{id: "b", t: 2500, type: "online"}], election_timeout: 100, max_amount: 1000, max_time: 10000, monitorP: #PID<0.178.0>, n_accounts: 100, n_clients: 0, n_servers: 5, node_suffix: "17_jc5616@127.0.0.1", print_after: 2000, raftP: #PID<0.98.0>, show_role_switch: true, show_server: false, start_function: :multi_node_start}, 0, [#PID<17594.183.0>, #PID<17676.183.0>, #PID<17677.183.0>, #PID<17678.183.0>, #PID<17679.183.0>]] on :"client0_17_jc5616@127.0.0.1" **
+
+08:07:21.179189: 0_FOLLOWER@3: switched to FOLLOWER
+08:07:21.181273: 0_FOLLOWER@1: switched to FOLLOWER
+08:07:21.182177: 0_FOLLOWER@4: switched to FOLLOWER
+08:07:21.181963: 0_FOLLOWER@2: switched to FOLLOWER
+08:07:21.184927: 0_FOLLOWER@0: switched to FOLLOWER
+08:07:21.187257: 0_FOLLOWER@0: AFFECTED BY timeout
+08:07:21.188346: 1_CANDIDATE@0: switched to CANDIDATE
+08:07:21.188459: 1_CANDIDATE@0: vote request from 0, true,  -> 0
+08:07:21.200059: 0_FOLLOWER@1: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.203199: 1_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.203348: 1_FOLLOWER@1: switched to FOLLOWER
+08:07:21.203444: 1_FOLLOWER@1: vote request from 0, true,  -> 0
+08:07:21.205470: 0_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.205632: 1_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.205655: 0_FOLLOWER@4: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.205720: 1_FOLLOWER@2: switched to FOLLOWER
+08:07:21.205770: 1_FOLLOWER@4: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.205831: 1_FOLLOWER@2: vote request from 0, true,  -> 0
+08:07:21.205842: 1_FOLLOWER@4: switched to FOLLOWER
+08:07:21.205927: 1_FOLLOWER@4: vote request from 0, true,  -> 0
+08:07:21.207691: 0_FOLLOWER@3: Higher term found {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.207817: 1_FOLLOWER@3: give will: {:VOTE_REQUEST, %{candidateId: 0, lastLogIndex: 0, lastLogTerm: 0, term: 1}}
+08:07:21.207904: 1_FOLLOWER@3: switched to FOLLOWER
+08:07:21.207937: 1_LEADER@0: switched to LEADER
+Disaster reference name %{"leader" => 0}
+08:07:21.208018: 1_FOLLOWER@3: vote request from 0, true,  -> 0
+Disaster reference name %{"a" => 0, "leader" => 0}
+08:07:22.173099: 1_LEADER@0: AFFECTED BY offline
+08:07:22.288580: 2_CANDIDATE@1: switched to CANDIDATE
+08:07:22.289092: 1_FOLLOWER@3: Higher term found {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+08:07:22.289157: 1_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+08:07:22.289294: 2_CANDIDATE@1: vote request from 1, true,  -> 1
+08:07:22.289253: 1_FOLLOWER@4: Higher term found {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+08:07:22.289963: 2_FOLLOWER@3: give will: {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+08:07:22.289997: 2_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+08:07:22.290076: 2_FOLLOWER@4: give will: {:VOTE_REQUEST, %{candidateId: 1, lastLogIndex: 0, lastLogTerm: 0, term: 2}}
+08:07:22.290551: 2_FOLLOWER@3: switched to FOLLOWER
+08:07:22.290641: 2_FOLLOWER@4: switched to FOLLOWER
+08:07:22.290623: 2_FOLLOWER@2: switched to FOLLOWER
+08:07:22.290987: 2_FOLLOWER@3: vote request from 1, true,  -> 1
+08:07:22.291293: 2_FOLLOWER@2: vote request from 1, true,  -> 1
+08:07:22.291277: 2_FOLLOWER@4: vote request from 1, true,  -> 1
+08:07:22.294980: 2_LEADER@1: switched to LEADER
+Disaster reference name %{"a" => 0, "leader" => 1}
+Disaster reference name %{"a" => 0, "b" => 1, "leader" => 1}
+08:07:22.676252: 2_LEADER@1: AFFECTED BY crash
+08:07:22.676831: DATABASE@1: restart due to diaster crash happened to server, wipeed storage
+08:07:22.782027: 3_CANDIDATE@3: switched to CANDIDATE
+08:07:22.782536: 2_FOLLOWER@4: Higher term found {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 3}}
+08:07:22.782532: 2_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 3}}
+08:07:22.782697: 3_CANDIDATE@3: vote request from 3, true,  -> 3
+08:07:22.783226: 3_FOLLOWER@4: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 3}}
+08:07:22.783323: 3_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 3, lastLogIndex: 0, lastLogTerm: 0, term: 3}}
+08:07:22.783656: 3_FOLLOWER@4: switched to FOLLOWER
+08:07:22.783831: 3_FOLLOWER@2: switched to FOLLOWER
+08:07:22.784260: 3_FOLLOWER@4: vote request from 3, true,  -> 3
+08:07:22.784460: 3_FOLLOWER@2: vote request from 3, true,  -> 3
+08:07:22.788912: 3_LEADER@3: switched to LEADER
+Disaster reference name %{"a" => 0, "b" => 1, "leader" => 3}
+time = 2000      db updates done = []
+time = 2000 client requests seen = [], (when the node was leader)
+time = 2000        server roles  = %{0 => {1, :LEADER}, 1 => {2, :LEADER}, 2 => {3, :FOLLOWER}, 3 => {3, :LEADER}, 4 => {3, :FOLLOWER}}
+time = 2000           total seen = 0 max lag = 0
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 3, "leader" => 3}
+08:07:23.176122: 3_LEADER@3: AFFECTED BY offline
+08:07:23.312965: 4_CANDIDATE@4: switched to CANDIDATE
+08:07:23.313466: 3_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 4}}
+08:07:23.313629: 4_CANDIDATE@4: vote request from 4, true,  -> 4
+08:07:23.314033: 4_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 4}}
+08:07:23.314478: 4_FOLLOWER@2: switched to FOLLOWER
+08:07:23.314873: 4_FOLLOWER@2: vote request from 4, true,  -> 4
+08:07:23.434567: 5_CANDIDATE@4: switched to CANDIDATE
+08:07:23.435139: 5_CANDIDATE@4: vote request from 4, true,  -> 4
+08:07:23.435150: 4_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 5}}
+08:07:23.435912: 5_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 5}}
+08:07:23.436394: 5_FOLLOWER@2: switched to FOLLOWER
+08:07:23.436999: 5_FOLLOWER@2: vote request from 4, true,  -> 4
+08:07:23.575547: 6_CANDIDATE@4: switched to CANDIDATE
+08:07:23.576048: 5_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 6}}
+08:07:23.576125: 6_CANDIDATE@4: vote request from 4, true,  -> 4
+08:07:23.576722: 6_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 6}}
+08:07:23.577165: 6_FOLLOWER@2: switched to FOLLOWER
+08:07:23.577648: 6_FOLLOWER@2: vote request from 4, true,  -> 4
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 3, "leader" => 3}
+08:07:23.672876: 0_FOLLOWER@1: AFFECTED BY online
+08:07:23.673405: 0_FOLLOWER@1: switched to FOLLOWER
+08:07:23.724226: 7_CANDIDATE@4: switched to CANDIDATE
+08:07:23.724652: 0_FOLLOWER@1: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 7}}
+08:07:23.724742: 6_FOLLOWER@2: Higher term found {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 7}}
+08:07:23.724848: 7_CANDIDATE@4: vote request from 4, true,  -> 4
+08:07:23.725262: 7_FOLLOWER@1: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 7}}
+08:07:23.725388: 7_FOLLOWER@2: give will: {:VOTE_REQUEST, %{candidateId: 4, lastLogIndex: 0, lastLogTerm: 0, term: 7}}
+08:07:23.725740: 7_FOLLOWER@1: switched to FOLLOWER
+08:07:23.725994: 7_FOLLOWER@2: switched to FOLLOWER
+08:07:23.726140: 7_FOLLOWER@1: vote request from 4, true,  -> 4
+08:07:23.726501: 7_FOLLOWER@2: vote request from 4, true,  -> 4
+08:07:23.730374: 7_LEADER@4: switched to LEADER
+Disaster reference name %{"a" => 0, "b" => 1, "c" => 3, "leader" => 4}
+time = 4000      db updates done = []
+time = 4000 client requests seen = [], (when the node was leader)
+time = 4000        server roles  = %{0 => {1, :LEADER}, 1 => {7, :FOLLOWER}, 2 => {7, :FOLLOWER}, 3 => {3, :LEADER}, 4 => {7, :LEADER}}
+time = 4000           total seen = 0 max lag = 0
+time = 6000      db updates done = []
+time = 6000 client requests seen = [], (when the node was leader)
+time = 6000        server roles  = %{0 => {1, :LEADER}, 1 => {7, :FOLLOWER}, 2 => {7, :FOLLOWER}, 3 => {3, :LEADER}, 4 => {7, :LEADER}}
+time = 6000           total seen = 0 max lag = 0
+time = 8000      db updates done = []
+time = 8000 client requests seen = [], (when the node was leader)
+time = 8000        server roles  = %{0 => {1, :LEADER}, 1 => {7, :FOLLOWER}, 2 => {7, :FOLLOWER}, 3 => {3, :LEADER}, 4 => {7, :LEADER}}
+time = 8000           total seen = 0 max lag = 0
+Exiting server2_17_jc5616@127.0.0.1
+Exiting server1_17_jc5616@127.0.0.1
+Exiting server3_17_jc5616@127.0.0.1
+Exiting server4_17_jc5616@127.0.0.1
+Exiting server0_17_jc5616@127.0.0.1
+Exiting raft_17_jc5616@127.0.0.1
+time = 10000      db updates done = []
+time = 10000 client requests seen = [], (when the node was leader)
+time = 10000        server roles  = %{0 => {1, :LEADER}, 1 => {7, :FOLLOWER}, 2 => {7, :FOLLOWER}, 3 => {3, :LEADER}, 4 => {7, :LEADER}}
+time = 10000           total seen = 0 max lag = 0

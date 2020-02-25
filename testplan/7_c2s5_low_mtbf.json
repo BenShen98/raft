@@ -1,0 +1,32 @@
+{
+    "description": "Testing continued system operation when servers repeatedly fail",
+    "n_clients":2,
+    "n_servers":5,
+    "show_server": false,
+    "disasters": [
+       
+        {"t":500, "type":"crash", "id":0},
+        {"t":750, "type":"online", "id":0},
+        {"t":750, "type":"crash", "id":1},
+        {"t":1000, "type":"online", "id":1},
+        {"t":1000, "type":"crash", "id":2},
+        {"t":1250, "type":"online", "id":2},
+        {"t":1250, "type":"crash", "id":3},
+        {"t":1500, "type":"online", "id":3},
+        {"t":1500, "type":"crash", "id":4},
+        {"t":1750, "type":"online", "id":4},
+        {"t":1750, "type":"crash", "id":0},
+        {"t":2000, "type":"online", "id":0},
+        {"t":2000, "type":"crash", "id":1},
+        {"t":2250, "type":"online", "id":1},
+        {"t":2250, "type":"crash", "id":2},
+        {"t":2500, "type":"online", "id":2},
+        {"t":2500, "type":"crash", "id":3},
+        {"t":2750, "type":"online", "id":3},
+        {"t":2750, "type":"crash", "id":4},
+        {"t":3000, "type":"online", "id":4},
+        {"t":3000, "type":"crash", "id":0}
+    ],
+    "debug_level":10,
+    "election_timeout":150
+}
