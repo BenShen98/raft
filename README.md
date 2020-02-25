@@ -14,9 +14,8 @@ script/test.sh
 ### config.json
 List of all possible parameters
 
-| para | default (value in dac.ex) | meaning
-|----------|:-------------:|------:|
-| para | default (value in dac.ex) | meaning
+| Parameter Name | Default (value in dac.ex) | Description
+|----------------|:-------------------------:|-----------:|
 | max_time | 10000 | Maximum execution time
 | n_servers | 5 | Number of servers
 | n_clients | 5 | Number of clients
@@ -31,5 +30,16 @@ List of all possible parameters
 | client_timeout | 500 | Client timeout for expecting reply
 | n_accounts | 100 | Number of active bank accounts
 | max_amount | 1_000 | Max amount moved between accounts
-| election_timeout | 100 | Timeout(in milliseconds) for elections, randomly chosen between this and 2*this
+| election_timeout | 100 | Timeout(in milliseconds) for elections, randomly chosen between this and 2\*this
 | append_entries_timeout | 10 | Timeout(in milliseconds) for expecting a reply to append_entries requests
+| disasters | [] | List of disasters to force system changes
+
+### Disaster format
+Disasters are a list of actions to force changes in the system, such that failures or other conditions can be simulated
+It contains the following parameters
+| Parameter Name | Possible Values | Description
+|----------------|:---------------:|-----------:|
+| t | (int) | Time to execute the disaster(in milliseconds)
+| type | "timeout", "crash", "offline", "online" | Type of disaster, defined in report 
+| id | (int), "leader", (string) | Server ID for disaster, int will be the node number, "leader" refers to the current leader, while a string can be used if a server ref has been declared previously
+| ref | (string) | Reference to tag a particular node, such that it can be called by that reference in future
