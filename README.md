@@ -1,5 +1,6 @@
 # Raft
 
+# Leyang Shen (ls2617) and Jiahao Chua (jc5616)
 
 ## Installation and Execution
 

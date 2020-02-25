@@ -1,3 +1,5 @@
+# Leyang Shen (ls2617) and Jiahao Chua (jc5616)
+
 #!/bin/bash
 no_servers=5
 no_clients=5

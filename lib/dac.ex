@@ -1,6 +1,7 @@
 
 # distributed algorithms, n.dulay, 4 feb 2020
 # coursework, raft consensus, v1
+# Leyang Shen (ls2617) and Jiahao Chua (jc5616)
 
 # various helper functions
 
